@@ -19,8 +19,8 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -164,7 +164,20 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Areas\Panel\Controllers\LocationsController.cs" />
+    <Compile Include="Areas\Panel\Controllers\ProfileController.cs" />
+    <Compile Include="Areas\Panel\Controllers\RatingsController.cs" />
+    <Compile Include="Areas\Panel\Controllers\RequestsController.cs" />
+    <Compile Include="Areas\Panel\Controllers\SummaryController.cs" />
+    <Compile Include="Areas\Panel\PanelAreaRegistration.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\FaqController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocationsController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\LogoutController.cs" />
+    <Compile Include="Controllers\PartnersController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -217,9 +230,23 @@
     <Folder Include="Areas\Api\Controllers\" />
     <Folder Include="Areas\Api\Models\" />
     <Folder Include="Areas\Api\Views\Shared\" />
+    <Folder Include="Areas\Panel\Models\" />
+    <Folder Include="Areas\Panel\Views\Locations\" />
+    <Folder Include="Areas\Panel\Views\Profile\" />
+    <Folder Include="Areas\Panel\Views\Ratings\" />
+    <Folder Include="Areas\Panel\Views\Requests\" />
+    <Folder Include="Areas\Panel\Views\Shared\" />
+    <Folder Include="Areas\Panel\Views\Summary\" />
     <Folder Include="Assets\img\" />
     <Folder Include="Models\Database\" />
     <Folder Include="Models\Forms\" />
+    <Folder Include="Views\Contact\" />
+    <Folder Include="Views\Faq\" />
+    <Folder Include="Views\Locations\" />
+    <Folder Include="Views\Login\" />
+    <Folder Include="Views\Logout\" />
+    <Folder Include="Views\Partners\" />
+    <Folder Include="Views\Register\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\fonts\glyphicons-halflings-regular.woff" />
@@ -229,6 +256,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Api\Views\web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Panel\Views\web.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
