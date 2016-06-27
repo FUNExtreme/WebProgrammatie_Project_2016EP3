@@ -1,0 +1,6 @@
+Logo: PNG / JPG 
+Lettertype: Market Deco - http://www.dafont.com/market-deco.font?fpp=100&text=jeugdlocatie+booking.be
+-> use for titles (h1, ...), not paragraphs!
+Base color 1: #008eb2
+Base color 2: #00cbff
+Accent color: #fe7e07
