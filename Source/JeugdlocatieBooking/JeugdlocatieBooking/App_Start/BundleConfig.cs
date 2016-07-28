@@ -15,6 +15,10 @@ namespace JeugdlocatieBooking
             bundles.Add(new StyleBundle("~/Assets/css/bundles/bootstrap").Include(
                       "~/Assets/css/bootstrap.min.css"
                       ));
+
+            bundles.Add(new StyleBundle("~/Assets/css/bundles/styles").Include(
+                      "~/Assets/css/styles.css"
+                      ));
         }
     }
 }

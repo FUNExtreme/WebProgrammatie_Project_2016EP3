@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace JeugdlocatieBooking
@@ -15,8 +11,15 @@ namespace JeugdlocatieBooking
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{id}/{action}/",
+                defaults: new { controller = "Home", action = "Index" },
+                constraints: new { id = @"\d+" }
+            );
+
+            routes.MapRoute(
+                name: "ActionOnly",
+                url: "{controller}/{action}/",
+                defaults: new { controller = "Home", action = "Index" }
             );
         }
     }
