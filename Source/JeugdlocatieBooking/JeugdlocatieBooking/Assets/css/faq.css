@@ -1,0 +1,16 @@
+﻿.faq-question {
+    border-bottom: 1px solid #e4e4e4;
+}
+
+.faq-answer {
+    padding: 3rem 2.5rem;
+}
+
+.faq-overview ul {
+    padding: 0 3rem 2.5rem 5rem;
+    list-style: square;
+}
+
+.faq-overview ul li {
+    margin: 1rem 0;
+}

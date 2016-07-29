@@ -187,6 +187,7 @@
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
+    <Content Include="Assets\css\faq.css" />
     <Content Include="Assets\css\locations.css" />
     <Content Include="Assets\css\partners.css" />
     <Content Include="Assets\css\reset.css" />

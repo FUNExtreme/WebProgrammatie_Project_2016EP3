@@ -2,7 +2,70 @@
     ViewBag.Title = "Frequently Asked Questions";
 }
 
+@section styles {
+    @Styles.Render("~/Assets/css/faq.css")
+}
+
 @section navbreadcrumb {
     <li><a href="@Url.Action("Index", "Home")">Home</a></li>
     <li class="active">FAQ</li>
 }
+
+<div class="page">
+    <div class="row">
+        <div class="shadowbox faq-overview">
+            <h5>Overzicht</h5>
+            <ul>
+                <li><a href="#1">Kunnen scholen gebruik maken van deze service?</a></li>
+                <li><a href="#2">Wat is een annulatiepremie?</a></li>
+                <li><a href="#3">Ik heb geen waarborg teruggekregen?</a></li>
+                <li><a href="#4">Moet je met een groep zijn?</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div id="1" class="faq shadowbox clearfix">
+            <div class="faq-question clearfix">
+                <h5>Kunnen Scholen gebruik maken van deze service?</h5>
+            </div>
+            <div class="faq-answer">
+                Onze centra zijn geschikt voor elke groep met kinderen en jongeren. Dus ook voor schoolgroepen.
+                Als je een leerling bent en je reserveert een huis in opdracht van de school, geef dan de naam van de klastitularis, de naam en het adres van de school en je klas op.
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div id="2" class="faq shadowbox clearfix">
+            <div class="faq-question clearfix">
+                <h5>Wat is een annulatiepremie?</h5>
+            </div>
+            <div class="faq-answer">
+                Een annulatiepremie is een bedrag van ongeveer 10% van de zomerdagprijs die gebruikt wordt om het risico op annulatie te dekken voor een verblijf van minstens 7 of 10 dagen in de zomer.
+                Groepen zullen bij een annulatie in de zomer nooit meer dan 25% van de kostprijs betalen.
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div id="3" class="faq shadowbox clearfix">
+            <div class="faq-question clearfix">
+                <h5>Ik heb geen waarborg teruggekregen?</h5>
+            </div>
+            <div class="faq-answer">
+                De waarborg wordt door de huisverantwoordelijke ter plaatse geregeld. Neem contact op met de verantwoordelijke van het huis waar je verblijf is doorgegaan als je een maand na vertrek nog geen afrekening hebt ontvangen.
+                Krijg je na een tweetal weeken geen antwoord, dan stuur je een mailtje naar JeugdLocatie Booking. Jouw vraag wordt dan verder door ons opgevolgd.
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div id="4" class="faq shadowbox clearfix">
+            <div class="faq-question clearfix">
+                <h5>Moet je met een groep zijn?</h5>
+            </div>
+            <div class="faq-answer">
+                JeugdLocatie Booking verhuurt enkel groepsaccommodaties vanaf ongeveer 15 personen. Je hoeft geen georganiseerde vereniging te zijn, maar je moet dus een huisje reserveren voor minstens 15 personen ook al kom je maar met 2.
+            </div>
+        </div>
+    </div>
+</div>
+
