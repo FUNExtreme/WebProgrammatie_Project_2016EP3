@@ -12,6 +12,9 @@ namespace JeugdlocatieBooking
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{id}/{action}/",
+                namespaces: new string[] {
+                    "YouthLocationBooking.Controllers"
+                },
                 defaults: new { controller = "Home", action = "Index" },
                 constraints: new { id = @"\d+" }
             );
@@ -19,6 +22,9 @@ namespace JeugdlocatieBooking
             routes.MapRoute(
                 name: "ActionOnly",
                 url: "{controller}/{action}/",
+                namespaces: new string[] {
+                    "YouthLocationBooking.Controllers"
+                },
                 defaults: new { controller = "Home", action = "Index" }
             );
         }

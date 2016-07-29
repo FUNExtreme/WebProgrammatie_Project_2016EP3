@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace WebApplication1.Areas.Panel
+namespace YouthLocationBooking.Areas.Panel
 {
     public class PanelAreaRegistration : AreaRegistration 
     {
@@ -15,9 +15,12 @@ namespace WebApplication1.Areas.Panel
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "Panel_default",
-                "Panel/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                name: "Panel_default",
+                url: "Panel/{controller}/{action}/{id}",
+                namespaces: new string[] {
+                    "YouthLocationBooking.Areas.Panel.Controllers"
+                },
+                defaults: new { action = "Index", id = UrlParameter.Optional }
             );
         }
     }

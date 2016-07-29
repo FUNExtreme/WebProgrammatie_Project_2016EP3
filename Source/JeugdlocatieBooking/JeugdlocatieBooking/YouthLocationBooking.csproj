@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebApplication1</RootNamespace>
-    <AssemblyName>WebApplication1</AssemblyName>
+    <RootNamespace>YouthLocationBooking</RootNamespace>
+    <AssemblyName>YouthLocationBooking</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -187,8 +187,11 @@
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
+    <Content Include="Assets\css\locations.css" />
+    <Content Include="Assets\css\reset.css" />
     <Content Include="Assets\css\styles.css" />
     <Content Include="Assets\img\header_bg.jpg" />
+    <Content Include="Assets\img\location_placeholder.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -236,13 +239,11 @@
     <Folder Include="Areas\Panel\Views\Requests\" />
     <Folder Include="Areas\Panel\Views\Shared\" />
     <Folder Include="Areas\Panel\Views\Summary\" />
-    <Folder Include="Assets\fonts\" />
     <Folder Include="Assets\js\" />
     <Folder Include="Models\Database\" />
     <Folder Include="Models\Forms\" />
     <Folder Include="Views\Contact\" />
     <Folder Include="Views\Faq\" />
-    <Folder Include="Views\Locations\" />
     <Folder Include="Views\Login\" />
     <Folder Include="Views\Logout\" />
     <Folder Include="Views\Partners\" />
@@ -256,6 +257,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Panel\Views\web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Locations\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\fonts\Market_Deco.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\fonts\LibreBaskerville-Italic.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\fonts\OpenSans-Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\fonts\OpenSans-Bold.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\fonts\OpenSans-Semibold.ttf" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
