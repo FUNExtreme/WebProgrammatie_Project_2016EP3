@@ -6,6 +6,11 @@
     @Styles.Render("~/Assets/css/partners.css")
 }
 
+@section navbreadcrumb {
+    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+    <li class="active">@ViewBag.Title</li>
+}
+
 <div class="row page">
     <div class="partner shadowbox clearfix">
         <div class="partner-thumbnail" style="background-image:url(../../Assets/img/partner_logo_diede.png);"></div>

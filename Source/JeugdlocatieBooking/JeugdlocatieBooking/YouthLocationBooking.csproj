@@ -193,6 +193,7 @@
     <Content Include="Assets\css\styles.css" />
     <Content Include="Assets\img\header_bg.jpg" />
     <Content Include="Assets\img\location_placeholder.jpg" />
+    <Content Include="Assets\img\logo.png" />
     <Content Include="Assets\img\partner_logo_diede.png" />
     <Content Include="Assets\img\partner_logo_tim.png" />
     <Content Include="favicon.ico" />

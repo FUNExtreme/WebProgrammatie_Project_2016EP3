@@ -14,18 +14,27 @@
             <div class="header-top">
                 <div class="container">
                     <div class="row">
-                        <ul>
-                            <li class="col-md-2">
-                                <a href="@Url.RouteAction("Index", "Home", "ActionOnly")">Home</a>
-                            </li>
-                        </ul>
+                        <div class="pull-right">
+                            <span>
+                                <a href="@Url.RouteAction("Index", "Login", "ActionOnly")">Login</a>
+                            </span>
+                            <span>
+                                <a href="@Url.RouteAction("Index", "Login", "ActionOnly")">Register</a>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
             <nav class="header-nav">
                 <div class="container">
                     <div class="row">
-                        <ul class="col-md-5">
+                        <div class="col-md-2">
+                            <h1>JeugdLocatie Booking</h1>
+                        </div>
+                        <ul class="col-md-4">
+                            <li>
+                                <a href="@Url.RouteAction("Index", "Home", "ActionOnly")">Home</a>
+                            </li>
                             <li>
                                 <a href="@Url.RouteAction("Index", "Locations", "ActionOnly")">Locaties</a>
                             </li>
@@ -49,8 +58,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="page-title pull-left">@ViewBag.Title</h2>
-                        <div class="page-breadcrumbs pull-right">Breadcrumbs</div>
+                        <h2 class="pull-left page-title">@ViewBag.Title</h2>
+                        <ul class="pull-right page-breadcrumbs">
+                            @RenderSection("navbreadcrumb", required: false)
+                        </ul>
                     </div>
                 </div>
             </div>

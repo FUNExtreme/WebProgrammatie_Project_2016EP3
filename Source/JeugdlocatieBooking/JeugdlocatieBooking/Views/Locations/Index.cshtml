@@ -6,6 +6,11 @@
     @Styles.Render("~/Assets/css/locations.css")
 }
 
+@section navbreadcrumb {
+    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+    <li class="active">Locations</li>
+}
+
 <div class="row page">
     <aside class="col-md-3">
         <div class="shadowbox">
