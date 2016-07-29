@@ -51,6 +51,7 @@ h5 {
     letter-spacing: 1px;
 }
 
+/* TODO REWORK BUTTON STYLES */
 .btn {
     background: transparent;
     color: #808080;
@@ -70,6 +71,20 @@ h5 {
     -moz-transition: all 0.2s ease-in ease-out;
     -o-transition: all 0.2s ease-in ease-out;
     transition: all 0.2s ease-in ease-out;
+}
+
+.shadowbox  {
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+}
+
+.shadowbox  h5 {
+    padding: 2.5rem 3rem;
+}
+
+.page {
+    margin-top: 5rem;
 }
 
 /* SHARED STYLES */
