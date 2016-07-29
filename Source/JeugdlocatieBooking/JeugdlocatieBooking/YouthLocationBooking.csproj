@@ -188,10 +188,13 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\locations.css" />
+    <Content Include="Assets\css\partners.css" />
     <Content Include="Assets\css\reset.css" />
     <Content Include="Assets\css\styles.css" />
     <Content Include="Assets\img\header_bg.jpg" />
     <Content Include="Assets\img\location_placeholder.jpg" />
+    <Content Include="Assets\img\partner_logo_diede.png" />
+    <Content Include="Assets\img\partner_logo_tim.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -242,11 +245,8 @@
     <Folder Include="Assets\js\" />
     <Folder Include="Models\Database\" />
     <Folder Include="Models\Forms\" />
-    <Folder Include="Views\Contact\" />
-    <Folder Include="Views\Faq\" />
     <Folder Include="Views\Login\" />
     <Folder Include="Views\Logout\" />
-    <Folder Include="Views\Partners\" />
     <Folder Include="Views\Register\" />
   </ItemGroup>
   <ItemGroup>
@@ -275,6 +275,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\fonts\OpenSans-Semibold.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Faq\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Contact\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Partners\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

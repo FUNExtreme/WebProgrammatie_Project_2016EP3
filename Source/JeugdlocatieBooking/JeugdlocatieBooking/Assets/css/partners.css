@@ -1,0 +1,36 @@
+﻿.partner {
+    position: relative;
+    min-height: 19rem; /* For the thumbnail */
+}
+
+.partner-thumbnail {
+    position: absolute;
+    display: block;
+    width: 17rem;
+    height: 19rem;
+
+    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.partner-info {
+    margin-left: 18rem;
+    padding: 0 2rem;
+}
+
+.partner-header {
+    padding: 3rem 0;
+    border-bottom: 1px solid #e4e4e4;
+}
+
+h5.partner-title {
+    margin: 0;
+    padding: 0;
+}
+
+.partner-quote {
+    margin: 3rem 0;
+    font-style: italic;
+}
