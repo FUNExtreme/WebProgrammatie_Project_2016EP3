@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Search Locations";
+}
+
+@section styles {
+    @Styles.Render("~/Assets/css/locations.css")
+}
+
+@section navbreadcrumb {
+    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+    <li class="active">Locations</li>
+}
+
+<div class="row page">
+    <aside class="col-md-3">
+        <div class="shadowbox">
+            <h5>Filters</h5>
+        </div>
+    </aside>
+    <div class="col-md-9">
+        <div class="shadowbox">
+            <h5>Search Results</h5>
+        </div>
+        <div class="locations-search-result shadowbox clearfix">
+            <div class="result-thumbnail" style="background-image:url(../../Assets/img/location_placeholder.jpg);"></div>
+            <div class="result-info">
+                <div class="result-header clearfix">
+                    <div class="pull-left">
+                        <h5 class="result-title">
+                            Super Duper Coole Locatie
+                        </h5>
+                        <ul class="result-summary">
+                            <li>Max 1337 Personen</li>
+                            <li>Brugge</li>
+                        </ul>
+                    </div>
+                    <div class="pull-right">
+                        <span class="result-price">
+                            vanaf €9999/dag
+                        </span>
+                    </div>
+                </div>
+                <div class="result-facilities">
+                    <div class="row">
+                        <ul class="col-md-3">
+                            <li>Douches</li>
+                            <li>Slaapplaatsen</li>
+                            <li>Parking</li>
+                        </ul>
+                        <ul class="col-md-3">
+                            <li>Keuken</li>
+                            <li>Keukenploeg</li>
+                        </ul>
+                        <ul class="col-md-3">
+                            <li>Keuken</li>
+                            <li>Keukenploeg</li>
+                        </ul>
+                        <div class="col-md-3">
+                            <button class="btn">Read More</button>
+                            <button class="btn">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

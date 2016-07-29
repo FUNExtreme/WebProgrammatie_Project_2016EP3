@@ -1,0 +1,78 @@
+﻿.locations-search-result {
+    position: relative;
+
+    padding: .5rem 3rem .5rem .5rem;
+    min-height: 21rem; /* For the thumbnail */
+}
+
+.locations-search-result .result-thumbnail {
+    position: absolute;
+    left: .5rem;
+
+    width: 20rem;
+    height: 20rem;
+
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+.locations-search-result .result-info {
+    padding-left: 23.5rem;
+    display: inline-block;
+    width: 100%;
+}
+
+.locations-search-result .result-header {
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #e4e4e4;
+}
+
+.locations-search-result .result-title {
+    margin: 1.5rem 0 .5rem 0;
+    padding: 0;
+}
+
+.locations-search-result .result-price {
+    display: block;
+    margin-top: 2.5rem;
+
+    font-family: 'LibreBaskerville', serif;
+    font-style: italic;
+    font-size: 1.8rem;
+}
+
+.locations-search-result ul.result-summary > li {
+    display: inline-block;
+}
+
+.locations-search-result ul.result-summary > li, .locations-search-result ul.result-summary > li::after {
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #808080;
+}
+
+.locations-search-result ul.result-summary > li::after {
+    content: '/';
+    padding: 0 1rem;
+}
+
+.locations-search-result ul.result-summary > li:last-child::after {
+    content: '';
+    padding: 0;
+}
+
+.locations-search-result .result-facilities {
+    width: 100%;
+
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #808080;
+    letter-spacing: 1px;
+}
+
+.locations-search-result .result-facilities li {
+    line-height: 2.5rem;
+}

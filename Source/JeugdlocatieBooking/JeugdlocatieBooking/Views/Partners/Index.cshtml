@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Partners";
+}
+
+@section styles {
+    @Styles.Render("~/Assets/css/partners.css")
+}
+
+@section navbreadcrumb {
+    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+    <li class="active">@ViewBag.Title</li>
+}
+
+<div class="row page">
+    <div class="partner shadowbox clearfix">
+        <div class="partner-thumbnail" style="background-image:url(../../Assets/img/partner_logo_diede.png);"></div>
+        <div class="partner-info">
+            <div class="partner-header clearfix">
+                <h5 class="pull-left partner-title">
+                    Diede Seldeslachts
+                </h5>
+                <span class="pull-right partner-jobtitle">
+                    CEO @@ JeugdLocatieBooking
+                </span>
+            </div>
+            <blockquote class="partner-quote">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
+                Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
+            </blockquote>
+        </div>
+    </div>
+    <div class="partner shadowbox clearfix">
+        <div class="partner-thumbnail" style="background-image:url(../../Assets/img/partner_logo_tim.png);"></div>
+        <div class="partner-info">
+            <div class="partner-header clearfix">
+                <h5 class="pull-left partner-title">
+                    Tim Vettori
+                </h5>
+                <span class="pull-right partner-jobtitle">
+                    CEO @@ JeugdLocatieBooking
+                </span>
+            </div>
+            <blockquote class="partner-quote">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
+                Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
+            </blockquote>
+        </div>
+    </div>
+</div>

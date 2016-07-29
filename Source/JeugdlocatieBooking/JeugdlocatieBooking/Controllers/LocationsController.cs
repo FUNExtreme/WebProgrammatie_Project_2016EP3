@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
-namespace WebApplication1.Controllers
+namespace YouthLocationBooking.Controllers
 {
     public class LocationsController : Controller
     {
-        // GET: Locations
+        [Route()]
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        [Route("{id}")]
+        public ActionResult Details(int id)
         {
             return View();
         }

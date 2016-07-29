@@ -4,38 +4,75 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Assets/css/bundles/bootstrap")
+    @Styles.Render("~/Assets/css/bundles/styles")
+    @RenderSection("styles", required: false)
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <div class="page-header-container">
+        <header>
+            <div class="header-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="pull-right">
+                            <span>
+                                <a href="@Url.RouteAction("Index", "Login", "ActionOnly")">Login</a>
+                            </span>
+                            <span>
+                                <a href="@Url.RouteAction("Index", "Login", "ActionOnly")">Register</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
-                </ul>
+            <nav class="header-nav">
+                <div class="container">
+                    <div class="row">
+                        <a href="@Url.RouteAction("Index", "Home", "ActionOnly")" class="col-md-2">
+                            <h1>JeugdLocatie Booking</h1>
+                        </a>
+                        <ul class="col-md-4">
+                            <li>
+                                <a href="@Url.RouteAction("Index", "Locations", "ActionOnly")">Locaties</a>
+                            </li>
+                        </ul>
+                        <ul class="col-md-5 pull-right">
+                            <li>
+                                <a href="@Url.RouteAction("Index", "Faq", "ActionOnly")">FAQ</a>
+                            </li>
+                            <li>
+                                <a href="@Url.RouteAction("Index", "Partners", "ActionOnly")">Partners</a>
+                            </li>
+                            <li>
+                                <a href="@Url.RouteAction("Index", "Contact", "ActionOnly")">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="pull-left page-title">@ViewBag.Title</h2>
+                        <ul class="pull-right page-breadcrumbs">
+                            @RenderSection("navbreadcrumb", required: false)
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        <div class="container">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - JeugdLocatie Booking</p>
+            </footer>
+        </div>
+
+        @RenderSection("scripts", required: false)
+    </div>
 </body>
 </html>
