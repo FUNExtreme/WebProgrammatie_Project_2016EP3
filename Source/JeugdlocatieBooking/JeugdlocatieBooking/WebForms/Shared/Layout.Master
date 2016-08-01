@@ -1,0 +1,66 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Layout.master.cs" %>
+<%@ Import Namespace="System.Web.Optimization" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%: Page.Title %> - Babysitter</title>
+
+    <%: Styles.Render("~/Content/stylesheets") %>
+    <%: Scripts.Render("~/bundles/modernizr") %>
+    <asp:ContentPlaceHolder runat="server" ID="stylesheets" />
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="navbar-container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><img runat="server" src="~/Content/images/logo_babysitter.png" /></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a runat="server" href="~/Home/">Home</a></li>
+                    <li><a runat="server" href="~/Jobs/">Find Babysitter</a></li>
+                    <li><a runat="server" href="~/Home/FAQ">FAQ</a></li>
+                    <li><a runat="server" href="~/Home/Partners">Partners</a></li>
+                    <li><a runat="server" href="~/Home/Contact">Contact</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a runat="server" href="~/Auth/Login">Login</a></li>
+                    <li><a runat="server" href="~/Auth/Register">Register</a></li>
+                    <li><a runat="server" href="~/Users/0/Profile">Firstname L.</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <div class="body-content">
+        <div class="page-heading">
+            <h2>Register</h2>
+            <ol class="breadcrumb">
+                <asp:ContentPlaceHolder runat="server" ID="navbreadcrumb" />
+            </ol>
+        </div>
+        
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+
+    <footer>
+        <p>&copy; <%= DateTime.Now.Year %> - Robin Maenhaut</p>
+    </footer>
+    
+    <%: Scripts.Render("~/bundles/jquery") %>
+    <%: Scripts.Render("~/bundles/jqueryval") %>
+    <%: Scripts.Render("~/bundles/bootstrap") %>
+    <asp:ContentPlaceHolder runat="server" ID="scripts" />
+</body>
+</html>
