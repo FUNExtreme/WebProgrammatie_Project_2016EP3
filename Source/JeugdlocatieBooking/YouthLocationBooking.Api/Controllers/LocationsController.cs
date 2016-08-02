@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Http;
 using YouthLocationBooking.Business.Logic.Repositories;
 using YouthLocationBooking.Data.API.Entities;
+using YouthLocationBooking.Data.Database.Mappings;
 
 namespace YouthLocationBooking.Api.Controllers
 {
@@ -21,16 +22,8 @@ namespace YouthLocationBooking.Api.Controllers
         {
             return _locationsRepository.GetAll().Select(x =>
             {
-                return new ApiLocation
-                {
-                    Name = x.Name,
-                    AddressNumber = x.AddressNumber,
-                    AddressPostalCode = x.AddressPostalCode,
-                    PricePerDay = x.PricePerDay,
-                    AddressStreet = x.AddressStreet,
-                    AddressProvince = x.AddressProvince,
-                    Description = x.Description
-                };
+                // Todo generate details and booking URLs
+                return x.ToApiEntity();
             });
         }
 
