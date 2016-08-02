@@ -1,17 +1,17 @@
 ﻿using System.Web.Mvc;
-using YouthLocationBooking.Web.Data.Validation.Models;
+using YouthLocationBooking.Data.Validation.Models;
 
 namespace YouthLocationBooking.Web.Controllers
 {
     public class LoginController : Controller
     {
-        public ActionResult Login()
+        public ActionResult Index()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Login(LoginFormValidationModel m)
+        public ActionResult Index(LoginFormValidationModel m)
         {
             if (ModelState.IsValid)
             {
