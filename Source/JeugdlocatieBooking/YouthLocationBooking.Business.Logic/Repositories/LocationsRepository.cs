@@ -24,7 +24,8 @@ namespace YouthLocationBooking.Business.Logic.Repositories
 
         public void Add(DbLocation entity)
         {
-            throw new NotImplementedException();
+            _dbContext.Locations.Add(entity);
+            _dbContext.SaveChanges();
         }
 
         public void Remove(DbLocation entity)
