@@ -9,16 +9,16 @@ namespace YouthLocationBooking.Api.Areas.HelpPage.Controllers
     /// <summary>
     /// The controller that will handle requests for the help page.
     /// </summary>
-    public class DocsController : Controller
+    public class HelpController : Controller
     {
         private const string ErrorViewName = "Error";
 
-        public DocsController()
+        public HelpController()
             : this(GlobalConfiguration.Configuration)
         {
         }
 
-        public DocsController(HttpConfiguration config)
+        public HelpController(HttpConfiguration config)
         {
             Configuration = config;
         }
