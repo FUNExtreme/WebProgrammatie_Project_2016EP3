@@ -197,6 +197,7 @@
     <Folder Include="Views\Login\" />
     <Folder Include="Views\Logout\" />
     <Folder Include="Views\Register\" />
+    <Folder Include="WebForms\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
