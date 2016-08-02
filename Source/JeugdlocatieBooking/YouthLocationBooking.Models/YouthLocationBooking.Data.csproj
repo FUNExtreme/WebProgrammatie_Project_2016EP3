@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="API\Entities\ApiLocation.cs" />
     <Compile Include="Database\DatabaseContext.cs" />
+    <Compile Include="Database\Mappings\ToApiEntityExtensions.cs" />
     <Compile Include="Database\Migrations\201608021933024_UserNullable.cs" />
     <Compile Include="Database\Migrations\201608021933024_UserNullable.Designer.cs">
       <DependentUpon>201608021933024_UserNullable.cs</DependentUpon>
@@ -91,6 +92,9 @@
     <EmbeddedResource Include="Database\Migrations\201608022012329_ChangeStateToProvince.resx">
       <DependentUpon>201608022012329_ChangeStateToProvince.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Validation\Mappings\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
