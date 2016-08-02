@@ -13,94 +13,49 @@ namespace YouthLocationBooking.Web.WebForms {
     public partial class Register {
         
         /// <summary>
-        /// registerAsParent control.
+        /// _registerFirstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton registerAsParent;
+        protected global::System.Web.UI.WebControls.TextBox _registerFirstName;
         
         /// <summary>
-        /// registerAsBabysitter control.
+        /// _registerLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton registerAsBabysitter;
+        protected global::System.Web.UI.WebControls.TextBox _registerLastName;
         
         /// <summary>
-        /// registerFirstName control.
+        /// _registerPhoneNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox registerFirstName;
+        protected global::System.Web.UI.WebControls.TextBox _registerPhoneNumber;
         
         /// <summary>
-        /// registerLastName control.
+        /// _registerEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox registerLastName;
+        protected global::System.Web.UI.WebControls.TextBox _registerEmail;
         
         /// <summary>
-        /// registerEmail control.
+        /// _registerPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox registerEmail;
-        
-        /// <summary>
-        /// registerAddressStreet control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox registerAddressStreet;
-        
-        /// <summary>
-        /// registerAddressNumber control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox registerAddressNumber;
-        
-        /// <summary>
-        /// registerAddressTown control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox registerAddressTown;
-        
-        /// <summary>
-        /// registerAddressPostcode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox registerAddressPostcode;
-        
-        /// <summary>
-        /// registerPassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox registerPassword;
+        protected global::System.Web.UI.WebControls.TextBox _registerPassword;
         
         /// <summary>
         /// registerSubmit control.

@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Web.Security;
+using YouthLocationBooking.Business.Logic.Repositories;
+using YouthLocationBooking.Business.Logic.Utils;
+using YouthLocationBooking.Data.Database.Models;
 
 namespace YouthLocationBooking.Web.WebForms
 {
@@ -12,24 +15,23 @@ namespace YouthLocationBooking.Web.WebForms
 
 		protected void registerSubmit_Click(object sender, EventArgs e)
 		{
-            /*
-			Person person = new Person {
-				FirstName = this.registerFirstName.Text,
-				LastName = this.registerLastName.Text,
-				Email = this.registerEmail.Text,
-				AddressCountry = "Belgium",
-				AddressHouseNumber = this.registerAddressNumber.Text,
-				AddressPostcode = Int32.Parse(this.registerAddressPostcode.Text),
-				AddressStreet = this.registerAddressStreet.Text,
-				AddressTown = this.registerAddressTown.Text,
-				Type = personType,
-				Password = Security.Hash(this.registerPassword.Text)
+			DbUser user = new DbUser
+            {
+				FirstName = _registerFirstName.Text,
+				LastName = _registerLastName.Text,
+				Email = _registerEmail.Text,
+                PhoneNumber = _registerPhoneNumber.Text,
+                RegisterDateTime = DateTime.Now,
+                LastLoginDateTime = DateTime.Now,
+				Password = Security.Hash(_registerPassword.Text)
 			};
-            */
 
-			//Person.Insert(person);
+            using (var repository = new UsersRepository())
+            {
+                repository.Add(user);
+            }
 
-			//FormsAuthentication.SetAuthCookie(person.Email, true);
+            FormsAuthentication.SetAuthCookie(user.Email, true);
 		}
 	}
 }
