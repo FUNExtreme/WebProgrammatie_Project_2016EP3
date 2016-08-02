@@ -1,22 +1,35 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using YouthLocationBooking.Data.Database;
 using YouthLocationBooking.Data.Database.Models;
 
 namespace YouthLocationBooking.Business.Logic.Repositories
 {
-    public class LocationsRepository
+    public class LocationsRepository : RepositoryBase, IRepository<DbLocation>
     {
-        private DatabaseContext _dbContext;
-
         public LocationsRepository()
+            : base()
         {
-            _dbContext = new DatabaseContext();
         }
 
         public IEnumerable<DbLocation> GetAll()
         {
             return _dbContext.Locations.AsEnumerable();
+        }
+
+        public DbLocation Get(int id)
+        {
+            return _dbContext.Locations.Where(x => x.Id == id).FirstOrDefault();
+        }
+
+        public void Add(DbLocation entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(DbLocation entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }
