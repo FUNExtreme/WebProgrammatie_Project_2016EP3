@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace YouthLocationBooking.Areas.Panel.Controllers
+namespace YouthLocationBooking.Web.Areas.Panel.Controllers
 {
     public class LocationsController : Controller
     {

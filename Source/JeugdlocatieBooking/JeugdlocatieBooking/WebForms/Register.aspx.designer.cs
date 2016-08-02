@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace YouthLocationBooking.WebForms {
+namespace YouthLocationBooking.Web.WebForms {
     
     
     public partial class Register {

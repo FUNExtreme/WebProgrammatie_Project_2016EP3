@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Security;
 
-namespace YouthLocationBooking.WebForms
+namespace YouthLocationBooking.Web.WebForms
 {
     public partial class Register : System.Web.Mvc.ViewPage
 	{

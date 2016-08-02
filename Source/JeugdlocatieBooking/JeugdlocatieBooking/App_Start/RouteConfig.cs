@@ -13,7 +13,7 @@ namespace JeugdlocatieBooking
                 name: "Default",
                 url: "{controller}/{id}/{action}/",
                 namespaces: new string[] {
-                    "YouthLocationBooking.Controllers"
+                    "YouthLocationBooking.Web.Controllers"
                 },
                 defaults: new { controller = "Home", action = "Index" },
                 constraints: new { id = @"\d+" }
@@ -23,7 +23,7 @@ namespace JeugdlocatieBooking
                 name: "ActionOnly",
                 url: "{controller}/{action}/",
                 namespaces: new string[] {
-                    "YouthLocationBooking.Controllers"
+                    "YouthLocationBooking.Web.Controllers"
                 },
                 defaults: new { controller = "Home", action = "Index" }
             );

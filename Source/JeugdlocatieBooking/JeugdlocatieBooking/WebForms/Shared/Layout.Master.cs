@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace YouthLocationBooking.Views.Shared
+namespace YouthLocationBooking.Web.Views.Shared
 {
 	public partial class Layout : System.Web.Mvc.ViewMasterPage
 	{

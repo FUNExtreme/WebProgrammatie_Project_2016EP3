@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
-using YouthLocationBooking.Data.Validation.Models;
+using YouthLocationBooking.Web.Data.Validation.Models;
 
-namespace YouthLocationBooking.Controllers
+namespace YouthLocationBooking.Web.Controllers
 {
     public class LoginController : Controller
     {

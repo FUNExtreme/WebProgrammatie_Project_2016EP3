@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace YouthLocationBooking.Areas.Panel
+namespace YouthLocationBooking.Web.Areas.Panel
 {
     public class PanelAreaRegistration : AreaRegistration 
     {
@@ -18,7 +18,7 @@ namespace YouthLocationBooking.Areas.Panel
                 name: "Panel_default",
                 url: "Panel/{controller}/{action}/{id}",
                 namespaces: new string[] {
-                    "YouthLocationBooking.Areas.Panel.Controllers"
+                    "YouthLocationBooking.Web.Areas.Panel.Controllers"
                 },
                 defaults: new { action = "Index", id = UrlParameter.Optional }
             );

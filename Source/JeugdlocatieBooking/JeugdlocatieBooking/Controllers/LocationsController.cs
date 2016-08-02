@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace YouthLocationBooking.Controllers
+namespace YouthLocationBooking.Web.Controllers
 {
     public class LocationsController : Controller
     {
