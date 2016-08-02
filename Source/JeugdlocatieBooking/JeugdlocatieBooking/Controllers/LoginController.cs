@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using YouthLocationBooking.Models.Validation;
+using YouthLocationBooking.Data.Validation.Models;
 
 namespace YouthLocationBooking.Controllers
 {
