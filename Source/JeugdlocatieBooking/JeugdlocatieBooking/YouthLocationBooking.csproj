@@ -248,9 +248,9 @@
       <Project>{46c43772-79cd-44d7-b250-961bb7c745c0}</Project>
       <Name>YouthLocationBooking.Business.Logic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\YouthLocationBooking.Models\YouthLocationBooking.Models.csproj">
+    <ProjectReference Include="..\YouthLocationBooking.Models\YouthLocationBooking.Data.csproj">
       <Project>{3f5fcfde-6caa-4c97-9262-867ab9901d4b}</Project>
-      <Name>YouthLocationBooking.Models</Name>
+      <Name>YouthLocationBooking.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

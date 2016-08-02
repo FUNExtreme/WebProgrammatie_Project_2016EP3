@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouthLocationBooking", "JeugdlocatieBooking\YouthLocationBooking.csproj", "{FC3C68F3-B6D9-4B79-8D2F-C06D6D2D9DD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouthLocationBooking.Models", "YouthLocationBooking.Models\YouthLocationBooking.Models.csproj", "{3F5FCFDE-6CAA-4C97-9262-867AB9901D4B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouthLocationBooking.Data", "YouthLocationBooking.Models\YouthLocationBooking.Data.csproj", "{3F5FCFDE-6CAA-4C97-9262-867AB9901D4B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouthLocationBooking.Business.Logic", "YouthLocationBooking.Business.Logic\YouthLocationBooking.Business.Logic.csproj", "{46C43772-79CD-44D7-B250-961BB7C745C0}"
 EndProject

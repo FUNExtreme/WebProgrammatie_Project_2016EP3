@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace YouthLocationBooking.Models.Validation
+namespace YouthLocationBooking.Data.Validation.Models
 {
     public class LoginFormValidationModel
     {

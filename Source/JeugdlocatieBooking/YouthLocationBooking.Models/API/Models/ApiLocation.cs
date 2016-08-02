@@ -1,4 +1,4 @@
-﻿namespace YouthLocationBooking.Models.API
+﻿namespace YouthLocationBooking.Data.API.Models
 {
     public class ApiLocation
     {
