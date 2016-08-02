@@ -2,7 +2,7 @@
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace JeugdlocatieBooking
+namespace YouthLocationBooking.Web
 {
     public class WebApiApplication : System.Web.HttpApplication
     {

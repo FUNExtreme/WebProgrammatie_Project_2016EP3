@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace JeugdlocatieBooking
+namespace YouthLocationBooking.Web
 {
     public class BundleConfig
     {
