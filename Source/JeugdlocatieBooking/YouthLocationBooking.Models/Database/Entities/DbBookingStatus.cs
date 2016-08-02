@@ -1,6 +1,6 @@
-﻿namespace YouthLocationBooking.Data.Database.Models
+﻿namespace YouthLocationBooking.Data.Database.Entities
 {
-    public class DbLocationFacility
+    public class DbBookingStatus
     {
         public int Id { get; set; }
         public string Name { get; set; }

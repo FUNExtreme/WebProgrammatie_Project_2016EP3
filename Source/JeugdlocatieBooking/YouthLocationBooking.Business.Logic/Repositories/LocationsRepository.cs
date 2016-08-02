@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using YouthLocationBooking.Data.Database.Models;
+using YouthLocationBooking.Data.Database.Entities;
 
 namespace YouthLocationBooking.Business.Logic.Repositories
 {

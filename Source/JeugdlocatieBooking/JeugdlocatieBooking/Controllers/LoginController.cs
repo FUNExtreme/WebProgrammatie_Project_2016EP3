@@ -2,7 +2,7 @@
 using System.Web.Security;
 using YouthLocationBooking.Business.Logic.Repositories;
 using YouthLocationBooking.Business.Logic.Utils;
-using YouthLocationBooking.Data.Database.Models;
+using YouthLocationBooking.Data.Database.Entities;
 using YouthLocationBooking.Data.Validation.Models;
 
 namespace YouthLocationBooking.Web.Controllers

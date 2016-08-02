@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
-using YouthLocationBooking.Data.Database.Models;
+using YouthLocationBooking.Data.Database.Entities;
 
 namespace YouthLocationBooking.Data.Database
 {

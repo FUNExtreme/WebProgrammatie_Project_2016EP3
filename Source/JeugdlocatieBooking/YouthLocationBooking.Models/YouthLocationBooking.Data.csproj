@@ -55,15 +55,19 @@
     <Compile Include="Database\Migrations\201608021933024_UserNullable.Designer.cs">
       <DependentUpon>201608021933024_UserNullable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Database\Models\DbBooking.cs" />
-    <Compile Include="Database\Models\DbBookingMessage.cs" />
-    <Compile Include="Database\Models\DbBookingStatus.cs" />
-    <Compile Include="Database\Models\DbLocationFacility.cs" />
-    <Compile Include="Database\Models\DbLocation.cs" />
-    <Compile Include="Database\Models\DbLocationAvailability.cs" />
-    <Compile Include="Database\Models\DbLocationFacilityRating.cs" />
-    <Compile Include="Database\Models\DbLocationReview.cs" />
-    <Compile Include="Database\Models\DbUser.cs" />
+    <Compile Include="Database\Migrations\201608022012329_ChangeStateToProvince.cs" />
+    <Compile Include="Database\Migrations\201608022012329_ChangeStateToProvince.Designer.cs">
+      <DependentUpon>201608022012329_ChangeStateToProvince.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Entities\DbBooking.cs" />
+    <Compile Include="Database\Entities\DbBookingMessage.cs" />
+    <Compile Include="Database\Entities\DbBookingStatus.cs" />
+    <Compile Include="Database\Entities\DbLocationFacility.cs" />
+    <Compile Include="Database\Entities\DbLocation.cs" />
+    <Compile Include="Database\Entities\DbLocationAvailability.cs" />
+    <Compile Include="Database\Entities\DbLocationFacilityRating.cs" />
+    <Compile Include="Database\Entities\DbLocationReview.cs" />
+    <Compile Include="Database\Entities\DbUser.cs" />
     <Compile Include="Database\Migrations\201608021323087_InitialCreate.cs" />
     <Compile Include="Database\Migrations\201608021323087_InitialCreate.Designer.cs">
       <DependentUpon>201608021323087_InitialCreate.cs</DependentUpon>
@@ -71,6 +75,7 @@
     <Compile Include="Database\Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\Models\LoginFormValidationModel.cs" />
+    <Compile Include="Validation\Models\NewLocationValidationModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -82,6 +87,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Database\Migrations\201608021933024_UserNullable.resx">
       <DependentUpon>201608021933024_UserNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Database\Migrations\201608022012329_ChangeStateToProvince.resx">
+      <DependentUpon>201608022012329_ChangeStateToProvince.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

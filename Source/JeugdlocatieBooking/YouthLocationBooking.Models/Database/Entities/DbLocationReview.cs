@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace YouthLocationBooking.Data.Database.Models
+namespace YouthLocationBooking.Data.Database.Entities
 {
     public class DbLocationReview
     {

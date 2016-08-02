@@ -180,6 +180,7 @@
     <Content Include="Assets\img\logo.png" />
     <Content Include="Assets\img\partner_logo_diede.png" />
     <Content Include="Assets\img\partner_logo_tim.png" />
+    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -201,11 +202,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Panel\Models\" />
-    <Folder Include="Areas\Panel\Views\Locations\" />
     <Folder Include="Areas\Panel\Views\Profile\" />
     <Folder Include="Areas\Panel\Views\Ratings\" />
     <Folder Include="Areas\Panel\Views\Requests\" />
-    <Folder Include="Areas\Panel\Views\Shared\" />
     <Folder Include="Areas\Panel\Views\Summary\" />
     <Folder Include="Assets\js\" />
     <Folder Include="Views\Logout\" />
@@ -259,6 +258,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Login\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Panel\Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Panel\Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Panel\Views\Locations\New.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

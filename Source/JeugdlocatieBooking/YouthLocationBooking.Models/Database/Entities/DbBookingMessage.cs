@@ -1,4 +1,4 @@
-﻿namespace YouthLocationBooking.Data.Database.Models
+﻿namespace YouthLocationBooking.Data.Database.Entities
 {
     public class DbBookingMessage
     {

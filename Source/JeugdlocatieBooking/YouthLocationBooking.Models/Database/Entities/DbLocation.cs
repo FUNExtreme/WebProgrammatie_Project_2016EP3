@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace YouthLocationBooking.Data.Database.Models
+namespace YouthLocationBooking.Data.Database.Entities
 {
     public class DbLocation
     {
@@ -8,7 +8,7 @@ namespace YouthLocationBooking.Data.Database.Models
         public string Name { get; set; }
         public string AddressStreet { get; set; }
         public string AddressNumber { get; set; }
-        public string AddressState { get; set; }
+        public string AddressProvince { get; set; }
         public int AddressPostalCode { get; set; }
         public string Description { get; set; }
         public string Organisation { get; set; }
