@@ -60,12 +60,22 @@
     <Compile Include="Database\Models\DbLocationFacilityRating.cs" />
     <Compile Include="Database\Models\DbLocationReview.cs" />
     <Compile Include="Database\Models\DbUser.cs" />
+    <Compile Include="Database\Migrations\201608021323087_InitialCreate.cs" />
+    <Compile Include="Database\Migrations\201608021323087_InitialCreate.Designer.cs">
+      <DependentUpon>201608021323087_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\Models\LoginFormValidationModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Database\Migrations\201608021323087_InitialCreate.resx">
+      <DependentUpon>201608021323087_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
