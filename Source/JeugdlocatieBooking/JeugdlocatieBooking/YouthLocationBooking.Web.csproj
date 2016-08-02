@@ -139,8 +139,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Panel\Controllers\LocationsController.cs" />
     <Compile Include="Areas\Panel\Controllers\ProfileController.cs" />
-    <Compile Include="Areas\Panel\Controllers\RatingsController.cs" />
     <Compile Include="Areas\Panel\Controllers\RequestsController.cs" />
+    <Compile Include="Areas\Panel\Controllers\ReviewsController.cs" />
     <Compile Include="Areas\Panel\Controllers\SummaryController.cs" />
     <Compile Include="Areas\Panel\PanelAreaRegistration.cs" />
     <Compile Include="Code\Extensions\UrlHelperEx.cs" />
