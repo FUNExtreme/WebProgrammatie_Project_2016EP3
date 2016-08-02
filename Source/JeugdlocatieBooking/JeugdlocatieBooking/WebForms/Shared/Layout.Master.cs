@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace RobinMaenhautBabysitter.Views.Shared
+namespace YouthLocationBooking.Views.Shared
 {
 	public partial class Layout : System.Web.Mvc.ViewMasterPage
 	{

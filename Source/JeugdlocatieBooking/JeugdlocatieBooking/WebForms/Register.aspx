@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/WebForms/Shared/Layout.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="RobinMaenhautBabysitter.WebForms.Register" %>
+﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/WebForms/Shared/Layout.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="YouthLocationBooking.WebForms.Register" %>
 <%@ Import Namespace="System.Web.Optimization" %>
 
 <asp:Content ContentPlaceHolderID="navbreadcrumb" runat="server">

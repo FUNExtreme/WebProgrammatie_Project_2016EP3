@@ -1,16 +1,9 @@
-﻿using RobinMaenhautBabysitter.Models;
-using RobinMaenhautBabysitter.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System;
 using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
-namespace RobinMaenhautBabysitter.WebForms
+namespace YouthLocationBooking.WebForms
 {
-	public partial class Register : System.Web.Mvc.ViewPage
+    public partial class Register : System.Web.Mvc.ViewPage
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
@@ -19,10 +12,7 @@ namespace RobinMaenhautBabysitter.WebForms
 
 		protected void registerSubmit_Click(object sender, EventArgs e)
 		{
-			int personType = 1;
-			if(this.registerAsBabysitter.Checked)
-				personType = 2;
-
+            /*
 			Person person = new Person {
 				FirstName = this.registerFirstName.Text,
 				LastName = this.registerLastName.Text,
@@ -35,10 +25,11 @@ namespace RobinMaenhautBabysitter.WebForms
 				Type = personType,
 				Password = Security.Hash(this.registerPassword.Text)
 			};
+            */
 
-			Person.Insert(person);
+			//Person.Insert(person);
 
-			FormsAuthentication.SetAuthCookie(person.Email, true);
+			//FormsAuthentication.SetAuthCookie(person.Email, true);
 		}
 	}
 }
