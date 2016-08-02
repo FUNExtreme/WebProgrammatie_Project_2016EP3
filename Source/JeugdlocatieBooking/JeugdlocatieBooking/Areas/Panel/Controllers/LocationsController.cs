@@ -1,10 +1,10 @@
 ﻿using System.Web.Mvc;
+using YouthLocationBooking.Data.Validation.Models;
 
 namespace YouthLocationBooking.Web.Areas.Panel.Controllers
 {
     public class LocationsController : Controller
     {
-        // GET: Panel/Locations
         public ActionResult Index()
         {
             return View();
@@ -14,6 +14,12 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
         public ActionResult New()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult New(NewLocationValidationModel model)
+        {
+            return View(model);
         }
         #endregion
     }
