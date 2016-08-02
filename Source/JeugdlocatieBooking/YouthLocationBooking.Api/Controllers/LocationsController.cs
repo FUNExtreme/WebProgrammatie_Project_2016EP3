@@ -2,15 +2,14 @@
 using System.Linq;
 using System.Web.Http;
 using YouthLocationBooking.Business.Logic.Repositories;
-using YouthLocationBooking.Data.API.Models;
-using YouthLocationBooking.Data.Database.Models;
+using YouthLocationBooking.Data.API.Entities;
 
 namespace YouthLocationBooking.Api.Controllers
 {
     [RoutePrefix("locations")]
     public class LocationsController : ApiController
     {
-        private IRepository<DbLocation> _locationsRepository;
+        private LocationsRepository _locationsRepository;
 
         public LocationsController()
         {
@@ -25,10 +24,12 @@ namespace YouthLocationBooking.Api.Controllers
                 return new ApiLocation
                 {
                     Name = x.Name,
-                    Number = x.AddressNumber,
-                    PostCode = x.AddressPostalCode,
+                    AddressNumber = x.AddressNumber,
+                    AddressPostalCode = x.AddressPostalCode,
                     PricePerDay = x.PricePerDay,
-                    Street = x.AddressStreet
+                    AddressStreet = x.AddressStreet,
+                    AddressProvince = x.AddressProvince,
+                    Description = x.Description
                 };
             });
         }

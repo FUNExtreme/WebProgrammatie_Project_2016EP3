@@ -49,7 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\Models\ApiLocation.cs" />
+    <Compile Include="API\Entities\ApiLocation.cs" />
     <Compile Include="Database\DatabaseContext.cs" />
     <Compile Include="Database\Migrations\201608021933024_UserNullable.cs" />
     <Compile Include="Database\Migrations\201608021933024_UserNullable.Designer.cs">
