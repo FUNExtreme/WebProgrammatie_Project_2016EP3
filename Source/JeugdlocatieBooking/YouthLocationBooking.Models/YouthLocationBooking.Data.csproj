@@ -51,6 +51,10 @@
   <ItemGroup>
     <Compile Include="API\Models\ApiLocation.cs" />
     <Compile Include="Database\DatabaseContext.cs" />
+    <Compile Include="Database\Migrations\201608021933024_UserNullable.cs" />
+    <Compile Include="Database\Migrations\201608021933024_UserNullable.Designer.cs">
+      <DependentUpon>201608021933024_UserNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database\Models\DbBooking.cs" />
     <Compile Include="Database\Models\DbBookingMessage.cs" />
     <Compile Include="Database\Models\DbBookingStatus.cs" />
@@ -75,6 +79,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Database\Migrations\201608021323087_InitialCreate.resx">
       <DependentUpon>201608021323087_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Database\Migrations\201608021933024_UserNullable.resx">
+      <DependentUpon>201608021933024_UserNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
