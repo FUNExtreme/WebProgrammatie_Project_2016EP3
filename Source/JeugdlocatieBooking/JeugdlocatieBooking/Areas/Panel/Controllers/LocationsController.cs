@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace YouthLocationBooking.Web.Areas.Panel.Controllers
 {
@@ -13,5 +9,12 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
         {
             return View();
         }
+
+        #region New
+        public ActionResult New()
+        {
+            return View();
+        }
+        #endregion
     }
 }

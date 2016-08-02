@@ -32,6 +32,7 @@ namespace YouthLocationBooking.Web.WebForms
             }
 
             FormsAuthentication.SetAuthCookie(user.Email, true);
+            Response.Redirect("~/");
 		}
 	}
 }
