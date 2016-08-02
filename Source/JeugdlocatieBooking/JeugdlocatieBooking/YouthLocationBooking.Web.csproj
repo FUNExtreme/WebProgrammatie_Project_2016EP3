@@ -180,7 +180,6 @@
     <Content Include="Assets\img\logo.png" />
     <Content Include="Assets\img\partner_logo_diede.png" />
     <Content Include="Assets\img\partner_logo_tim.png" />
-    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -201,7 +200,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Panel\Models\" />
     <Folder Include="Areas\Panel\Views\Profile\" />
     <Folder Include="Areas\Panel\Views\Ratings\" />
     <Folder Include="Areas\Panel\Views\Requests\" />
