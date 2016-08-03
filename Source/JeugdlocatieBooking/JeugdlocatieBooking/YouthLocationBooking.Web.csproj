@@ -175,6 +175,7 @@
     <Content Include="Assets\css\main\locations.css" />
     <Content Include="Assets\css\main\login.css" />
     <Content Include="Assets\css\main\styles.css" />
+    <Content Include="Assets\css\panel\locationsnew.css" />
     <Content Include="Assets\css\panel\styles.css" />
     <Content Include="Assets\css\main\partners.css" />
     <Content Include="Assets\css\reset.css" />
