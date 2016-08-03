@@ -43,7 +43,7 @@ namespace YouthLocationBooking.Web.Controllers
             }
 
             FormsAuthentication.SetAuthCookie(user.Email, true);
-            return Redirect("~/");           
+            return RedirectToAction("Index", "Home");           
         }
 
         protected override void Dispose(bool disposing)

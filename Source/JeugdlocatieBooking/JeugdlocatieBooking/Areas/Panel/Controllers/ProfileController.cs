@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace YouthLocationBooking.Web.Areas.Panel.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
         // GET: Panel/Profile

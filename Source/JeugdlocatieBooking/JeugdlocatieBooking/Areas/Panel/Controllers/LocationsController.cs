@@ -3,6 +3,7 @@ using YouthLocationBooking.Data.Validation.Models;
 
 namespace YouthLocationBooking.Web.Areas.Panel.Controllers
 {
+    [Authorize]
     public class LocationsController : Controller
     {
         public ActionResult Index()

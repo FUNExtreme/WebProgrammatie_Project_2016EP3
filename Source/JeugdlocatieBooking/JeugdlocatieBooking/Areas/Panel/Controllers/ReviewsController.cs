@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace YouthLocationBooking.Web.Areas.Panel.Controllers
 {
+    [Authorize]
     public class RatingsController : Controller
     {
         // GET: Panel/Ratings
