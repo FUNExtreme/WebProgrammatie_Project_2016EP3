@@ -149,7 +149,6 @@ h1 {
 .page-header-container .page-header .page-breadcrumbs, .page-header-container .page-header .page-breadcrumbs > li::after {
     font-family: 'MarketDeco', sans-serif;
     font-size: 1.4rem;
-    letter-spacing: 1px;
 }
 
 .page-header-container .page-header .page-breadcrumbs > li {

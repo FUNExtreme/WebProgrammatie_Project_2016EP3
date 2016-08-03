@@ -205,10 +205,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Panel\Views\Profile\" />
-    <Folder Include="Areas\Panel\Views\Ratings\" />
-    <Folder Include="Areas\Panel\Views\Requests\" />
-    <Folder Include="Areas\Panel\Views\Summary\" />
     <Folder Include="Assets\js\" />
     <Folder Include="Views\Logout\" />
     <Folder Include="Views\Register\" />
@@ -273,6 +269,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Panel\Views\Locations\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Panel\Views\Profile\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Panel\Views\Requests\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Panel\Views\Reviews\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Panel\Views\Summary\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
