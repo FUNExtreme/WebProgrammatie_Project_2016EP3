@@ -5,13 +5,18 @@ namespace YouthLocationBooking.Business.Logic.Repositories
 {
     public class RepositoryBase : IDisposable
     {
+        #region Variables
         protected DatabaseContext _dbContext;
+        #endregion
 
+        #region Constructor
         public RepositoryBase()
         {
             _dbContext = new DatabaseContext();
         }
+        #endregion
 
+        #region Dispose
         public void Dispose()
         {
             if (_dbContext != null)
@@ -20,5 +25,6 @@ namespace YouthLocationBooking.Business.Logic.Repositories
                 _dbContext = null;
             }
         }
+        #endregion
     }
 }

@@ -9,6 +9,7 @@ namespace YouthLocationBooking.Business.Logic.Repositories
         T Get(int id);
 
         void Add(T entity);
+        void Update(T entity);
 
         void Remove(T entity);
     }

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using YouthLocationBooking.Data.Database.Entities;
 
@@ -7,10 +7,12 @@ namespace YouthLocationBooking.Business.Logic.Repositories
 {
     public class LocationsRepository : RepositoryBase, IRepository<DbLocation>
     {
+        #region Constructor
         public LocationsRepository()
             : base()
         {
         }
+        #endregion
 
         public IList<DbLocation> GetAll()
         {
@@ -28,9 +30,15 @@ namespace YouthLocationBooking.Business.Logic.Repositories
             _dbContext.SaveChanges();
         }
 
+        public void Update(DbLocation entity)
+        {
+            _dbContext.Entry(entity).State = EntityState.Modified;
+            _dbContext.SaveChanges();
+        }
+
         public void Remove(DbLocation entity)
         {
-            throw new NotImplementedException();
+            _dbContext.Locations.Remove(entity);
         }
     }
 }
