@@ -1,0 +1,20 @@
+- General Layout
+- Front-end
+	* Login
+	* Register
+	* FAQ	
+	* Partners
+	* Contact
+- Back-end
+	* Profile
+	* Add new Location
+	* Summary => My Locations?
+- Front-end
+	* Location Search
+	* Location Detail
+	* Location Booking
+- Back-end
+	* Rent Requests Approval
+	* Reviews
+- Front-end
+	* Homepage
