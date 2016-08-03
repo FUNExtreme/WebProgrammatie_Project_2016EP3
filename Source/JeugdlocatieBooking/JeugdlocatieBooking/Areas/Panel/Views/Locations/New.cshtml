@@ -1,3 +1,70 @@
 ﻿@{
     ViewBag.Title = "New Location";
 }
+
+@model YouthLocationBooking.Data.Validation.Models.NewLocationValidationModel
+
+@using (Html.BeginForm("New", "Locations", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <i class="fa fa-envelope"></i>
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control__flat", placeholder = "Email" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+
+    <div class="form-group">
+        <i class="fa fa-key"></i>
+        @Html.LabelFor(m => m.AddressStreet)
+        @Html.TextBoxFor(m => m.AddressStreet, new { @class = "form-control__flat", placeholder = "Password" })
+        @Html.ValidationMessageFor(m => m.AddressStreet)
+    </div>
+
+    <div class="form-group">
+        <i class="fa fa-key"></i>
+        @Html.LabelFor(m => m.AddressNumber)
+        @Html.TextBoxFor(m => m.AddressNumber, new { @class = "form-control__flat", placeholder = "Password" })
+        @Html.ValidationMessageFor(m => m.AddressNumber)
+    </div>
+
+    <div class="form-group">
+        <i class="fa fa-key"></i>
+        @Html.LabelFor(m => m.AddressProvince)
+        @Html.TextBoxFor(m => m.AddressProvince, new { @class = "form-control__flat", placeholder = "Password" })
+        @Html.ValidationMessageFor(m => m.AddressProvince)
+    </div>
+
+    <div class="form-group">
+        <i class="fa fa-key"></i>
+        @Html.LabelFor(m => m.AddressPostalCode)
+        @Html.TextBoxFor(m => m.AddressPostalCode, new { @class = "form-control__flat", placeholder = "Password" })
+        @Html.ValidationMessageFor(m => m.AddressPostalCode)
+    </div>
+
+    <div class="form-group">
+        <i class="fa fa-key"></i>
+        @Html.LabelFor(m => m.Description)
+        @Html.TextBoxFor(m => m.Description, new { @class = "form-control__flat", placeholder = "Password" })
+        @Html.ValidationMessageFor(m => m.Description)
+    </div>
+
+    <div class="form-group">
+        <i class="fa fa-key"></i>
+        @Html.LabelFor(m => m.Organisation)
+        @Html.TextBoxFor(m => m.Organisation, new { @class = "form-control__flat", placeholder = "Password" })
+        @Html.ValidationMessageFor(m => m.Organisation)
+    </div>
+
+    <div class="form-group">
+        <i class="fa fa-key"></i>
+        @Html.LabelFor(m => m.PricePerDay)
+        @Html.TextBoxFor(m => m.PricePerDay, new { @class = "form-control__flat", placeholder = "Password" })
+        @Html.ValidationMessageFor(m => m.PricePerDay)
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Login" class="btn btn-primary" />
+    </div>
+}

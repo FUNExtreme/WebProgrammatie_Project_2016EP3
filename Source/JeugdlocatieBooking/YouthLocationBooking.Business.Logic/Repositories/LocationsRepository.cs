@@ -12,9 +12,9 @@ namespace YouthLocationBooking.Business.Logic.Repositories
         {
         }
 
-        public IEnumerable<DbLocation> GetAll()
+        public IList<DbLocation> GetAll()
         {
-            return _dbContext.Locations.AsEnumerable();
+            return _dbContext.Locations.ToList();
         }
 
         public DbLocation Get(int id)

@@ -5,7 +5,7 @@ namespace YouthLocationBooking.Business.Logic.Repositories
 {
     public interface IRepository<T> : IDisposable
     {
-        IEnumerable<T> GetAll();
+        IList<T> GetAll();
         T Get(int id);
 
         void Add(T entity);

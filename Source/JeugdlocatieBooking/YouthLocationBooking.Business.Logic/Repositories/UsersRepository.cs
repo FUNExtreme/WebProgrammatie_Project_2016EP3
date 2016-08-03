@@ -12,7 +12,7 @@ namespace YouthLocationBooking.Business.Logic.Repositories
         {
         }
 
-        public IEnumerable<DbUser> GetAll()
+        public IList<DbUser> GetAll()
         {
             throw new NotImplementedException();
         }
