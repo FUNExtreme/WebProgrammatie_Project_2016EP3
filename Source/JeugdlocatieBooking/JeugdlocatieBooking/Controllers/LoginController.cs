@@ -22,6 +22,7 @@ namespace YouthLocationBooking.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(LoginFormValidationModel model)
         {
             if (!ModelState.IsValid)
