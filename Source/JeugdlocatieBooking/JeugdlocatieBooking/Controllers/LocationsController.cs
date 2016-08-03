@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using YouthLocationBooking.Business.Logic.Repositories;
+using YouthLocationBooking.Data.Database.Entities;
 
 namespace YouthLocationBooking.Web.Controllers
 {
@@ -7,6 +10,13 @@ namespace YouthLocationBooking.Web.Controllers
         [Route()]
         public ActionResult Index()
         {
+            IList<DbLocation> dbLocations = null;
+            using (var repository = new LocationsRepository())
+            {
+                dbLocations = repository.GetAll();
+            }
+            ViewBag.Locations = dbLocations;
+
             return View();
         }
 
