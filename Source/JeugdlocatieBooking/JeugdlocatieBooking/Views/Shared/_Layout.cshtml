@@ -15,13 +15,30 @@
             <div class="header-top">
                 <div class="container">
                     <div class="row">
+                        <div class="pull-left">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <span>
+                                    <a href="@Url.Action("Index", "Summary", new { Area = "Panel" })">Go to Management Panel</a>
+                                </span>
+                            }
+                        </div>
                         <div class="pull-right">
-                            <span>
-                                <a href="@Url.Action("Index", "Login")">Login</a>
-                            </span>
-                            <span>
-                                <a href="@Url.Action("Index", "Register")">Register</a>
-                            </span>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <span>
+                                    <a href="@Url.Action("Index", "Logout")">Logout</a>
+                                </span>
+                            }
+                            else
+                            {
+                                <span>
+                                    <a href="@Url.Action("Index", "Login")">Login</a>
+                                </span>
+                                <span>
+                                    <a href="@Url.Action("Index", "Register")">Register</a>
+                                </span>
+                            }
                         </div>
                     </div>
                 </div>
