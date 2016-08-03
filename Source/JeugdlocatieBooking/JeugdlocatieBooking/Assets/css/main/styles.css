@@ -20,3 +20,7 @@
     text-transform: uppercase;
     color: white;
 }
+
+.page-header-container .page-header .page-breadcrumbs > li > a {
+    color: white;
+}

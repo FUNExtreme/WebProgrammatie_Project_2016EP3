@@ -165,7 +165,3 @@ h1 {
     content: '';
     padding: 0;
 }
-
-.page-header-container .page-header .page-breadcrumbs > li > a {
-    color: white;
-}
