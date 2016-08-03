@@ -51,7 +51,7 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
                 repository.Add(dbLocation);
             }
 
-            return RedirectToAction("Id", "Locations", new { id = dbLocation.Id });
+            return RedirectToAction("Details", "Locations", new { id = dbLocation.Id, Area = string.Empty });
         }
         #endregion
     }

@@ -4,6 +4,11 @@
 
 @using YouthLocationBooking.Data.Database.Entities
 
+@section navbreadcrumb {
+    <li><a href="@Url.Action("Index", "Summary", new { Area = "Panel" })">Panel</a></li>
+    <li class="active">@ViewBag.Title</li>
+}
+
 @foreach (DbLocation location in ViewBag.Locations)
 {
     <tr>
