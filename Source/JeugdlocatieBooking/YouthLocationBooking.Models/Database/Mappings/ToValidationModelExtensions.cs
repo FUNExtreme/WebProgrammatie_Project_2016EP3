@@ -7,6 +7,9 @@ namespace YouthLocationBooking.Data.Database.Mappings
     {
         public static ProfileEditValidationModel ToProfileEditValidationModel(this DbUser entity)
         {
+            if (entity == null)
+                return null;
+
             var mappedEntity = new ProfileEditValidationModel();
             mappedEntity.FirstName = entity.FirstName;
             mappedEntity.LastName = entity.LastName;

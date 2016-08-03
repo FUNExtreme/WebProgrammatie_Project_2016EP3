@@ -7,6 +7,9 @@ namespace YouthLocationBooking.Data.Validation.Mappings
     {
         public static DbLocation ToDbEntity(this LocationNewFormValidationModel entity)
         {
+            if (entity == null)
+                return null;
+
             var mappedEntity = new DbLocation();
             mappedEntity.AddressNumber = entity.AddressNumber;
             mappedEntity.AddressPostalCode = entity.AddressPostalCode;

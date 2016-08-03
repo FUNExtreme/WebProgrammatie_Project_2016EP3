@@ -7,6 +7,9 @@ namespace YouthLocationBooking.Data.Database.Mappings
     {
         public static ApiLocation ToApiEntity(this DbLocation entity)
         {
+            if (entity == null)
+                return null;
+
             var mappedEntity = new ApiLocation();
             mappedEntity.AddressNumber = entity.AddressNumber;
             mappedEntity.AddressPostalCode = entity.AddressPostalCode;
