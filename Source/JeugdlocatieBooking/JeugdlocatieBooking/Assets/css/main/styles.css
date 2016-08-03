@@ -1,0 +1,22 @@
+﻿.page-header-container header {
+    position: absolute;
+    top: 0;
+
+    width: 100%;
+}
+
+.page-header-container .page-header {
+    height: 35rem;
+
+    background-image: url(../../img/header_bg.jpg);
+    background-size: cover;
+    background-position-y: 50%;
+}
+
+.page-header-container .page-header {
+    padding: 21rem 0 9rem 0;
+
+
+    text-transform: uppercase;
+    color: white;
+}
