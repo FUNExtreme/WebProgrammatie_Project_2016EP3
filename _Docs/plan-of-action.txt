@@ -10,8 +10,8 @@
 
 - Back-end
 	* Profile						
-		+ Edit						(WIP)
-		+ Change Password
+		+ Edit						(DONE, Stage 1)
+		+ Change Password			(DONE, Stage 1)
 	* Add new Locations				(WIP)
 	* Summary => My Locations?		
 
