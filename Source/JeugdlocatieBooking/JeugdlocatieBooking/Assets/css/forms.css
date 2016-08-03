@@ -7,9 +7,18 @@ form .form-group:last-child {
     margin-bottom: 0;
 }
 
-form .form-label {
-    text-align: right;
+form .form-group > i {
+    position: absolute;
+    font-size: 1.7rem;
     line-height: 4rem;
+    padding-right: 1rem;
+}
+
+form .form-label {
+    display: block;
+
+    line-height: 4rem;   
+    text-indent: 2rem;
 }
 
 form .form-control {
@@ -47,10 +56,4 @@ textarea.form-control {
     height: 115px;
     text-indent: 0;
     padding: 10px 10px;
-}
-
-.form-group > i {
-    position: absolute;
-    font-size: 20px;
-    padding: 15px 15px;
 }

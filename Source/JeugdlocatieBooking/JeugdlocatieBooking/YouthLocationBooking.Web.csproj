@@ -143,6 +143,7 @@
     <Compile Include="Areas\Panel\Controllers\ReviewsController.cs" />
     <Compile Include="Areas\Panel\Controllers\SummaryController.cs" />
     <Compile Include="Areas\Panel\PanelAreaRegistration.cs" />
+    <Compile Include="Code\AsIsBundleOrderer.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\FaqController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -169,6 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\css\bootstrap.min.css" />
+    <Content Include="Assets\css\font-awesome.min.css" />
     <Content Include="Assets\css\forms.css" />
     <Content Include="Assets\css\main\contact.css" />
     <Content Include="Assets\css\main\faq.css" />
@@ -181,6 +183,7 @@
     <Content Include="Assets\css\main\partners.css" />
     <Content Include="Assets\css\reset.css" />
     <Content Include="Assets\css\styles.css" />
+    <Content Include="Assets\fonts\fontawesome-webfont.svg" />
     <Content Include="Assets\img\header_bg.jpg" />
     <Content Include="Assets\img\location_placeholder.jpg" />
     <Content Include="Assets\img\logo.png" />
@@ -280,6 +283,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Panel\Views\Summary\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="Assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="Assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Assets\fonts\FontAwesome.otf" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

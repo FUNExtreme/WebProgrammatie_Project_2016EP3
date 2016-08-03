@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Optimization;
+using YouthLocationBooking.Web.Code;
 
 namespace YouthLocationBooking.Web
 {
@@ -12,15 +13,14 @@ namespace YouthLocationBooking.Web
                       "~/Assets/js/bootstrap.js"));
             */
 
-            bundles.Add(new StyleBundle("~/Assets/css/bundles/bootstrap").Include(
-                            "~/Assets/css/bootstrap.min.css"
-                        ));
-
-            bundles.Add(new StyleBundle("~/Assets/css/bundles/styles").Include(
+            var bundle = new StyleBundle("~/Assets/css/bundles/styles");
+            bundle.Orderer = new AsIsBundleOrderer();
+            bundle.Include("~/Assets/css/bootstrap.min.css",
+                            "~/Assets/css/font-awesome.min.css",
                             "~/Assets/css/reset.css",
                             "~/Assets/css/forms.css",
-                            "~/Assets/css/styles.css"
-                        ));
+                            "~/Assets/css/styles.css");
+            bundles.Add(bundle);
 
             bundles.Add(new StyleBundle("~/Assets/css/bundles/mainstyles").Include(
                             "~/Assets/css/main/styles.css"
