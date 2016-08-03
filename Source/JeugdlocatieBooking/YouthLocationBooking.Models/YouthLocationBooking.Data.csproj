@@ -73,12 +73,17 @@
     <Compile Include="Database\Migrations\201608021323087_InitialCreate.Designer.cs">
       <DependentUpon>201608021323087_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Database\Migrations\201608031810429_AddLocationAddressCityAndCapacity.cs" />
+    <Compile Include="Database\Migrations\201608031810429_AddLocationAddressCityAndCapacity.Designer.cs">
+      <DependentUpon>201608031810429_AddLocationAddressCityAndCapacity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database\Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\Mappings\ToDbEntityExtensions.cs" />
     <Compile Include="Validation\Models\ContactFormValidationModel.cs" />
     <Compile Include="Validation\Models\LoginFormValidationModel.cs" />
     <Compile Include="Validation\Models\NewLocationFormValidationModel.cs" />
+    <Compile Include="Validation\Models\EditProfileValidationModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -93,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Database\Migrations\201608022012329_ChangeStateToProvince.resx">
       <DependentUpon>201608022012329_ChangeStateToProvince.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Database\Migrations\201608031810429_AddLocationAddressCityAndCapacity.resx">
+      <DependentUpon>201608031810429_AddLocationAddressCityAndCapacity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
