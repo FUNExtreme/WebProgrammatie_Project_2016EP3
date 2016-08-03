@@ -22,13 +22,6 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
             return View();
         }
 
-        #region Details
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-        #endregion
-
         #region New
         public ActionResult New()
         {
