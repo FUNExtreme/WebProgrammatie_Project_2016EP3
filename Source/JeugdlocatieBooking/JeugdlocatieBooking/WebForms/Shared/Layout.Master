@@ -5,62 +5,79 @@
 <html>
 <head runat="server">
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%: Page.Title %> - Babysitter</title>
+    <meta name="viewport" content="width=device-width" />
+    <title><%: Page.Title %> - JeugdLocatie Booking</title>
 
-    <%: Styles.Render("~/Content/stylesheets") %>
-    <%: Scripts.Render("~/bundles/modernizr") %>
-    <asp:ContentPlaceHolder runat="server" ID="stylesheets" />
+    <%: Styles.Render("~/Assets/css/bundles/bootstrap") %>
+    <%: Styles.Render("~/Assets/css/bundles/styles") %>
+    <%: Styles.Render("~/Assets/css/bundles/mainstyles") %>
+    <asp:ContentPlaceHolder runat="server" ID="styles" />
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="navbar-container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/"><img runat="server" src="~/Content/images/logo_babysitter.png" /></a>
+    <div class="page-header-container">
+        <header>
+            <div class="header-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="pull-right">
+                            <span>
+                                <a href="~/Login" runat="server">Login</a>
+                            </span>
+                            <span>
+                                <a href="~/Register" runat="server">Register</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a runat="server" href="~/Home/">Home</a></li>
-                    <li><a runat="server" href="~/Jobs/">Find Babysitter</a></li>
-                    <li><a runat="server" href="~/Home/FAQ">FAQ</a></li>
-                    <li><a runat="server" href="~/Home/Partners">Partners</a></li>
-                    <li><a runat="server" href="~/Home/Contact">Contact</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a runat="server" href="~/Auth/Login">Login</a></li>
-                    <li><a runat="server" href="~/Auth/Register">Register</a></li>
-                    <li><a runat="server" href="~/Users/0/Profile">Firstname L.</a></li>
-                </ul>
-            </div><!--/.nav-collapse -->
+            <nav class="header-nav">
+                <div class="container">
+                    <div class="row">
+                        <a href="~/Home" class="col-md-2" runat="server">
+                            <h1>JeugdLocatie Booking</h1>
+                        </a>
+                        <ul class="col-md-4">
+                            <li>
+                                <a href="~/Locations" runat="server">Locaties</a>
+                            </li>
+                        </ul>
+                        <ul class="col-md-5 pull-right">
+                            <li>
+                                <a href="~/Faq" runat="server">FAQ</a>
+                            </li>
+                            <li>
+                                <a href="~/Partners" runat="server">Partners</a>
+                            </li>
+                            <li>
+                                <a href="~/Contact" runat="server">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="pull-left page-title"><%: Page.Title %></h2>
+                        <ul class="pull-right page-breadcrumbs">
+                            <asp:ContentPlaceHolder runat="server" ID="navbreadcrumb" />
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-    </nav>
 
-    <div class="body-content">
-        <div class="page-heading">
-            <h2>Register</h2>
-            <ol class="breadcrumb">
-                <asp:ContentPlaceHolder runat="server" ID="navbreadcrumb" />
-            </ol>
+        <div class="container">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - JeugdLocatie Booking</p>
+            </footer>
         </div>
-        
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
-        
-        </asp:ContentPlaceHolder>
+
+        <asp:ContentPlaceHolder runat="server" ID="scripts" />
     </div>
-
-    <footer>
-        <p>&copy; <%= DateTime.Now.Year %> - Robin Maenhaut</p>
-    </footer>
-    
-    <%: Scripts.Render("~/bundles/jquery") %>
-    <%: Scripts.Render("~/bundles/jqueryval") %>
-    <%: Scripts.Render("~/bundles/bootstrap") %>
-    <asp:ContentPlaceHolder runat="server" ID="scripts" />
 </body>
 </html>
