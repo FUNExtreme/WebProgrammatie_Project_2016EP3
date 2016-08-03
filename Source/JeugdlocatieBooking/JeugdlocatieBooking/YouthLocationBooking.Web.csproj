@@ -179,6 +179,7 @@
     <Content Include="Assets\css\main\register.css" />
     <Content Include="Assets\css\main\styles.css" />
     <Content Include="Assets\css\panel\locationsnew.css" />
+    <Content Include="Assets\css\panel\profilechangepassword.css" />
     <Content Include="Assets\css\panel\profileedit.css" />
     <Content Include="Assets\css\panel\styles.css" />
     <Content Include="Assets\css\main\partners.css" />
