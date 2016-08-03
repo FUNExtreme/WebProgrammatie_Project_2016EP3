@@ -71,6 +71,34 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
         }
         #endregion
 
+        #region ChangePassword
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePassword(ChangePasswordValidationModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var user = _usersRepository.GetByEmail(User.Identity.Name);
+            if (user.Password != Security.Hash(model.OldPassword))
+            {
+                ModelState.AddModelError(string.Empty, "Old Password is incorrect!");
+                return View(model);
+            }
+
+            user.Password = Security.Hash(model.NewPassword);
+            _usersRepository.Update(user);
+
+            // TODO add success message
+            return View(model);
+        }
+        #endregion
+
         #region Dispose
         protected override void Dispose(bool disposing)
         {
