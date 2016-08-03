@@ -67,6 +67,14 @@ a {
     padding-right: 0;
 }
 
+.sub-title {
+    text-transform: uppercase;
+    font-family: 'MarketDeco', sans-serif;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #999;
+}
+
 /* TODO REWORK BUTTON STYLES */
 .btn {
     background: transparent;
@@ -87,6 +95,11 @@ a {
     -moz-transition: all 0.2s ease-in ease-out;
     -o-transition: all 0.2s ease-in ease-out;
     transition: all 0.2s ease-in ease-out;
+}
+
+.button-red {
+    border-color: red;
+    color: red;
 }
 
 .shadowbox  {
