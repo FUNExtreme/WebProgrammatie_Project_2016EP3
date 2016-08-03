@@ -10,6 +10,9 @@ namespace YouthLocationBooking.Api.Controllers
     [RoutePrefix("locations")]
     public class LocationsController : ApiController
     {
+        private static string DetailsPageUrlTemplate = "";
+        private static string BookingPageUrlTemplate = "";
+
         private LocationsRepository _locationsRepository;
 
         public LocationsController()
