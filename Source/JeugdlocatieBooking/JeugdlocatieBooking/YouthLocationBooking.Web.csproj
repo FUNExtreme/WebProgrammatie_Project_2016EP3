@@ -143,7 +143,6 @@
     <Compile Include="Areas\Panel\Controllers\ReviewsController.cs" />
     <Compile Include="Areas\Panel\Controllers\SummaryController.cs" />
     <Compile Include="Areas\Panel\PanelAreaRegistration.cs" />
-    <Compile Include="Code\Extensions\UrlHelperEx.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\FaqController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -170,11 +169,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\css\bootstrap.min.css" />
-    <Content Include="Assets\css\faq.css" />
-    <Content Include="Assets\css\locations.css" />
+    <Content Include="Assets\css\forms.css" />
+    <Content Include="Assets\css\main\faq.css" />
+    <Content Include="Assets\css\main\locations.css" />
+    <Content Include="Assets\css\main\login.css" />
     <Content Include="Assets\css\main\styles.css" />
     <Content Include="Assets\css\panel\styles.css" />
-    <Content Include="Assets\css\partners.css" />
+    <Content Include="Assets\css\main\partners.css" />
     <Content Include="Assets\css\reset.css" />
     <Content Include="Assets\css\styles.css" />
     <Content Include="Assets\img\header_bg.jpg" />
@@ -267,9 +268,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Panel\Views\Locations\New.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Panel\Views\Locations\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Panel\Views\Locations\Index.cshtml" />

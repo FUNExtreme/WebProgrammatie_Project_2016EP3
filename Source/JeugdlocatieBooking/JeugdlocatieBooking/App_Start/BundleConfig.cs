@@ -18,6 +18,7 @@ namespace YouthLocationBooking.Web
 
             bundles.Add(new StyleBundle("~/Assets/css/bundles/styles").Include(
                             "~/Assets/css/reset.css",
+                            "~/Assets/css/forms.css",
                             "~/Assets/css/styles.css"
                         ));
 

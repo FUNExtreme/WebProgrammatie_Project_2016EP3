@@ -1,0 +1,56 @@
+﻿form .form-group {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+form .form-group:last-child {
+    margin-bottom: 0;
+}
+
+form .form-label {
+    text-align: right;
+    line-height: 4rem;
+}
+
+form .form-control {
+    height: 4rem;
+    width: 100%;
+    padding: 1rem 2rem;
+    margin: 0;
+
+    font-size: 1.5rem;
+    border: 1px solid #d5d5d5;
+    border-radius: 1px;
+}
+
+form .form-error {
+    display: block;
+    margin-top: .5rem;
+
+    font-size: 1.3rem;
+    color: red;
+}
+
+/*
+ * OLD FORM CSS
+ */
+.form-group > .btn {
+    width: 100%;
+
+    padding: 0;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 1px;
+}
+
+textarea.form-control {
+    height: 115px;
+    text-indent: 0;
+    padding: 10px 10px;
+}
+
+.form-group > i {
+    position: absolute;
+    font-size: 20px;
+    padding: 15px 15px;
+}
