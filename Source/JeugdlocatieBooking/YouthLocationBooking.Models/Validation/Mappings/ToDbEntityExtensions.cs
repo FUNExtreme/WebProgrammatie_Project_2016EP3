@@ -5,7 +5,7 @@ namespace YouthLocationBooking.Data.Validation.Mappings
 {
     public static class ToDbEntityExtensions
     {
-        public static DbLocation ToDbEntity(this NewLocationValidationModel entity)
+        public static DbLocation ToDbEntity(this NewLocationFormValidationModel entity)
         {
             var mappedEntity = new DbLocation();
             mappedEntity.AddressNumber = entity.AddressNumber;

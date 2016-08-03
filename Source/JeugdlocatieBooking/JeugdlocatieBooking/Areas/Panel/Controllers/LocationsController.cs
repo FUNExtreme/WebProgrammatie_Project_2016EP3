@@ -37,7 +37,7 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult New(NewLocationValidationModel model)
+        public ActionResult New(NewLocationFormValidationModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
