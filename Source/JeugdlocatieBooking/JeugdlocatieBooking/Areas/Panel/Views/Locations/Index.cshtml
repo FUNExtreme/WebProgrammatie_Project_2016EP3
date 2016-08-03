@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Locations";
+}
+
+@using YouthLocationBooking.Data.Database.Entities
+
+@foreach (DbLocation location in ViewBag.Locations)
+{
+    <tr>
+        <td>@location.Id</td>
+        <td>@location.Name</td>
+        <td>@Html.ActionLink("Overzicht", "history", "Account", new { id = location.Id }, new { })</td>
+        <td>@Html.ActionLink("Betaling Uitvoeren", "transaction", "Account", new { account = location.Id }, new { })</td>
+    </tr>
+}
