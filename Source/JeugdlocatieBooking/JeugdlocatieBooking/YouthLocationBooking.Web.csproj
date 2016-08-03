@@ -170,6 +170,7 @@
   <ItemGroup>
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\forms.css" />
+    <Content Include="Assets\css\main\contact.css" />
     <Content Include="Assets\css\main\faq.css" />
     <Content Include="Assets\css\main\locations.css" />
     <Content Include="Assets\css\main\login.css" />

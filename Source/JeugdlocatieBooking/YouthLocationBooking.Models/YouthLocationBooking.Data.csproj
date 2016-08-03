@@ -76,8 +76,9 @@
     <Compile Include="Database\Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\Mappings\ToDbEntityExtensions.cs" />
+    <Compile Include="Validation\Models\ContactFormValidationModel.cs" />
     <Compile Include="Validation\Models\LoginFormValidationModel.cs" />
-    <Compile Include="Validation\Models\NewLocationValidationModel.cs" />
+    <Compile Include="Validation\Models\NewLocationFormValidationModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
