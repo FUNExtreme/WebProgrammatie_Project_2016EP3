@@ -81,6 +81,10 @@
     <Compile Include="Database\Migrations\201608040710439_RemoveBookingMessagesTable.Designer.cs">
       <DependentUpon>201608040710439_RemoveBookingMessagesTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Database\Migrations\201608041530479_MERGE.cs" />
+    <Compile Include="Database\Migrations\201608041530479_MERGE.Designer.cs">
+      <DependentUpon>201608041530479_MERGE.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database\Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\Mappings\ToDbEntityExtensions.cs" />
@@ -109,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Database\Migrations\201608040710439_RemoveBookingMessagesTable.resx">
       <DependentUpon>201608040710439_RemoveBookingMessagesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Database\Migrations\201608041530479_MERGE.resx">
+      <DependentUpon>201608041530479_MERGE.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
