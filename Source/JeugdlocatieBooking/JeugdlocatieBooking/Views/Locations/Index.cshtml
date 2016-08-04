@@ -9,6 +9,7 @@
 @model YouthLocationBooking.Data.Validation.Models.LocationFilterFormValidationModel
 
 @section styles {
+    @Styles.Render("~/Assets/css/pagination.css")
     @Styles.Render("~/Assets/css/main/locations.css")
 }
 
@@ -19,7 +20,7 @@
 
 <div class="row page">
     <aside class="col-md-3">
-        <div class="shadowbox filter-container">
+        <div class="shadowbox padding filter-container">
             @using (Html.BeginForm("Index", "Locations", FormMethod.Post))
             {
                 <h5>Filters</h5>
@@ -55,56 +56,70 @@
         </div>
     </aside>
     <div class="col-md-9">
-        <div class="shadowbox clearfix locations-search-results-header">
-            <h5 class="pull-left">Search Results</h5>
-            <div class="pull-right pagination">
+        <div class="shadowbox padding clearfix locations-search-results-header">
+            <h5 class="pull-left">Zoekresultaten</h5>
+            <div class="pull-right">
                 @Html.PagedListPager((IPagedList)ViewBag.PagedLocations, page => Url.Action("Index", "Locations", new { page }))
             </div>
         </div>
-        @foreach (DbLocation location in ViewBag.PagedLocations)
+
+        @if (((IEnumerable<DbLocation>)ViewBag.PagedLocations).Any())
         {
-            <div class="locations-search-result shadowbox clearfix">
-                <div class="result-thumbnail" style="background-image:url(../../Assets/img/location_placeholder.jpg);"></div>
-                <div class="result-info">
-                    <div class="result-header clearfix">
-                        <div class="pull-left">
-                            <h5 class="result-title">
-                                @location.Name
-                            </h5>
-                            <ul class="result-summary">
-                                <li>Max @(location.Capacity) Personen</li>
-                                <li>@location.AddressCity</li>
-                            </ul>
+            foreach (DbLocation location in ViewBag.PagedLocations)
+            {
+                <div class="locations-search-result shadowbox clearfix">
+                    <div class="result-thumbnail" style="background-image:url(../../Assets/img/location_placeholder.jpg);"></div>
+                    <div class="result-info">
+                        <div class="result-header clearfix">
+                            <div class="pull-left">
+                                <h5 class="result-title">
+                                    @location.Name
+                                </h5>
+                                <ul class="result-summary">
+                                    <li>Max @(location.Capacity) Personen</li>
+                                    <li>@location.AddressCity</li>
+                                </ul>
+                            </div>
+                            <div class="pull-right">
+                                <span class="result-price">
+                                    vanaf €@(location.PricePerDay)/dag
+                                </span>
+                            </div>
                         </div>
-                        <div class="pull-right">
-                            <span class="result-price">
-                                vanaf €@(location.PricePerDay)/dag
-                            </span>
-                        </div>
-                    </div>
-                    <div class="result-facilities">
-                        <div class="row">
-                            <ul class="col-md-3">
-                                <li>Douches</li>
-                                <li>Slaapplaatsen</li>
-                                <li>Parking</li>
-                            </ul>
-                            <ul class="col-md-3">
-                                <li>Keuken</li>
-                                <li>Keukenploeg</li>
-                            </ul>
-                            <ul class="col-md-3">
-                                <li>Keuken</li>
-                                <li>Keukenploeg</li>
-                            </ul>
-                            <div class="col-md-3">
-                                <button class="btn">Read More</button>
-                                <button class="btn">Book Now</button>
+                        <div class="result-facilities">
+                            <div class="row">
+                                <ul class="col-md-3">
+                                    <li>Douches</li>
+                                    <li>Slaapplaatsen</li>
+                                    <li>Parking</li>
+                                </ul>
+                                <ul class="col-md-3">
+                                    <li>Keuken</li>
+                                    <li>Keukenploeg</li>
+                                </ul>
+                                <ul class="col-md-3">
+                                    <li>Keuken</li>
+                                    <li>Keukenploeg</li>
+                                </ul>
+                                <div class="col-md-3">
+                                    <button class="btn">Read More</button>
+                                    <button class="btn">Book Now</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            }
+
+            <div class="shadowbox padding clearfix">
+                <div class="pull-right">
+                    @Html.PagedListPager((IPagedList)ViewBag.PagedLocations, page => Url.Action("Index", "Locations", new { page }))
+                </div>
             </div>
+        }
+        else
+        {
+
         }
     </div>
 </div>

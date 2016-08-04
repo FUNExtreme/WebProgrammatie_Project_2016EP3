@@ -199,6 +199,7 @@
     <Content Include="Assets\css\main\login.css" />
     <Content Include="Assets\css\main\register.css" />
     <Content Include="Assets\css\main\styles.css" />
+    <Content Include="Assets\css\pagination.css" />
     <Content Include="Assets\css\panel\locationsnew.css" />
     <Content Include="Assets\css\panel\profilechangepassword.css" />
     <Content Include="Assets\css\panel\profileedit.css" />

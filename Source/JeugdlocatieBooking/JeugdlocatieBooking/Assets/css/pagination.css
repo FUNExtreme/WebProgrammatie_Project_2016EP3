@@ -1,0 +1,10 @@
+﻿ul.pagination > li {
+    display: inline-block;
+}
+
+ul.pagination > li > span, ul.pagination > li > a {
+    padding: 0 .5rem;
+
+    color: #808080;
+    font-weight: bold;
+}

@@ -1,8 +1,4 @@
-﻿.filter-container {
-    padding: 2.5rem 3rem;
-}
-
-.filter-container h5 {
+﻿.filter-container h5 {
     padding: 0;
     margin-bottom: 2.5rem;
 }
@@ -16,10 +12,6 @@
 .filter-container .button {
     margin-top: 3rem;
     width: 100%;
-}
-
-.locations-search-results-header {
-    padding: 2.5rem 3rem;
 }
 
 .locations-search-results-header h5 {

@@ -112,6 +112,10 @@ a {
     margin-bottom: 3rem;
 }
 
+.shadowbox.padding {
+    padding: 2.5rem 3rem;
+}
+
 .shadowbox  h5 {
     padding: 2.5rem 3rem;
 }
