@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using YouthLocationBooking.Data.Database.Entities;
+using YouthLocationBooking.Data.Validation.Models;
 
 namespace YouthLocationBooking.Business.Logic.Repositories
 {
@@ -17,6 +18,43 @@ namespace YouthLocationBooking.Business.Logic.Repositories
         public IList<DbLocation> GetAll()
         {
             return _dbContext.Locations.ToList();
+        }
+
+        public IList<DbLocation> GetAllWithFilter(LocationFilterFormValidationModel model)
+        {
+            IQueryable<DbLocation> filteredLocations = _dbContext.Locations;
+
+            if (model.Name != null)
+            {
+                model.Name = model.Name.Trim().ToLower();
+                filteredLocations = filteredLocations.Where(x => x.Name.ToLower().Contains(model.Name));
+            }
+                
+            if (model.MinCapacity != null)
+                filteredLocations = filteredLocations.Where(x => x.Capacity > model.MinCapacity);
+
+            
+            if (model.CityOrPostcode != null)
+            {
+                model.CityOrPostcode = model.CityOrPostcode.Trim().ToLower();
+
+                int postalCode = -1;
+                bool isValidPostalCode = int.TryParse(model.CityOrPostcode, out postalCode);
+                if (isValidPostalCode)
+                    filteredLocations = filteredLocations.Where(x => x.AddressPostalCode == postalCode);
+                else
+                    filteredLocations = filteredLocations.Where(x => x.AddressCity.ToLower().Contains(model.CityOrPostcode));
+            }
+
+            if(model.Province != null)
+            {
+                model.Province = model.Province.Trim().ToLower();
+                filteredLocations = filteredLocations.Where(x => x.AddressProvince.ToLower().Contains(model.Province));
+            }
+
+            // TODO check availability
+
+            return filteredLocations.ToList();
         }
 
         public DbLocation Get(int id)

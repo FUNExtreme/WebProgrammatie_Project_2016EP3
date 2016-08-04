@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Search Locations";
+    ViewBag.Title = "Zoek Locaties";
 }
 
 @using YouthLocationBooking.Data.Database.Entities;
@@ -12,7 +12,7 @@
 
 @section navbreadcrumb {
     <li><a href="@Url.Action("Index", "Home")">Home</a></li>
-    <li class="active">Locations</li>
+    <li class="active">Locaties</li>
 }
 
 <div class="row page">
@@ -27,16 +27,16 @@
                 </div>
                 <div class="sub-title">Algemeen</div>
                 <div>
-                    @Html.TextBoxFor(m => m.MinCapacity, new { @class = "form-control", placeholder = "Minimale Capaciteit" })
+                    @Html.TextBoxFor(m => m.MinCapacity, new { @class = "form-control", @type="number", min="1", placeholder = "Minimale Capaciteit" })
                     @Html.ValidationMessageFor(m => m.MinCapacity, null, new { @class = "form-error" })
                 </div>
                 <div class="sub-title">Periode</div>
                 <div>
-                    @Html.TextBoxFor(m => m.From, new { @class = "form-control", placeholder = "Van", onfocus = "(this.type='date')", onblur = "(this.type='text')" })
+                    @Html.TextBoxFor(m => m.From, "{0:yyyy-MM-dd}", new { @class = "form-control", placeholder = "Van", onfocus = "(this.type='date')", onblur = "(this.type='text')" })
                     @Html.ValidationMessageFor(m => m.From, null, new { @class = "form-error" })
                 </div>
                 <div>
-                    @Html.TextBoxFor(m => m.To, new { @class = "form-control", placeholder = "Tot", onfocus = "(this.type='date')", onblur = "(this.type='text')" })
+                    @Html.TextBoxFor(m => m.To, "{0:yyyy-MM-dd}", new { @class = "form-control", placeholder = "Tot", onfocus = "(this.type='date')", onblur = "(this.type='text')" })
                     @Html.ValidationMessageFor(m => m.To, null, new { @class = "form-error" })
                 </div>
                 <div class="sub-title">Locatie</div>

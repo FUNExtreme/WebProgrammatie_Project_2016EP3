@@ -12,10 +12,10 @@
 		+ Edit						(DONE, Stage 1)
 		+ Change Password			(DONE, Stage 1)
 	* Add new Locations				(DONE, Stage 1) TODO: Turn into a multi-step creation process, Include images
-	* Summary => My Locations?		
+	* Summary => My Locations?		(SKIPPED, TODO)
 
 - Front-end
-	* Location Search
+	* Location Search				(DONE, Stage 1) TODO: Period, after Booking is implemented
 	* Location Detail
 	* Location Booking
 

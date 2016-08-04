@@ -8,16 +8,21 @@ namespace YouthLocationBooking.Web.Controllers
 {
     public class LocationsController : Controller
     {
+        private LocationsRepository _locationsRepository;
+
+        public LocationsController()
+        {
+            _locationsRepository = new LocationsRepository();
+        }
+
         public ActionResult Index(LocationFilterFormValidationModel model = null)
         {
-            IList<DbLocation> dbLocations = null;
-            using (var repository = new LocationsRepository())
-            {
-                dbLocations = repository.GetAll();
-            }
-            ViewBag.Locations = dbLocations;
+            if (model == null)
+                ViewBag.Locations = _locationsRepository.GetAll();
+            else
+                ViewBag.Locations = _locationsRepository.GetAllWithFilter(model);
 
-            return View();
+            return View(model);
         }
 
         [HttpPost]
