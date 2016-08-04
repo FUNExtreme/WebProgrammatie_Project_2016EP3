@@ -11,12 +11,16 @@ namespace YouthLocationBooking.Data.Validation.Models
         [Required]
         public string AddressNumber { get; set; }
         [Required]
-        public string AddressProvince { get; set; }
-        [Required]
         public int AddressPostalCode { get; set; }
+        [Required]
+        public string AddressCity { get; set; }
+        [Required]
+        public string AddressProvince { get; set; }
         public string Description { get; set; }
         public string Organisation { get; set; }
         [Required]
         public double PricePerDay { get; set; }
+        [Required]
+        public int Capacity { get; set; }
     }
 }

@@ -16,7 +16,7 @@
 <div class="page">
     <div class="row">
         <div class="shadowbox">
-            @using (Html.BeginForm("Index", "Login", FormMethod.Get))
+            @using (Html.BeginForm("Index", "Login", FormMethod.Post))
             {
                 @Html.ValidationSummary(true)
                 @Html.AntiForgeryToken()
