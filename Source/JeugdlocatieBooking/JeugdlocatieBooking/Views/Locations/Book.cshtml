@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Boeken";
+}
+
+@section navbreadcrumb {
+    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+    <li><a href="@Url.Action("Index", "Locations")">Locaties</a></li>
+    <li class="active">Boek @ViewBag.Location.Name</li>
+}
+

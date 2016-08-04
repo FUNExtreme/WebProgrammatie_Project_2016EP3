@@ -42,6 +42,20 @@ namespace YouthLocationBooking.Web.Controllers
 
         public ActionResult Details(int id)
         {
+            DbLocation location = _locationsRepository.Get(id);
+            if (location == null)
+                return RedirectToAction("Index", "Locations");
+
+            return View(location);
+        }
+
+        public ActionResult Book(int id)
+        {
+            DbLocation location = _locationsRepository.Get(id);
+            if (location == null)
+                return RedirectToAction("Index", "Locations");
+
+            ViewBag.Location = location;
             return View();
         }
     }
