@@ -213,7 +213,7 @@
     <Content Include="Assets\img\logo.png" />
     <Content Include="Assets\img\partner_logo_diede.png" />
     <Content Include="Assets\img\partner_logo_tim.png" />
-    <Content Include="Content\PagedList.css" />
+    <Content Include="Assets\img\sad-face-no-results.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />

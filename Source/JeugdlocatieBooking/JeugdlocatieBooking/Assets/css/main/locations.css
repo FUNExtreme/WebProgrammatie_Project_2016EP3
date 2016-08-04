@@ -96,3 +96,22 @@
 .locations-search-result .result-facilities li {
     line-height: 2.5rem;
 }
+
+.no-search-results {
+    text-align: center;
+}
+
+.no-search-results > * {
+    display: block;
+}
+
+.no-search-results > img {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 25rem;
+}
+
+.no-search-results > span {
+    color: #888888;
+    font-size: 2.5rem;
+}
