@@ -5,7 +5,7 @@
 	* Register						(DONE, Stage 1)
 	* FAQ							(DONE, Stage 1)
 	* Partners						(DONE, Stage 1)
-	* Contact						(DONE, Stage 1)
+	* Contact						(DONE, Stage 1) TODO: Add address and email addresses
 
 - Back-end
 	* Profile						
