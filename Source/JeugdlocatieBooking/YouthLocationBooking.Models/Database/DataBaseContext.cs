@@ -9,7 +9,6 @@ namespace YouthLocationBooking.Data.Database
         public DbSet<DbUser> Users { get; set; }
 
         public DbSet<DbBooking> Bookings { get; set; }
-        public DbSet<DbBookingMessage> BookingMessages { get; set; }
         public DbSet<DbBookingStatus> BookingStatuses { get; set; }
 
         public DbSet<DbLocation> Locations { get; set; }
@@ -22,7 +21,6 @@ namespace YouthLocationBooking.Data.Database
         public DatabaseContext()
             : base("DefaultConnection")
         {
-            //AppDomain.CurrentDomain.SetData("DataDirectory", System.IO.Directory.GetCurrentDirectory());
         }
     }
 }
