@@ -65,7 +65,7 @@
                     </div>
 
                     <div class="form-group">
-                        <asp:Button id="registerSubmit" type="submit" class="btn btn-primary" Text="Register" runat="server" OnClick="registerSubmit_Click" />
+                        <asp:Button id="registerSubmit" type="submit" class="button" Text="Register" runat="server" OnClick="registerSubmit_Click" />
                     </div>
                 </form>
             </div>

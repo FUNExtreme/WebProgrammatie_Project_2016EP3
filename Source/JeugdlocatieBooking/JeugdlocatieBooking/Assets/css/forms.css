@@ -40,15 +40,10 @@ form .form-error {
     color: red;
 }
 
-/*
- * OLD FORM CSS
- */
-.form-group > .btn {
+.form-group > .button {
     width: 100%;
-
     padding: 0;
-    height: 50px;
-    line-height: 50px;
+
     border-radius: 1px;
 }
 
