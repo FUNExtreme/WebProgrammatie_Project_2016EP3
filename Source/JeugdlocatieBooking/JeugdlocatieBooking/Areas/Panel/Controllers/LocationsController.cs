@@ -12,12 +12,14 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
     {
         #region Variables
         private LocationsRepository _locationsRepository;
+        private UsersRepository _usersRepository;
         #endregion
 
         #region Constructor
         public LocationsController()
         {
             _locationsRepository = new LocationsRepository();
+            _usersRepository = new UsersRepository();
         }
         #endregion
 
@@ -44,9 +46,7 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
                 return View(model);
 
             DbLocation dbLocation = model.ToDbEntity();
-            // TODO set id to logged in user
-            dbLocation.CreatedByUserId = null;
-
+            dbLocation.CreatedByUserId = _usersRepository.GetByEmail(User.Identity.Name).Id;
             using (var repository = new LocationsRepository())
             {
                 repository.Add(dbLocation);
@@ -65,6 +65,11 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
                 {
                     _locationsRepository.Dispose();
                     _locationsRepository = null;
+                }
+                if(_usersRepository != null)
+                {
+                    _usersRepository.Dispose();
+                    _usersRepository = null;
                 }
             }
             base.Dispose(disposing);
