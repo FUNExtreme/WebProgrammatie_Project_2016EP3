@@ -3,6 +3,8 @@
 }
 
 @using YouthLocationBooking.Data.Database.Entities;
+@using X.PagedList;
+@using X.PagedList.Mvc;
 
 @model YouthLocationBooking.Data.Validation.Models.LocationFilterFormValidationModel
 
@@ -53,10 +55,13 @@
         </div>
     </aside>
     <div class="col-md-9">
-        <div class="shadowbox">
-            <h5>Search Results</h5>
+        <div class="shadowbox clearfix locations-search-results-header">
+            <h5 class="pull-left">Search Results</h5>
+            <div class="pull-right pagination">
+                @Html.PagedListPager((IPagedList)ViewBag.PagedLocations, page => Url.Action("Index", "Locations", new { page }))
+            </div>
         </div>
-        @foreach (DbLocation location in ViewBag.Locations)
+        @foreach (DbLocation location in ViewBag.PagedLocations)
         {
             <div class="locations-search-result shadowbox clearfix">
                 <div class="result-thumbnail" style="background-image:url(../../Assets/img/location_placeholder.jpg);"></div>

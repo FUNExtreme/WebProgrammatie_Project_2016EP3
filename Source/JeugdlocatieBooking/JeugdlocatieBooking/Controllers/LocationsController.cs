@@ -15,12 +15,17 @@ namespace YouthLocationBooking.Web.Controllers
             _locationsRepository = new LocationsRepository();
         }
 
-        public ActionResult Index(LocationFilterFormValidationModel model = null)
+        public ActionResult Index(LocationFilterFormValidationModel model = null, int page = 1)
         {
+            if (page < 1)
+                page = 1;
+
+            int itemsPerPage = 10;
+
             if (model == null)
-                ViewBag.Locations = _locationsRepository.GetAll();
+                ViewBag.PagedLocations = _locationsRepository.GetAllPaged(page, itemsPerPage);
             else
-                ViewBag.Locations = _locationsRepository.GetAllWithFilter(model);
+                ViewBag.PagedLocations = _locationsRepository.GetAllPagedWithFilter(page, itemsPerPage, model);
 
             return View(model);
         }

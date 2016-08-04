@@ -18,6 +18,14 @@
     width: 100%;
 }
 
+.locations-search-results-header {
+    padding: 2.5rem 3rem;
+}
+
+.locations-search-results-header h5 {
+    padding: 0;
+}
+
 .locations-search-result {
     position: relative;
 

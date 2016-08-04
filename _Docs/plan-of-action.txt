@@ -17,6 +17,11 @@
 - Front-end
 	* Location Search				(DONE, Stage 1) TODO: Period, after Booking is implemented
 	* Location Detail
+
+- Back-end
+	* Location Edit
+
+- Front-end
 	* Location Booking
 
 - Back-end
