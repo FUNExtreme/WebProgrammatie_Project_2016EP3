@@ -1,4 +1,24 @@
-﻿.locations-search-result {
+﻿.filter-container {
+    padding: 2.5rem 3rem;
+}
+
+.filter-container h5 {
+    padding: 0;
+    margin-bottom: 2.5rem;
+}
+
+.filter-container .sub-title
+{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.filter-container .button {
+    margin-top: 3rem;
+    width: 100%;
+}
+
+.locations-search-result {
     position: relative;
 
     padding: .5rem 3rem .5rem .5rem;

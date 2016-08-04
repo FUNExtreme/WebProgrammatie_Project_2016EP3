@@ -4,6 +4,8 @@
 
 @using YouthLocationBooking.Data.Database.Entities;
 
+@model YouthLocationBooking.Data.Validation.Models.LocationFilterFormValidationModel
+
 @section styles {
     @Styles.Render("~/Assets/css/main/locations.css")
 }
@@ -15,8 +17,39 @@
 
 <div class="row page">
     <aside class="col-md-3">
-        <div class="shadowbox">
-            <h5>Filters</h5>
+        <div class="shadowbox filter-container">
+            @using (Html.BeginForm("Index", "Locations", FormMethod.Post))
+            {
+                <h5>Filters</h5>
+                <div>
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Naam" })
+                    @Html.ValidationMessageFor(m => m.Name, null, new { @class = "form-error" })
+                </div>
+                <div class="sub-title">Algemeen</div>
+                <div>
+                    @Html.TextBoxFor(m => m.MinCapacity, new { @class = "form-control", placeholder = "Minimale Capaciteit" })
+                    @Html.ValidationMessageFor(m => m.MinCapacity, null, new { @class = "form-error" })
+                </div>
+                <div class="sub-title">Periode</div>
+                <div>
+                    @Html.TextBoxFor(m => m.From, new { @class = "form-control", placeholder = "Van", onfocus = "(this.type='date')", onblur = "(this.type='text')" })
+                    @Html.ValidationMessageFor(m => m.From, null, new { @class = "form-error" })
+                </div>
+                <div>
+                    @Html.TextBoxFor(m => m.To, new { @class = "form-control", placeholder = "Tot", onfocus = "(this.type='date')", onblur = "(this.type='text')" })
+                    @Html.ValidationMessageFor(m => m.To, null, new { @class = "form-error" })
+                </div>
+                <div class="sub-title">Locatie</div>
+                <div>
+                    @Html.TextBoxFor(m => m.CityOrPostcode, new { @class = "form-control", placeholder = "Stad of Postcode" })
+                    @Html.ValidationMessageFor(m => m.CityOrPostcode, null, new { @class = "form-error" })
+                </div>
+                <div>
+                    @Html.TextBoxFor(m => m.Province, new { @class = "form-control", placeholder = "Provincie" })
+                    @Html.ValidationMessageFor(m => m.Province, null, new { @class = "form-error" })
+                </div>
+                <input type="submit" value="Filter" class="button" />
+            }
         </div>
     </aside>
     <div class="col-md-9">
