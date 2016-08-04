@@ -23,15 +23,6 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
         }
         #endregion
 
-        #region Index
-        public ActionResult Index()
-        {
-            ViewBag.Locations = _locationsRepository.GetAll();
-
-            return View();
-        }
-        #endregion
-
         #region New
         public ActionResult New()
         {
