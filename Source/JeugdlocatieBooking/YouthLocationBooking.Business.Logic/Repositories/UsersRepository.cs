@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using YouthLocationBooking.Data.Database.Entities;
 
@@ -33,9 +34,15 @@ namespace YouthLocationBooking.Business.Logic.Repositories
             _dbContext.SaveChanges();
         }
 
+        public void Update(DbUser entity)
+        {
+            _dbContext.Entry(entity).State = EntityState.Modified;
+            _dbContext.SaveChanges();
+        }
+
         public void Remove(DbUser entity)
         {
-            throw new NotImplementedException();
+            _dbContext.Users.Remove(entity);
         }
     }
 }

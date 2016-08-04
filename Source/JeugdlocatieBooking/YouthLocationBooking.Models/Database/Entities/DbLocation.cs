@@ -10,9 +10,11 @@ namespace YouthLocationBooking.Data.Database.Entities
         public string AddressNumber { get; set; }
         public string AddressProvince { get; set; }
         public int AddressPostalCode { get; set; }
+        public string AddressCity { get; set; }
         public string Description { get; set; }
         public string Organisation { get; set; }
         public double PricePerDay { get; set; }
+        public int Capacity { get; set; }
         public int? CreatedByUserId { get; set; }
 
         public virtual DbUser CreatedByUser { get; set; }

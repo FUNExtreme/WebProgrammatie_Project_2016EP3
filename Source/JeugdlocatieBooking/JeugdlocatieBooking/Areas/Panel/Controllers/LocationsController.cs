@@ -10,21 +10,22 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
     [Authorize]
     public class LocationsController : Controller
     {
+        #region Variables
+        private LocationsRepository _locationsRepository;
+        #endregion
+
+        #region Constructor
+        public LocationsController()
+        {
+            _locationsRepository = new LocationsRepository();
+        }
+        #endregion
+
+        #region Index
         public ActionResult Index()
         {
-            IList<DbLocation> dbLocations = null;
-            using (var repository = new LocationsRepository())
-            {
-                dbLocations = repository.GetAll();
-            }
-            ViewBag.Locations = dbLocations;
+            ViewBag.Locations = _locationsRepository.GetAll();
 
-            return View();
-        }
-
-        #region Details
-        public ActionResult Details(int id)
-        {
             return View();
         }
         #endregion
@@ -37,7 +38,7 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult New(NewLocationFormValidationModel model)
+        public ActionResult New(LocationNewFormValidationModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
@@ -52,6 +53,21 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
             }
 
             return RedirectToAction("Details", "Locations", new { id = dbLocation.Id, Area = string.Empty });
+        }
+        #endregion
+
+        #region Dispose
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (_locationsRepository != null)
+                {
+                    _locationsRepository.Dispose();
+                    _locationsRepository = null;
+                }
+            }
+            base.Dispose(disposing);
         }
         #endregion
     }

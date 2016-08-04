@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Profiel Aanpassen";
+}
+
+@model YouthLocationBooking.Data.Validation.Models.ProfileEditValidationModel
+
+@section styles {
+    @Styles.Render("~/Assets/css/panel/profileedit.css")
+}
+
+@section navbreadcrumb {
+    <li><a href="@Url.Action("Index", "Summary", new { Area = "Panel" })">Panel</a></li>
+    <li class="active">Profiel</li>
+}
+
+<div class="page">
+    <div class="row">
+        <div class="shadowbox">
+            @using (Html.BeginForm("Edit", "Profile", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true)
+                @Html.AntiForgeryToken()
+
+                <div class="sub-title">Public Information</div>
+                <div class="form-group clearfix">
+                    <i class="fa fa-user"></i>
+                    @Html.LabelFor(m => m.FirstName, new { @class = "col-md-4 form-label" })
+                    <div class="col-md-8 no-padding">
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "Email" })
+                        @Html.ValidationMessageFor(m => m.FirstName, null, new { @class = "form-error" })
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <i class="fa fa-user"></i>
+                    @Html.LabelFor(m => m.LastName, new { @class = "col-md-4 form-label" })
+                    <div class="col-md-8 no-padding">
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Email" })
+                        @Html.ValidationMessageFor(m => m.LastName, null, new { @class = "form-error" })
+                    </div>
+                </div>
+
+                <div class="sub-title">Private Information</div>
+                <div class="form-group clearfix">
+                    <i class="fa fa-envelope"></i>
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-4 form-label" })
+                    <div class="col-md-8 no-padding">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
+                        @Html.ValidationMessageFor(m => m.Email, null, new { @class = "form-error" })
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <i class="fa fa-phone"></i>
+                    @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-4 form-label" })
+                    <div class="col-md-8 no-padding">
+                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", placeholder = "Email" })
+                        @Html.ValidationMessageFor(m => m.PhoneNumber, null, new { @class = "form-error" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                </div>
+            }
+        </div>
+        <div class="shadowbox auth-info">
+            <div class="sub-title">Authentication Information</div>
+            <a href="@Url.Action("ChangePassword", "Profile")" class="btn button-red">Change Password</a>
+        </div>
+    </div>
+</div>

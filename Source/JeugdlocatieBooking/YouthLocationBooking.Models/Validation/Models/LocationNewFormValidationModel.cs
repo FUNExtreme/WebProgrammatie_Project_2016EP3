@@ -2,7 +2,7 @@
 
 namespace YouthLocationBooking.Data.Validation.Models
 {
-    public class NewLocationFormValidationModel
+    public class LocationNewFormValidationModel
     {
         [Required]
         public string Name { get; set; }

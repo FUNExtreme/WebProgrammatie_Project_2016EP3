@@ -1,20 +1,28 @@
-- General Layout
-- Front-end
-	* Login
-	* Register
-	* FAQ	
-	* Partners
-	* Contact
+
+- General Layout					(DONE, Stage 1) TODO: Footer, Header Top Bar
+
+- Front-end							
+	* Login							(DONE, Stage 1)
+	* Register						(DONE, Stage 1)
+	* FAQ							(DONE, Stage 1)
+	* Partners						(DONE, Stage 1)
+	* Contact						(DONE, Stage 1)
+
 - Back-end
-	* Profile
-	* Add new Location
-	* Summary => My Locations?
+	* Profile						
+		+ Edit						(DONE, Stage 1)
+		+ Change Password			(DONE, Stage 1)
+	* Add new Locations				(WIP)
+	* Summary => My Locations?		
+
 - Front-end
 	* Location Search
 	* Location Detail
 	* Location Booking
+
 - Back-end
 	* Rent Requests Approval
 	* Reviews
+
 - Front-end
 	* Homepage

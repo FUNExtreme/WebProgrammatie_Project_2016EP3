@@ -1,0 +1,17 @@
+﻿.shadowbox {
+    padding: 2rem;
+}
+
+.sub-title {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.sub-title:first-of-type {
+    margin-top: 0;
+}
+
+.auth-info .btn {
+    width: 100%;
+    text-align: center;
+}
