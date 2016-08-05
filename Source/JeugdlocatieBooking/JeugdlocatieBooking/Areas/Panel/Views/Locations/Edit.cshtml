@@ -1,0 +1,110 @@
+﻿@{
+    ViewBag.Title = "Locatie Aanpassen";
+}
+
+@model YouthLocationBooking.Data.Validation.Models.LocationEditModel
+
+@section styles {
+    @Styles.Render("~/Assets/css/panel/locationsedit.css")
+}
+
+@section navbreadcrumb {
+    <li><a href="@Url.Action("Index", "Summary", new { Area = "Panel" })">Panel</a></li>
+    <li class="active">@ViewBag.Title</li>
+}
+
+<div class="page">
+    <div class="row">
+        <div class="shadowbox padding">
+            @using (Html.BeginForm("Edit", "Locations", FormMethod.Post, new { id = ViewBag.LocationId }))
+            {
+                @Html.ValidationSummary(true)
+                @Html.AntiForgeryToken()
+                <div class="form-group clearfix">
+                    <i class="fa fa-envelope"></i>
+                    @Html.LabelFor(m => m.Name, new { @class = "col-md-4 form-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Naam" })
+                        @Html.ValidationMessageFor(m => m.Name, null, new { @class = "form-error" })
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <i class="fa fa-key"></i>
+                    @Html.LabelFor(m => m.AddressStreet, new { @class = "col-md-4 form-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.AddressStreet, new { @class = "form-control", placeholder = "Straat" })
+                        @Html.ValidationMessageFor(m => m.AddressStreet, null, new { @class = "form-error" })
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <i class="fa fa-key"></i>
+                    @Html.LabelFor(m => m.AddressNumber, new { @class = "col-md-4 form-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.AddressNumber, new { @class = "form-control", placeholder = "Nummer" })
+                        @Html.ValidationMessageFor(m => m.AddressNumber, null, new { @class = "form-error" })
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <i class="fa fa-key"></i>
+                    @Html.LabelFor(m => m.AddressPostalCode, new { @class = "col-md-4 form-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.AddressPostalCode, new { @class = "form-control", placeholder = "Postcode" })
+                        @Html.ValidationMessageFor(m => m.AddressPostalCode, null, new { @class = "form-error" })
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <i class="fa fa-key"></i>
+                    @Html.LabelFor(m => m.AddressCity, new { @class = "col-md-4 form-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.AddressCity, new { @class = "form-control", placeholder = "Stad" })
+                        @Html.ValidationMessageFor(m => m.AddressCity, null, new { @class = "form-error" })
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <i class="fa fa-key"></i>
+                    @Html.LabelFor(m => m.AddressProvince, new { @class = "col-md-4 form-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.AddressProvince, new { @class = "form-control", placeholder = "Provincie" })
+                        @Html.ValidationMessageFor(m => m.AddressProvince, null, new { @class = "form-error" })
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <i class="fa fa-key"></i>
+                    @Html.LabelFor(m => m.Description, new { @class = "col-md-4 form-label" })
+                    <div class="col-md-8">
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", placeholder = "Beschrijving" })
+                        @Html.ValidationMessageFor(m => m.Description, null, new { @class = "form-error" })
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <i class="fa fa-key"></i>
+                    @Html.LabelFor(m => m.Organisation, new { @class = "col-md-4 form-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Organisation, new { @class = "form-control", placeholder = "Organisatie" })
+                        @Html.ValidationMessageFor(m => m.Organisation, null, new { @class = "form-error" })
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <i class="fa fa-key"></i>
+                    @Html.LabelFor(m => m.PricePerDay, new { @class = "col-md-4 form-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.PricePerDay, new { @class = "form-control", placeholder = "Prijs per Dag" })
+                        @Html.ValidationMessageFor(m => m.PricePerDay, null, new { @class = "form-error" })
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <i class="fa fa-key"></i>
+                    @Html.LabelFor(m => m.Capacity, new { @class = "col-md-4 form-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Capacity, new { @class = "form-control", @type = "number", min = "1", placeholder = "Capaciteit" })
+                        @Html.ValidationMessageFor(m => m.Capacity, null, new { @class = "form-error" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Aanpassen" class="button" />
+                </div>
+            }
+        </div>
+    </div>
+</div>
