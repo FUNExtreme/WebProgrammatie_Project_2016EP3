@@ -15,7 +15,7 @@ namespace YouthLocationBooking.Web.Controllers
             _locationsRepository = new LocationsRepository();
         }
 
-        public ActionResult Index(LocationFilterFormValidationModel model = null, int page = 1)
+        public ActionResult Index(LocationFilterModel model = null, int page = 1)
         {
             if (page < 1)
                 page = 1;
@@ -32,7 +32,7 @@ namespace YouthLocationBooking.Web.Controllers
 
         [HttpPost]
         [ActionName("Index")]
-        public ActionResult IndexPost(LocationFilterFormValidationModel model)
+        public ActionResult IndexPost(LocationFilterModel model)
         {
             // This is a hack used to keep a clean URL.
             // If the form is of FormMethod.Get it will send all fields as query string, this is default behavior

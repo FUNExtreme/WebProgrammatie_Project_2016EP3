@@ -33,13 +33,13 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
         public ActionResult Edit()
         {
             DbUser user = _usersRepository.GetByEmail(User.Identity.Name);
-            ProfileEditValidationModel validationModel = user.ToProfileEditValidationModel();
+            ProfileEditModel validationModel = user.ToProfileEditValidationModel();
             return View(validationModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ProfileEditValidationModel model)
+        public ActionResult Edit(ProfileEditModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
@@ -79,7 +79,7 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ChangePassword(ChangePasswordValidationModel model)
+        public ActionResult ChangePassword(ChangePasswordModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);

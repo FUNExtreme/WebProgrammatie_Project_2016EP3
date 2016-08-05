@@ -12,7 +12,7 @@ namespace YouthLocationBooking.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(ContactFormValidationModel model)
+        public ActionResult Index(ContactModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);

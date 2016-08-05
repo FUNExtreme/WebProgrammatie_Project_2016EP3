@@ -26,12 +26,12 @@ namespace YouthLocationBooking.Business.Logic.Repositories
             return GetAll().ToPagedList(page, itemsPerPage);
         }
 
-        public IList<DbLocation> GetAllWithFilter(LocationFilterFormValidationModel model)
+        public IList<DbLocation> GetAllWithFilter(LocationFilterModel model)
         {
             return GetAllWithFilterQueryable(model).ToList();
         }
 
-        public IPagedList<DbLocation> GetAllPagedWithFilter(int page, int itemsPerPage, LocationFilterFormValidationModel model)
+        public IPagedList<DbLocation> GetAllPagedWithFilter(int page, int itemsPerPage, LocationFilterModel model)
         {
             return GetAllWithFilterQueryable(model).ToPagedList(page, itemsPerPage);
         }
@@ -58,7 +58,7 @@ namespace YouthLocationBooking.Business.Logic.Repositories
             _dbContext.Locations.Remove(entity);
         }
 
-        private IQueryable<DbLocation> GetAllWithFilterQueryable(LocationFilterFormValidationModel model)
+        private IQueryable<DbLocation> GetAllWithFilterQueryable(LocationFilterModel model)
         {
             IQueryable<DbLocation> filteredLocations = _dbContext.Locations;
 

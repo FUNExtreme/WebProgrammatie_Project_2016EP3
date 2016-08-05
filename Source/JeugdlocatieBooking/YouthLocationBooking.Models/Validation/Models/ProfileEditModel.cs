@@ -2,7 +2,7 @@
 
 namespace YouthLocationBooking.Data.Validation.Models
 {
-    public class ProfileEditValidationModel
+    public class ProfileEditModel
     {
         [Required]
         public string FirstName { get; set; }

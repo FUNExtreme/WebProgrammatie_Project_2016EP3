@@ -5,12 +5,12 @@ namespace YouthLocationBooking.Data.Database.Mappings
 {
     public static class ToValidationModelExtensions
     {
-        public static ProfileEditValidationModel ToProfileEditValidationModel(this DbUser entity)
+        public static ProfileEditModel ToProfileEditValidationModel(this DbUser entity)
         {
             if (entity == null)
                 return null;
 
-            var mappedEntity = new ProfileEditValidationModel();
+            var mappedEntity = new ProfileEditModel();
             mappedEntity.FirstName = entity.FirstName;
             mappedEntity.LastName = entity.LastName;
             mappedEntity.Email = entity.Email;

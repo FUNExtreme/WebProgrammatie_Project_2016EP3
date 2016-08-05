@@ -2,7 +2,7 @@
 
 namespace YouthLocationBooking.Data.Validation.Models
 {
-    public class ChangePasswordValidationModel
+    public class ChangePasswordModel
     {
         [Required]
         [Display(Name = "Old Password")]

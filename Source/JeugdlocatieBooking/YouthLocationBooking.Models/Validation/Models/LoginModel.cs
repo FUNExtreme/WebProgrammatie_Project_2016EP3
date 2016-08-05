@@ -2,7 +2,7 @@
 
 namespace YouthLocationBooking.Data.Validation.Models
 {
-    public class LoginFormValidationModel
+    public class LoginModel
     {
         [Required]
         [EmailAddress]

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace YouthLocationBooking.Data.Validation.Models
 {
-    public class LocationFilterFormValidationModel
+    public class LocationFilterModel
     {
         public string Name { get; set; }
         [DataType(DataType.Date)]
