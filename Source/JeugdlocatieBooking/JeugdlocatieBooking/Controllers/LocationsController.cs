@@ -1,32 +1,36 @@
 ﻿using System.Web.Mvc;
-using YouthLocationBooking.Business.Logic.Repositories;
 using YouthLocationBooking.Data.Database.Entities;
+using YouthLocationBooking.Data.Database.Repositories;
 using YouthLocationBooking.Data.Validation.Models;
 
 namespace YouthLocationBooking.Web.Controllers
 {
     public class LocationsController : Controller
     {
-        private LocationsRepository _locationsRepository;
-        private UsersRepository _usersRepository;
-        //private BookingsRepository _bookingRepository;
+        #region Variables
+        private UnitOfWork _unitOfWork;
+        #endregion
 
+        #region Constructor
         public LocationsController()
         {
-            _locationsRepository = new LocationsRepository();
+            _unitOfWork = new UnitOfWork();
         }
+        #endregion
 
         public ActionResult Index(LocationFilterModel model = null, int page = 1)
         {
+            var locationsRepository = _unitOfWork.LocationsRepository;
+
             if (page < 1)
                 page = 1;
 
             int itemsPerPage = 10;
 
             if (model == null)
-                ViewBag.PagedLocations = _locationsRepository.GetAllPaged(page, itemsPerPage);
+                ViewBag.PagedLocations = locationsRepository.GetAllPaged(page, itemsPerPage);
             else
-                ViewBag.PagedLocations = _locationsRepository.GetAllPagedWithFilter(page, itemsPerPage, model);
+                ViewBag.PagedLocations = locationsRepository.GetAllPagedWithFilter(page, itemsPerPage, model);
 
             return View(model);
         }
@@ -43,7 +47,9 @@ namespace YouthLocationBooking.Web.Controllers
 
         public ActionResult Details(int id)
         {
-            DbLocation location = _locationsRepository.Get(id);
+            var locationsRepository = _unitOfWork.LocationsRepository;
+
+            DbLocation location = locationsRepository.Get(id);
             if (location == null)
                 return RedirectToAction("Index", "Locations");
 
@@ -54,7 +60,11 @@ namespace YouthLocationBooking.Web.Controllers
         [HttpPost]
         public ActionResult Details(int id, LocationBookingModel model)
         {
-            DbLocation location = _locationsRepository.Get(id);
+            var locationsRepository = _unitOfWork.LocationsRepository;
+            var usersRepository = _unitOfWork.UsersRepository;
+            var bookingsRepository = _unitOfWork.BookingsRepository;
+
+            DbLocation location = locationsRepository.Get(id);
             if (location == null)
                 return RedirectToAction("Index", "Locations");
 
@@ -68,16 +78,14 @@ namespace YouthLocationBooking.Web.Controllers
 
             // TODO create enum with Status values
             // TODO Prepopulate BookingStatuses table
-            // TODO Refactor repositories, create Generic implementation
-            // TODO Move Repositories to Data?
-            // TODO Store booking in database
             DbBooking booking = new DbBooking();
             booking.LocationId = id;
             booking.Organisation = model.Organisation;
             booking.StartDateTime = model.From;
             booking.EndDateTime = model.To;
             booking.StatusId = 0;
-            booking.UserId = _usersRepository.GetByEmail(User.Identity.Name).Id;
+            booking.UserId = usersRepository.GetByEmail(User.Identity.Name).Id;
+            bookingsRepository.Insert(booking);
 
             return View(model);
         }

@@ -5,20 +5,13 @@ using X.PagedList;
 using YouthLocationBooking.Data.Database.Entities;
 using YouthLocationBooking.Data.Validation.Models;
 
-namespace YouthLocationBooking.Business.Logic.Repositories
+namespace YouthLocationBooking.Data.Database.Repositories
 {
-    public class LocationsRepository : RepositoryBase, IRepository<DbLocation>
+    public class LocationsRepository : GenericRepository<DbLocation>
     {
-        #region Constructor
-        public LocationsRepository()
-            : base()
+        public LocationsRepository(DbContext context) 
+            : base(context)
         {
-        }
-        #endregion
-
-        public IList<DbLocation> GetAll()
-        {
-            return _dbContext.Locations.ToList();
         }
 
         public IPagedList<DbLocation> GetAllPaged(int page, int itemsPerPage)
@@ -36,31 +29,9 @@ namespace YouthLocationBooking.Business.Logic.Repositories
             return GetAllWithFilterQueryable(model).ToPagedList(page, itemsPerPage);
         }
 
-        public DbLocation Get(int id)
-        {
-            return _dbContext.Locations.Where(x => x.Id == id).FirstOrDefault();
-        }
-
-        public void Add(DbLocation entity)
-        {
-            _dbContext.Locations.Add(entity);
-            _dbContext.SaveChanges();
-        }
-
-        public void Update(DbLocation entity)
-        {
-            _dbContext.Entry(entity).State = EntityState.Modified;
-            _dbContext.SaveChanges();
-        }
-
-        public void Remove(DbLocation entity)
-        {
-            _dbContext.Locations.Remove(entity);
-        }
-
         private IQueryable<DbLocation> GetAllWithFilterQueryable(LocationFilterModel model)
         {
-            IQueryable<DbLocation> filteredLocations = _dbContext.Locations;
+            IQueryable<DbLocation> filteredLocations = _dbSet;
 
             if (model.Name != null)
             {

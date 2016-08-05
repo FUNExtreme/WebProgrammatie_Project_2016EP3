@@ -1,19 +1,20 @@
 ﻿using System.Web.Mvc;
 using System.Web.Security;
-using YouthLocationBooking.Business.Logic.Repositories;
 using YouthLocationBooking.Business.Logic.Utils;
+using YouthLocationBooking.Data.Database;
 using YouthLocationBooking.Data.Database.Entities;
+using YouthLocationBooking.Data.Database.Repositories;
 using YouthLocationBooking.Data.Validation.Models;
 
 namespace YouthLocationBooking.Web.Controllers
 {
     public class LoginController : Controller
     {
-        private UsersRepository _userRepository;
+        private UnitOfWork _unitOfWork;
 
         public LoginController()
         {
-            _userRepository = new UsersRepository();
+            _unitOfWork = new UnitOfWork();
         }
 
         public ActionResult Index()
@@ -28,35 +29,37 @@ namespace YouthLocationBooking.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(LoginModel model)
         {
+            var userRepository = _unitOfWork.UsersRepository;
+
             if (!ModelState.IsValid)
                 return View(model);
 
-            DbUser user = _userRepository.GetByEmail(model.Email);
-            if(user == null)
+            DbUser user = userRepository.GetByEmail(model.Email);
+            if (user == null)
             {
                 ModelState.AddModelError(string.Empty, "Invalid Login Credentials");
                 return View(model);
             }
 
             string hashedPassword = Security.Hash(model.Password);
-            if(hashedPassword != user.Password)
+            if (hashedPassword != user.Password)
             {
                 ModelState.AddModelError(string.Empty, "Invalid Login Credentials");
                 return View(model);
             }
 
             FormsAuthentication.SetAuthCookie(user.Email, true);
-            return RedirectToAction("Index", "Home");           
+            return RedirectToAction("Index", "Home");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                if (_userRepository != null)
+                if (_unitOfWork != null)
                 {
-                    _userRepository.Dispose();
-                    _userRepository = null;
+                    _unitOfWork.Dispose();
+                    _unitOfWork = null;
                 }
             }
             base.Dispose(disposing);

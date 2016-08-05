@@ -29,6 +29,7 @@
 	* Reviews
 
 - Front-end
+	* Add Reviews to Location Details
 	* Homepage
 
 - API

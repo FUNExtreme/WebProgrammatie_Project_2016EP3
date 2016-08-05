@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Web.Security;
-using YouthLocationBooking.Business.Logic.Repositories;
 using YouthLocationBooking.Business.Logic.Utils;
 using YouthLocationBooking.Data.Database.Entities;
+using YouthLocationBooking.Data.Database.Repositories;
 
 namespace YouthLocationBooking.Web.WebForms
 {
@@ -26,9 +26,9 @@ namespace YouthLocationBooking.Web.WebForms
 				Password = Security.Hash(_registerPassword.Text)
 			};
 
-            using (var repository = new UsersRepository())
+            using (var unitOfWork = new UnitOfWork())
             {
-                repository.Add(user);
+                unitOfWork.UsersRepository.Insert(user);
             }
 
             FormsAuthentication.SetAuthCookie(user.Email, true);

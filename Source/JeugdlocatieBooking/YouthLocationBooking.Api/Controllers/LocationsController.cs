@@ -1,29 +1,36 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using YouthLocationBooking.Business.Logic.Repositories;
 using YouthLocationBooking.Data.API.Entities;
+using YouthLocationBooking.Data.Database;
 using YouthLocationBooking.Data.Database.Mappings;
+using YouthLocationBooking.Data.Database.Repositories;
 
 namespace YouthLocationBooking.Api.Controllers
 {
     [RoutePrefix("locations")]
     public class LocationsController : ApiController
     {
+        #region Variables
         private static string DetailsPageUrlTemplate = "";
         private static string BookingPageUrlTemplate = "";
 
-        private LocationsRepository _locationsRepository;
+        private UnitOfWork _unitOfWork;
+        #endregion
 
+        #region Constructor
         public LocationsController()
         {
-            _locationsRepository = new LocationsRepository();
+            _unitOfWork = new UnitOfWork();
         }
+        #endregion
 
         [Route()]
         public IEnumerable<ApiLocation> Get()
         {
-            return _locationsRepository.GetAll().Select(x =>
+            var locationsRepository = _unitOfWork.LocationsRepository;
+
+            return locationsRepository.GetAll().Select(x =>
             {
                 // Todo generate details and booking URLs
                 return x.ToApiEntity();
@@ -34,10 +41,10 @@ namespace YouthLocationBooking.Api.Controllers
         {
             if (disposing)
             {
-                if (_locationsRepository != null)
+                if (_unitOfWork != null)
                 {
-                    _locationsRepository.Dispose();
-                    _locationsRepository = null;
+                    _unitOfWork.Dispose();
+                    _unitOfWork = null;
                 }
             }
             base.Dispose(disposing);

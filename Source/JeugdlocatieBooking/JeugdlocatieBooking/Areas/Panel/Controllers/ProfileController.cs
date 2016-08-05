@@ -1,9 +1,9 @@
 ﻿using System.Web.Mvc;
 using System.Web.Security;
-using YouthLocationBooking.Business.Logic.Repositories;
 using YouthLocationBooking.Business.Logic.Utils;
 using YouthLocationBooking.Data.Database.Entities;
 using YouthLocationBooking.Data.Database.Mappings;
+using YouthLocationBooking.Data.Database.Repositories;
 using YouthLocationBooking.Data.Validation.Models;
 
 namespace YouthLocationBooking.Web.Areas.Panel.Controllers
@@ -12,13 +12,13 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
     public class ProfileController : Controller
     {
         #region Variables
-        private UsersRepository _usersRepository;
+        private UnitOfWork _unitOfWork;
         #endregion
 
         #region Constructor
         public ProfileController()
         {
-            _usersRepository = new UsersRepository();
+            _unitOfWork = new UnitOfWork();
         }
         #endregion
 
@@ -32,7 +32,9 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
         #region Edit
         public ActionResult Edit()
         {
-            DbUser user = _usersRepository.GetByEmail(User.Identity.Name);
+            var usersRepository = _unitOfWork.UsersRepository;
+
+            DbUser user = usersRepository.GetByEmail(User.Identity.Name);
             ProfileEditModel validationModel = user.ToProfileEditValidationModel();
             return View(validationModel);
         }
@@ -44,10 +46,12 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
+            var usersRepository = _unitOfWork.UsersRepository;
+
             // Verify that this new email address is still available
             if (User.Identity.Name.ToLower() != model.Email.ToLower())
             {
-                DbUser newEmailUser = _usersRepository.GetByEmail(model.Email);
+                DbUser newEmailUser = usersRepository.GetByEmail(model.Email);
                 if(newEmailUser != null)
                 {
                     ModelState.AddModelError(string.Empty, "Email address is already in use, please use a different one");
@@ -56,12 +60,12 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
                 }
             }
 
-            DbUser user = _usersRepository.GetByEmail(User.Identity.Name);
+            DbUser user = usersRepository.GetByEmail(User.Identity.Name);
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
             user.Email = model.Email;
             user.PhoneNumber = model.PhoneNumber;
-            _usersRepository.Update(user);
+            usersRepository.Update(user);
 
             FormsAuthentication.SignOut();
             FormsAuthentication.SetAuthCookie(model.Email, true);
@@ -84,7 +88,9 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            var user = _usersRepository.GetByEmail(User.Identity.Name);
+            var usersRepository = _unitOfWork.UsersRepository;
+
+            var user = usersRepository.GetByEmail(User.Identity.Name);
             if (user.Password != Security.Hash(model.OldPassword))
             {
                 ModelState.AddModelError(string.Empty, "Old Password is incorrect!");
@@ -92,7 +98,7 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
             }
 
             user.Password = Security.Hash(model.NewPassword);
-            _usersRepository.Update(user);
+            usersRepository.Update(user);
 
             // TODO add success message
             return View(model);
@@ -104,10 +110,10 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
         {
             if (disposing)
             {
-                if (_usersRepository != null)
+                if (_unitOfWork != null)
                 {
-                    _usersRepository.Dispose();
-                    _usersRepository = null;
+                    _unitOfWork.Dispose();
+                    _unitOfWork = null;
                 }
             }
             base.Dispose(disposing);
