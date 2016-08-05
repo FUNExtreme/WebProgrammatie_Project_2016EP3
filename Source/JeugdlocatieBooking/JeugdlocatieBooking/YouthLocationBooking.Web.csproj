@@ -196,6 +196,7 @@
     <Content Include="Assets\css\main\contact.css" />
     <Content Include="Assets\css\main\faq.css" />
     <Content Include="Assets\css\main\locations.css" />
+    <Content Include="Assets\css\main\locationsdetails.css" />
     <Content Include="Assets\css\main\login.css" />
     <Content Include="Assets\css\main\register.css" />
     <Content Include="Assets\css\main\styles.css" />
@@ -319,9 +320,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Locations\Details.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Locations\Book.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Panel\Views\Locations\Edit.cshtml" />

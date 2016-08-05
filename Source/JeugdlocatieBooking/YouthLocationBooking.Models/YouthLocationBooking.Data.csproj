@@ -90,6 +90,7 @@
     <Compile Include="Validation\Mappings\ToDbEntityExtensions.cs" />
     <Compile Include="Validation\Models\ChangePasswordModel.cs" />
     <Compile Include="Validation\Models\ContactModel.cs" />
+    <Compile Include="Validation\Models\LocationBookingModel.cs" />
     <Compile Include="Validation\Models\LocationNewAddressModel.cs" />
     <Compile Include="Validation\Models\LocationNewGeneralModel.cs" />
     <Compile Include="Validation\Models\LocationFilterModel.cs" />

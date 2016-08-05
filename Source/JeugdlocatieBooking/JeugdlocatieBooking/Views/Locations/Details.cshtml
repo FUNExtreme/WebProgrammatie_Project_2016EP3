@@ -1,11 +1,91 @@
 ﻿@{
-    ViewBag.Title = "Details";
+    ViewBag.Title = ViewBag.Location.Name + " Details";
 }
 
-@model YouthLocationBooking.Data.Database.Entities.DbLocation
+@model YouthLocationBooking.Data.Validation.Models.LocationBookingModel
+
+@section styles {
+    @Styles.Render("~/Assets/css/main/locationsdetails.css")
+}
 
 @section navbreadcrumb {
     <li><a href="@Url.Action("Index", "Home")">Home</a></li>
     <li><a href="@Url.Action("Index", "Locations")">Locaties</a></li>
-    <li class="active">@Html.DisplayTextFor(m => m.Name) Details</li>
+    <li class="active">@ViewBag.Location.Name Details</li>
 }
+
+<div class="row page">
+    <div class="col-md-9">
+        <div class="shadowbox">
+            <div class="location-info">
+                <div class="location-header clearfix">
+                    <div class="pull-left">
+                        <h5 class="location-name">
+                            @ViewBag.Location.Name
+                        </h5>
+                        <ul class="location-summary">
+                            <li>Max @(ViewBag.Location.Capacity) Personen</li>
+                            @if (!string.IsNullOrWhiteSpace(ViewBag.Location.Organisation))
+                            {
+                                <li>Verhuurd door @ViewBag.Location.Organisation</li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="pull-right">
+                        <span class="location-price">
+                            &euro;@(ViewBag.Location.PricePerDay)/dag
+                        </span>
+                    </div>
+                </div>
+                <div class="location-images">
+                    <h5>Foto's</h5>
+                </div>
+                <div class="location-description">
+                    <h5>Beschrijving</h5>
+                    @ViewBag.Location.Description
+                </div>
+                <div class="location-address clearfix">
+                    <div class="col-md-9 no-padding-left">
+                        <h5>Kaart</h5>
+                        <iframe frameborder="0" style="border:0;width:100%;height:20rem;" src=@("https://www.google.com/maps/embed/v1/place?q=" + Url.Encode(ViewBag.Location.AddressStreet + " " + ViewBag.Location.AddressNumber + "," + ViewBag.Location.AddressPostalCode + " " + ViewBag.Location.AddressCity) + "&key=AIzaSyC6ZWDSSqwyQ4F-8qKjEZSIVgZYk2hXRTQ") allowfullscreen></iframe>
+                    </div>
+                    <div class="col-md-3 no-padding-right">
+                        <h5>Adres</h5>
+                        <ul>
+                            <li>@ViewBag.Location.AddressStreet @ViewBag.Location.AddressNumber</li>
+                            <li>@ViewBag.Location.AddressPostalCode @ViewBag.Location.AddressCity</li>
+                            <li>@ViewBag.Location.AddressProvince</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="location-reviews">
+                    <h5>Beoordelingen</h5>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <aside class="col-md-3">
+        <div class="shadowbox padding">
+            <div class="location-booking">
+                <h5>Locatie Boeken</h5>
+                @using (Html.BeginForm("Details", "Locations", FormMethod.Post, new { id = ViewBag.Location.Id }))
+                {
+                    <div>
+                        @Html.TextBoxFor(m => m.From, "{0:yyyy-MM-dd}", new { @class = "form-control", placeholder = "Van", onfocus = "(this.type='date')", onblur = "(this.type='text')" })
+                        @Html.ValidationMessageFor(m => m.From, null, new { @class = "form-error" })
+                    </div>
+                    <div>
+                        @Html.TextBoxFor(m => m.To, "{0:yyyy-MM-dd}", new { @class = "form-control", placeholder = "Tot", onfocus = "(this.type='date')", onblur = "(this.type='text')" })
+                        @Html.ValidationMessageFor(m => m.To, null, new { @class = "form-error" })
+                    </div>
+                    <div>
+                        @Html.TextBoxFor(m => m.Organisation, new { @class = "form-control", placeholder = "In Naam Van" })
+                        @Html.ValidationMessageFor(m => m.Organisation, null, new { @class = "form-error" })
+                    </div>
+                    <input type="submit" value="Boeken" class="button" />
+                }
+            </div>
+        </div>
+    </aside>
+</div>

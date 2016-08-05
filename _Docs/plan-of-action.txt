@@ -16,13 +16,13 @@
 
 - Front-end
 	* Location Search				(DONE, Stage 1) TODO: Period, after Booking is implemented
-	* Location Detail
+	* Location Detail				(WIP)
 
 - Back-end
-	* Location Edit
+	* Location Edit					(DONE, Stage 1)
 
 - Front-end
-	* Location Booking
+	* Location Booking				(WIP)
 
 - Back-end
 	* Rent Requests Approval

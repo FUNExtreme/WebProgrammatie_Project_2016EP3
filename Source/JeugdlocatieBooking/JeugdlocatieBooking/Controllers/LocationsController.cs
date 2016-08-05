@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using YouthLocationBooking.Business.Logic.Repositories;
 using YouthLocationBooking.Data.Database.Entities;
 using YouthLocationBooking.Data.Validation.Models;
@@ -9,6 +8,8 @@ namespace YouthLocationBooking.Web.Controllers
     public class LocationsController : Controller
     {
         private LocationsRepository _locationsRepository;
+        private UsersRepository _usersRepository;
+        //private BookingsRepository _bookingRepository;
 
         public LocationsController()
         {
@@ -46,17 +47,39 @@ namespace YouthLocationBooking.Web.Controllers
             if (location == null)
                 return RedirectToAction("Index", "Locations");
 
-            return View(location);
+            ViewBag.Location = location;
+            return View();
         }
 
-        public ActionResult Book(int id)
+        [HttpPost]
+        public ActionResult Details(int id, LocationBookingModel model)
         {
             DbLocation location = _locationsRepository.Get(id);
             if (location == null)
                 return RedirectToAction("Index", "Locations");
 
             ViewBag.Location = location;
-            return View();
+
+            if (model.From > model.To)
+            {
+                ModelState.AddModelError("From", "Van datum moet voor Tot datum liggen");
+                return View(model);
+            }
+
+            // TODO create enum with Status values
+            // TODO Prepopulate BookingStatuses table
+            // TODO Refactor repositories, create Generic implementation
+            // TODO Move Repositories to Data?
+            // TODO Store booking in database
+            DbBooking booking = new DbBooking();
+            booking.LocationId = id;
+            booking.Organisation = model.Organisation;
+            booking.StartDateTime = model.From;
+            booking.EndDateTime = model.To;
+            booking.StatusId = 0;
+            booking.UserId = _usersRepository.GetByEmail(User.Identity.Name).Id;
+
+            return View(model);
         }
     }
 }

@@ -1,0 +1,49 @@
+﻿.shadowbox h5 {
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
+.location-info > * {
+    padding: 4rem 5rem;
+    border-bottom: 1px solid #e4e4e4;
+}
+
+h5.location-name {
+    font-size: 3rem;
+    margin-bottom: 0;
+}
+
+.location-price {
+    display: block;
+
+    font-family: 'LibreBaskerville', serif;
+    font-style: italic;
+    font-size: 2.5rem;
+    line-height: 4rem;
+}
+
+ul.location-summary > li {
+    display: inline-block;
+}
+
+ul.location-summary > li, ul.location-summary > li::after {
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #808080;
+}
+
+ul.location-summary > li::after {
+    content: '/';
+    padding: 0 1rem;
+}
+
+ul.location-summary > li:last-child::after {
+    content: '';
+    padding: 0;
+}
+
+.location-booking form .button {
+    width: 100%;
+    margin-top: 2rem;
+}
