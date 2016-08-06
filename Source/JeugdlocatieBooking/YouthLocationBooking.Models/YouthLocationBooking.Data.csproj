@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="API\Entities\ApiLocation.cs" />
     <Compile Include="Database\DatabaseContext.cs" />
+    <Compile Include="Database\Enumerations\EBookingStatus.cs" />
     <Compile Include="Database\Mappings\ToApiEntityExtensions.cs" />
     <Compile Include="Database\Mappings\ToValidationModelExtensions.cs" />
     <Compile Include="Database\Migrations\201608021933024_UserNullable.cs" />

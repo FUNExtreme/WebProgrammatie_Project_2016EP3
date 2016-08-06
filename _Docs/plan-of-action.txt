@@ -22,7 +22,7 @@
 	* Location Edit					(DONE, Stage 1)
 
 - Front-end
-	* Location Booking				(WIP)
+	* Location Booking				(Done, Stage 1) TODO: Check if location is still available for that period
 
 - Back-end
 	* Rent Requests Approval

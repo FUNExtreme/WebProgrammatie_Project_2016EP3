@@ -14,18 +14,13 @@ namespace YouthLocationBooking.Data.Database.Migrations
 
         protected override void Seed(YouthLocationBooking.Data.Database.DatabaseContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            context.BookingStatuses.AddOrUpdate(
+                new Entities.DbBookingStatus { Id = 1, Name = "Pending", Description = "Awaiting approval" },
+                new Entities.DbBookingStatus { Id = 2, Name = "Denied", Description = "Rent Request was denied by owner of property" },
+                new Entities.DbBookingStatus { Id = 2, Name = "Cancelled", Description = "Rentee has cancelled the request" },
+                new Entities.DbBookingStatus { Id = 2, Name = "Accepted", Description = "Rent request accepted" }
+            );
+            context.SaveChanges();
         }
     }
 }

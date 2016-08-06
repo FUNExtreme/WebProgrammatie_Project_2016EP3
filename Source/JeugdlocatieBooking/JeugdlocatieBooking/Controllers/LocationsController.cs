@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using YouthLocationBooking.Data.Database.Entities;
+using YouthLocationBooking.Data.Database.Enumerations;
 using YouthLocationBooking.Data.Database.Repositories;
 using YouthLocationBooking.Data.Validation.Models;
 
@@ -83,7 +84,7 @@ namespace YouthLocationBooking.Web.Controllers
             booking.Organisation = model.Organisation;
             booking.StartDateTime = model.From;
             booking.EndDateTime = model.To;
-            booking.StatusId = 0;
+            booking.StatusId = (int)EBookingStatus.Pending;
             booking.UserId = usersRepository.GetByEmail(User.Identity.Name).Id;
             bookingsRepository.Insert(booking);
 
