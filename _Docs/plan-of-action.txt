@@ -25,7 +25,11 @@
 	* Location Booking				(Done, Stage 1) TODO: Check if location is still available for that period
 
 - Back-end
-	* Rent Requests Approval
+	* Rent Requests Approval		(WIP)
+	* My Locations					
+		+ Overview
+		+ Remove button
+		+ Link to Edit
 	* Reviews
 
 - Front-end
