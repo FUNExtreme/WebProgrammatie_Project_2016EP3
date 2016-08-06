@@ -1,3 +1,92 @@
 ﻿@{
-    ViewBag.Title = "Verzoeken";
+    ViewBag.Title = "Huur Verzoeken";
 }
+
+@using YouthLocationBooking.Data.Database.Entities
+
+@section styles {
+    @Styles.Render("~/Assets/css/panel/requests.css")
+}
+
+@section scripts {
+    @Scripts.Render("~/Assets/js/panel/requests.js")
+}
+
+@section navbreadcrumb {
+    <li><a href="@Url.Action("Index", "Summary", new { Area = "Panel" })">Panel</a></li>
+    <li class="active">@ViewBag.Title</li>
+}
+
+<div class="page">
+    <div class="row">
+        <div class="requests-tabs-container shadowbox clearfix">
+            <a href="#" class="col-md-4 requests-tab active" onclick="openTab(event, 'pending')">In de wacht</a>
+            <a href="#" class="col-md-4 requests-tab" onclick="openTab(event, 'accepted')">Aanvaard</a>
+            <a href="#" class="col-md-4 requests-tab" onclick="openTab(event, 'deniedorcancelled')">Afgewezen of Gestopt</a>
+        </div>
+        <div id="pending" class="requests-tab-content">
+            @if (((IEnumerable<DbBooking>)ViewBag.PendingBookings).Count() > 0)
+            {
+                foreach (DbBooking booking in ViewBag.PendingBookings)
+                {
+                    <div class="shadowbox padding booking">
+                        <div class="booking-info">
+                            <div class="booking-header clearfix">
+                                <h5 class="pull-left booking-title">
+                                    @booking.Location.Name
+                                </h5>
+                                <span class="pull-right booking-jobtitle">
+                                    In de wacht
+                                </span>
+                            </div>
+                            <div class="booking-details">@booking.User.FirstName @booking.User.LastName wil deze locatie huren van @booking.StartDateTime tot @booking.EndDateTime in naam van @booking.Organisation</div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="no-results">
+                    <img src="~/Assets/img/sad-face-no-results.png" />
+                    <span>Geen openstaande verzoeken</span>
+                </div>
+            }
+            
+        </div>
+        <div id="accepted" class="requests-tab-content" style="display:none;">
+            @if (((IEnumerable<DbBooking>)ViewBag.AcceptedBookings).Count() > 0)
+            {
+                foreach (DbBooking booking in ViewBag.AcceptedBookings)
+                {
+                    <div class="shadowbox padding">
+                        <div>@booking.StartDateTime</div>
+                        <div>@booking.EndDateTime</div>
+                    </div>
+                }
+
+            }
+            else
+            {
+                <div class="no-results">
+                    <img src="~/Assets/img/sad-face-no-results.png" />
+                    <span>Geen geaccepteerde verzoeken</span>
+                </div>
+            }
+        </div>
+        <div id="deniedorcancelled" class="requests-tab-content" style="display:none;">
+            @if (((IEnumerable<DbBooking>)ViewBag.DeniedOrCancelledBookings).Count() > 0)
+            {
+                <div class="shadowbox padding">
+                    <h5>Cancelled</h5>
+                </div>
+            }
+            else
+            {
+                <div class="no-results">
+                    <img src="~/Assets/img/sad-face-no-results.png" />
+                    <span>Geen afgewezen of geannuleerde verzoeken</span>
+                </div>
+            }
+        </div>
+    </div>
+</div>

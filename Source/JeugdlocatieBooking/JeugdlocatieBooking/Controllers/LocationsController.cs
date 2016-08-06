@@ -77,8 +77,6 @@ namespace YouthLocationBooking.Web.Controllers
                 return View(model);
             }
 
-            // TODO create enum with Status values
-            // TODO Prepopulate BookingStatuses table
             DbBooking booking = new DbBooking();
             booking.LocationId = id;
             booking.Organisation = model.Organisation;
@@ -88,6 +86,7 @@ namespace YouthLocationBooking.Web.Controllers
             booking.UserId = usersRepository.GetByEmail(User.Identity.Name).Id;
             bookingsRepository.Insert(booking);
 
+            // TODO Success message
             return View(model);
         }
     }
