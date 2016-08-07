@@ -21,6 +21,15 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
         }
         #endregion
 
+        public ActionResult Index()
+        {
+            var locationsRepository = _unitOfWork.LocationsRepository;
+            var usersRepository = _unitOfWork.UsersRepository;
+
+            ViewBag.Locations = locationsRepository.GetAllByUserId(usersRepository.GetByEmail(User.Identity.Name).Id);
+            return View();
+        }
+
         #region New
         public ActionResult New()
         {

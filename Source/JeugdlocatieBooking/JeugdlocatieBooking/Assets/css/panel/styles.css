@@ -1,3 +1,15 @@
 ﻿.page-header-container .page-header {
     margin-top: 2rem;
 }
+
+.page-header-container .header-nav ul > li {
+    letter-spacing: 0;
+    height: initial;
+    line-height: initial;
+    padding: 1rem 2rem;
+}
+
+.page-header-container .header-nav .sub-title {
+    text-align: center;
+    padding-top: 1rem;
+}

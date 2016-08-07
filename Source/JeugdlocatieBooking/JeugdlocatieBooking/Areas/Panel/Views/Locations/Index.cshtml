@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Mijn Locaties";
+}
+
+@using YouthLocationBooking.Data.Database.Entities
+
+@section styles {
+    @Styles.Render("~/Assets/css/panel/locations.css")
+}
+
+@section navbreadcrumb {
+    <li><a href="@Url.Action("Index", "Summary", new { Area = "Panel" })">Panel</a></li>
+    <li class="active">@ViewBag.Title</li>
+}
+
+<div class="page">
+    <div class="row">
+        <div class="shadowbox padding clearfix new-location">
+            <h5 class="pull-left">Voeg een nieuwe locatie toe</h5>
+            <div class="pull-right"><a href="@Url.Action("New", "Locations")" class="button">Toevoegen</a></div>
+        </div>
+
+        @foreach (DbLocation location in ViewBag.Locations)
+        {
+            <div class="shadowbox padding booking">
+                <div class="location-info">
+                    <div class="location-header clearfix">
+                        <h5 class="pull-left booking-title">
+                            @location.Name
+                        </h5>
+                    </div>
+                    <div class="location-operations clearfix">
+                        <div class="col-md-4"><a href="@Url.Action("Details", "Locations", new { id = location.Id, Area = string.Empty })" class="button">Details</a></div>
+                        <div class="col-md-4"><a href="@Url.Action("Edit", "Locations", new { id = location.Id })" class="button">Aanpassen</a></div>
+                        <div class="col-md-4"><a href="@Url.Action("Delete", "Locations", new { id = location.Id })" class="button button-red">Verwijderen</a></div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -14,6 +14,11 @@ namespace YouthLocationBooking.Data.Database.Repositories
         {
         }
 
+        public IList<DbLocation> GetAllByUserId(int userId)
+        {
+            return _dbSet.Where(x => x.CreatedByUserId == userId).ToList();
+        }
+
         public IPagedList<DbLocation> GetAllPaged(int page, int itemsPerPage)
         {
             return GetAll().ToPagedList(page, itemsPerPage);

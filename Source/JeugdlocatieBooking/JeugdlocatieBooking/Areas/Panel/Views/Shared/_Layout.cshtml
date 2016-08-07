@@ -36,17 +36,28 @@
                                 <a href="@Url.Action("Index", "Summary", new { Area = "Panel" })">Overzicht</a>
                             </li>
                         </ul>
-                        <ul class="col-md-8 pull-right">
-                            <li>
-                                <a href="@Url.Action("Index", "Reviews", new { Area = "Panel" })">Beoordelingen</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action("Index", "Requests", new { Area = "Panel" })">Verzoeken</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action("New", "Locations", new { Area = "Panel" })">Nieuwe Locatie Toevoegen</a>
-                            </li>
-                        </ul>
+                        <div class="col-md-8 pull-right">
+                            <div class="col-md-6">
+                                <div class="sub-title">Huurder</div>
+                                <ul>
+                                    <li>
+                                        <a href="@Url.Action("Index", "Reviews", new { Area = "Panel" })">Reviews</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sub-title">Verhuurder</div>
+                                <ul>
+                                    <li>
+                                        <a href="@Url.Action("Index", "Requests", new { Area = "Panel" })">Verzoeken</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Index", "Locations", new { Area = "Panel" })">Mijn Locaties</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                        </div>
                     </div>
                 </div>
             </nav>

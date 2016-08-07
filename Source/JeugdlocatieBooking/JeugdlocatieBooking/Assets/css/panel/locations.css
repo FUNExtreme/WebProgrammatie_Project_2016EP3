@@ -1,0 +1,9 @@
+﻿.new-location h5 {
+    padding: 0;
+    line-height: 4rem;
+}
+
+.location-operations .button {
+    width: 100%;
+    text-align: center;
+}
