@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using YouthLocationBooking.Data.Database.Entities;
@@ -22,6 +23,15 @@ namespace YouthLocationBooking.Data.Database.Repositories
         public IList<DbBooking> GetAllByUserId(int userId)
         {
             return _dbSet.Where(x => x.UserId == userId).ToList();
+        }
+
+        public IList<DbBooking> GetAfterEndDateByUserId(int userId)
+        {
+            var currentDate = DateTime.Now;
+            return _dbSet
+                .Include("Location")
+                .Where(x => x.UserId == userId && x.EndDateTime <= currentDate)
+                .ToList();
         }
 
         public IList<DbBooking> GetAllByLocationUserId(int userId)

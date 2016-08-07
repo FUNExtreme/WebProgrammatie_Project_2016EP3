@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using YouthLocationBooking.Data.Database.Entities;
 using YouthLocationBooking.Data.Database.Enumerations;
 using YouthLocationBooking.Data.Database.Repositories;
@@ -49,12 +50,16 @@ namespace YouthLocationBooking.Web.Controllers
         public ActionResult Details(int id)
         {
             var locationsRepository = _unitOfWork.LocationsRepository;
+            var locationReviewsRepository = _unitOfWork.LocationReviewsRepository;
 
             DbLocation location = locationsRepository.Get(id);
             if (location == null)
                 return RedirectToAction("Index", "Locations");
 
+            IList<DbLocationReview> locationReviews = locationReviewsRepository.GetByLocationId(id);
+
             ViewBag.Location = location;
+            ViewBag.LocationReviews = locationReviews;
             return View();
         }
 
@@ -64,12 +69,15 @@ namespace YouthLocationBooking.Web.Controllers
             var locationsRepository = _unitOfWork.LocationsRepository;
             var usersRepository = _unitOfWork.UsersRepository;
             var bookingsRepository = _unitOfWork.BookingsRepository;
+            var locationReviewsRepository = _unitOfWork.LocationReviewsRepository;
 
             DbLocation location = locationsRepository.Get(id);
+            ViewBag.Location = location;
             if (location == null)
                 return RedirectToAction("Index", "Locations");
 
-            ViewBag.Location = location;
+            IList<DbLocationReview> locationReviews = locationReviewsRepository.GetByLocationId(id);
+            ViewBag.LocationReviews = locationReviews;
 
             if (model.From > model.To)
             {

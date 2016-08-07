@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using YouthLocationBooking.Data.Database.Entities;
 using YouthLocationBooking.Data.Database.Mappings;
 using YouthLocationBooking.Data.Database.Repositories;
@@ -135,6 +136,55 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
             locationsRepository.Remove(location);
             // TODO success message
             return RedirectToAction("Index", "Locations");
+        }
+        #endregion
+
+        #region Reviews
+        public ActionResult Review(int id)
+        {
+            var locationsRepository = _unitOfWork.LocationsRepository;
+            var usersRepository = _unitOfWork.UsersRepository;
+
+            DbLocation location = locationsRepository.Get(id);
+            ViewBag.Location = location;
+            if (location == null)
+                return RedirectToAction("Index", "Reviews");
+
+            // TODO Verify that the current user has a booking there
+             
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Review(int id, LocationReviewModel model)
+        {
+            var locationsRepository = _unitOfWork.LocationsRepository;
+            var usersRepository = _unitOfWork.UsersRepository;
+            var locationReviewsRepository = _unitOfWork.LocationReviewsRepository;
+
+            DbLocation location = locationsRepository.Get(id);
+            ViewBag.Location = location;
+            if (location == null)
+                return RedirectToAction("Index", "Reviews");
+
+            DbUser user = usersRepository.GetByEmail(User.Identity.Name);
+            // TODO Verify that the current user has a booking there
+
+            if (!ModelState.IsValid)
+                return View(model);
+
+            DbLocationReview review = new DbLocationReview();
+            review.DateTime = DateTime.Now;
+            review.LocationId = id;
+            review.Review = model.Review;
+            review.ReviewerName = user.FirstName + " " + user.LastName[0];
+            review.Title = model.Title;
+            // TODO facility ratings
+            locationReviewsRepository.Insert(review);
+
+            // TODO success message
+            return RedirectToAction("Index", "Reviews");
         }
         #endregion
 

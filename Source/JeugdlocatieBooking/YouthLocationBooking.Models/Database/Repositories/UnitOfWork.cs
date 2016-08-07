@@ -9,6 +9,7 @@ namespace YouthLocationBooking.Data.Database.Repositories
 
         private UsersRepository _usersRepository;
         private LocationsRepository _locationsRepository;
+        private LocationReviewsRepository _locationReviewsRepository;
         private BookingsRepository _bookingsRepository;
 
         public UsersRepository UsersRepository
@@ -30,6 +31,17 @@ namespace YouthLocationBooking.Data.Database.Repositories
                     _locationsRepository = new LocationsRepository(_dbContext);
 
                 return _locationsRepository;
+            }
+        }
+
+        public LocationReviewsRepository LocationReviewsRepository
+        {
+            get
+            {
+                if (_locationReviewsRepository == null)
+                    _locationReviewsRepository = new LocationReviewsRepository(_dbContext);
+
+                return _locationReviewsRepository;
             }
         }
 

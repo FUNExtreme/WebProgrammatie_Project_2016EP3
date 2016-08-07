@@ -2,6 +2,8 @@
     ViewBag.Title = "Reviews";
 }
 
+@using YouthLocationBooking.Data.Database.Entities
+
 @section navbreadcrumb {
     <li><a href="@Url.Action("Index", "Summary", new { Area = "Panel" })">Panel</a></li>
     <li class="active">@ViewBag.Title</li>
@@ -9,9 +11,31 @@
 
 <div class="page">
     <div class="row">
-        <div class="no-results">
-            <img src="~/Assets/img/sad-face-no-results.png" />
-            <span>U kan pas een beoordeling plaatsen als u op een gehuurde plaats verbleven hebt</span>
-        </div>
+        @if (((IEnumerable<DbBooking>)ViewBag.EndedBookings).Count() > 0)
+        {
+            foreach (DbBooking booking in ViewBag.EndedBookings)
+            {
+                <div class="shadowbox padding booking">
+                    <div class="booking-info">
+                        <div class="booking-header clearfix">
+                            <h5 class="pull-left booking-title">
+                                @booking.Location.Name
+                            </h5>
+                        </div>
+                        <div class="booking-details">Je hebt deze locatie gehuurd van @booking.StartDateTime tot @booking.EndDateTime in naam van @booking.Organisation</div>
+                        <div class="review-operations clearfix">
+                            <a href="@Url.Action("Review", "Locations", new { id = booking.Location.Id })" class="button">Schrijf een Review</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="no-results">
+                <img src="~/Assets/img/sad-face-no-results.png" />
+                <span>U kan pas een beoordeling plaatsen als u op een gehuurde plaats verbleven hebt</span>
+            </div>
+        }  
     </div>
 </div>

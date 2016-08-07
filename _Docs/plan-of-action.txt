@@ -1,39 +1,39 @@
-- General Layout					(DONE, Stage 1) TODO: Footer, Header Top Bar
+- General Layout						(DONE, Stage 1) TODO: Footer, Header Top Bar
 
 - Front-end							
-	* Login							(DONE, Stage 1)
-	* Register						(DONE, Stage 1)
-	* FAQ							(DONE, Stage 1)
-	* Partners						(DONE, Stage 1)
-	* Contact						(DONE, Stage 1) TODO: Add address and email addresses
+	* Login								(DONE, Stage 1)
+	* Register							(DONE, Stage 1)
+	* FAQ								(DONE, Stage 1)
+	* Partners							(DONE, Stage 1)
+	* Contact							(DONE, Stage 1) TODO: Add address and email addresses
 
 - Back-end
 	* Profile						
-		+ Edit						(DONE, Stage 1)
-		+ Change Password			(DONE, Stage 1)
-	* Add new Locations				(DONE, Stage 1) TODO: Turn into a multi-step creation process, Include images
-	* Summary => My Locations?		(SKIPPED, TODO)
+		+ Edit							(DONE, Stage 1)
+		+ Change Password				(DONE, Stage 1)
+	* Add new Locations					(DONE, Stage 1) TODO: Turn into a multi-step creation process, Include images
+	* Summary => My Locations?			(SKIPPED, TODO)
 
 - Front-end
-	* Location Search				(DONE, Stage 1) TODO: Period, after Booking is implemented
-	* Location Detail				(WIP)
+	* Location Search					(DONE, Stage 1) TODO: Period, after Booking is implemented
+	* Location Detail					(WIP)
 
 - Back-end
-	* Location Edit					(DONE, Stage 1)
+	* Location Edit						(DONE, Stage 1)
 
 - Front-end
-	* Location Booking				(Done, Stage 1) TODO: Check if location is still available for that period
+	* Location Booking					(Done, Stage 1) TODO: Check if location is still available for that period
 
 - Back-end
-	* Rent Requests Approval		(Done, Stage 1)
+	* Rent Requests Approval			(Done, Stage 1)
 	* My Locations					
-		+ Overview					(DONE, Stage 1)
-		+ Remove Confirmation		(DONE, Stage 1)
-		+ Link to Edit				(DONE, Stage 1)
-	* Reviews
+		+ Overview						(DONE, Stage 1)
+		+ Remove Confirmation			(DONE, Stage 1)
+		+ Link to Edit					(DONE, Stage 1)
+	* Reviews							(DONE, Stage 1) TODO: Add facility ratings
 
 - Front-end
-	* Add Reviews to Location Details
-	* Homepage
+	* Add Reviews to Location Details	(WIP)
+	* Homepage							(WIP)
 
-- API
+- API									(WIP)
