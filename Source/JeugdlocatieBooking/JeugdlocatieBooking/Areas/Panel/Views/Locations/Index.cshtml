@@ -20,21 +20,31 @@
             <div class="pull-right"><a href="@Url.Action("New", "Locations")" class="button">Toevoegen</a></div>
         </div>
 
-        @foreach (DbLocation location in ViewBag.Locations)
+        @if (((IEnumerable<DbLocation>)ViewBag.Locations).Count() > 0)
         {
-            <div class="shadowbox padding booking">
-                <div class="location-info">
-                    <div class="location-header clearfix">
-                        <h5 class="pull-left booking-title">
-                            @location.Name
-                        </h5>
-                    </div>
-                    <div class="location-operations clearfix">
-                        <div class="col-md-4"><a href="@Url.Action("Details", "Locations", new { id = location.Id, Area = string.Empty })" class="button">Details</a></div>
-                        <div class="col-md-4"><a href="@Url.Action("Edit", "Locations", new { id = location.Id })" class="button">Aanpassen</a></div>
-                        <div class="col-md-4"><a href="@Url.Action("Delete", "Locations", new { id = location.Id })" class="button button-red">Verwijderen</a></div>
+            foreach (DbLocation location in ViewBag.Locations)
+            {
+                <div class="shadowbox padding booking">
+                    <div class="location-info">
+                        <div class="location-header clearfix">
+                            <h5 class="pull-left booking-title">
+                                @location.Name
+                            </h5>
+                        </div>
+                        <div class="location-operations clearfix">
+                            <div class="col-md-4"><a href="@Url.Action("Details", "Locations", new { id = location.Id, Area = string.Empty })" class="button">Details</a></div>
+                            <div class="col-md-4"><a href="@Url.Action("Edit", "Locations", new { id = location.Id })" class="button">Aanpassen</a></div>
+                            <div class="col-md-4"><a href="@Url.Action("Remove", "Locations", new { id = location.Id })" class="button button-red">Verwijderen</a></div>
+                        </div>
                     </div>
                 </div>
+            }
+        }
+        else
+        {
+            <div class="no-results">
+                <img src="~/Assets/img/sad-face-no-results.png" />
+                <span>Je hebt nog geen locaties toegevoegd</span>
             </div>
         }
     </div>

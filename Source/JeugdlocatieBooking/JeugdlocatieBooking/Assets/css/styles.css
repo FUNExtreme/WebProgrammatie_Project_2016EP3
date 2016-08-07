@@ -197,3 +197,22 @@ h1 {
     content: '';
     padding: 0;
 }
+
+.no-results {
+    text-align: center;
+}
+
+.no-results > * {
+    display: block;
+}
+
+.no-results > img {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 25rem;
+}
+
+.no-results > span {
+    color: #888888;
+    font-size: 2.5rem;
+}

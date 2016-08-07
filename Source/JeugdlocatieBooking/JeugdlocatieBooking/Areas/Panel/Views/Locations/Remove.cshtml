@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Remove";
+}
+
+<div class="page">
+    <div class="row">
+        <div class="shadowbox padding">
+            <h5>Ben je zeker dat je de locatie "@ViewBag.Location.Name" wil verwijderen?</h5>
+            <div class="clearfix">
+                @using (Html.BeginForm("Remove", "Locations", FormMethod.Post, new { id = ViewBag.LocationId }))
+                {
+                    <div class="pull-right">
+                        <a href="@Url.Action("Index", "Locations")" class="button">Annuleren</a>
+                        <input type="submit" value="Verwijderen" class="button button-red" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

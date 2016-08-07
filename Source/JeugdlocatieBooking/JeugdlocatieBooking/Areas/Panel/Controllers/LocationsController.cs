@@ -99,6 +99,45 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
         }
         #endregion
 
+        #region Remove
+        public ActionResult Remove(int id)
+        {
+            var locationsRepository = _unitOfWork.LocationsRepository;
+            var usersRepository = _unitOfWork.UsersRepository;
+
+            DbLocation location = locationsRepository.Get(id);
+            if (location == null)
+                return RedirectToAction("Index", "Locations");
+
+            DbUser user = usersRepository.GetByEmail(User.Identity.Name);
+            if(user.Id != location.CreatedByUserId)
+                return RedirectToAction("Index", "Locations");
+
+            ViewBag.Location = location;
+            return View();
+        }
+
+        [HttpPost]
+        [ActionName("Remove")]
+        public ActionResult RemovePost(int id)
+        {
+            var locationsRepository = _unitOfWork.LocationsRepository;
+            var usersRepository = _unitOfWork.UsersRepository;
+
+            DbLocation location = locationsRepository.Get(id);
+            if (location == null)
+                return RedirectToAction("Index", "Locations");
+
+            DbUser user = usersRepository.GetByEmail(User.Identity.Name);
+            if (user.Id != location.CreatedByUserId)
+                return RedirectToAction("Index", "Locations");
+
+            locationsRepository.Remove(location);
+            // TODO success message
+            return RedirectToAction("Index", "Locations");
+        }
+        #endregion
+
         #region Dispose
         protected override void Dispose(bool disposing)
         {
