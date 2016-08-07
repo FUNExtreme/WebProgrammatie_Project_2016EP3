@@ -1,3 +1,17 @@
 ﻿@{
-    ViewBag.Title = "Beoordelingen";
+    ViewBag.Title = "Reviews";
 }
+
+@section navbreadcrumb {
+    <li><a href="@Url.Action("Index", "Summary", new { Area = "Panel" })">Panel</a></li>
+    <li class="active">@ViewBag.Title</li>
+}
+
+<div class="page">
+    <div class="row">
+        <div class="no-results">
+            <img src="~/Assets/img/sad-face-no-results.png" />
+            <span>U kan pas een beoordeling plaatsen als u op een gehuurde plaats verbleven hebt</span>
+        </div>
+    </div>
+</div>

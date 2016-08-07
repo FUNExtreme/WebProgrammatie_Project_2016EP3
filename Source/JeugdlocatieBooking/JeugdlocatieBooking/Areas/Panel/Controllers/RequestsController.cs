@@ -34,5 +34,47 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
             ViewBag.DeniedOrCancelledBookings = bookings.Where(x => x.StatusId == (int)EBookingStatus.Denied || x.StatusId == (int)EBookingStatus.Cancelled);
             return View();
         }
+
+        #region Deny
+        public ActionResult Deny(int id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ActionName("Deny")]
+        public ActionResult DenyPost(int id)
+        {
+            return VerifyOwnershipAndSetStatus(id, EBookingStatus.Denied);
+        }
+        #endregion
+
+        #region Accept
+        public ActionResult Accept(int id)
+        {
+            return VerifyOwnershipAndSetStatus(id, EBookingStatus.Accepted);
+        }
+        #endregion
+
+        #region Helper
+        private ActionResult VerifyOwnershipAndSetStatus(int bookingId, EBookingStatus status)
+        {
+            var usersRepository = _unitOfWork.UsersRepository;
+            var bookingsRepository = _unitOfWork.BookingsRepository;
+
+            DbBooking booking = bookingsRepository.Get(bookingId);
+            if (booking == null)
+                return RedirectToAction("Index", "Requests");
+
+            DbUser user = usersRepository.GetByEmail(User.Identity.Name);
+            if (user.Id != booking.Location.CreatedByUserId)
+                return RedirectToAction("Index", "Requests");
+
+            booking.StatusId = (int)status;
+            bookingsRepository.Update(booking);
+            // TODO message
+            return RedirectToAction("Index", "Requests");
+        }
+        #endregion
     }
 }

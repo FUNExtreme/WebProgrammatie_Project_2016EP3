@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Deny";
+}
+
+<div class="page">
+    <div class="row">
+        <div class="shadowbox padding">
+            <h5>Ben je zeker dat je het huur verzoek wil afwijzen?</h5>
+            <div class="clearfix">
+                @using (Html.BeginForm("Deny", "Requests", FormMethod.Post, new { id = ViewBag.LocationId }))
+                {
+                    <div class="pull-right">
+                        <a href="@Url.Action("Index", "Requests")" class="button">Annuleren</a>
+                        <input type="submit" value="Afwijzen" class="button button-red" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -3,6 +3,7 @@
 }
 
 @using YouthLocationBooking.Data.Database.Entities
+@using YouthLocationBooking.Data.Database.Enumerations
 
 @section styles {
     @Styles.Render("~/Assets/css/panel/requests.css")
@@ -40,6 +41,10 @@
                                 </span>
                             </div>
                             <div class="booking-details">@booking.User.FirstName @booking.User.LastName wil deze locatie huren van @booking.StartDateTime tot @booking.EndDateTime in naam van @booking.Organisation</div>
+                            <div class="request-operations clearfix">
+                                <div class="col-md-6"><a href="@Url.Action("Accept", "Requests", new { id = booking.Id })" class="button">Aanvaarden</a></div>
+                                <div class="col-md-6"><a href="@Url.Action("Deny", "Requests", new { id = booking.Id })" class="button button-red">Afwijzen</a></div>
+                            </div>
                         </div>
                     </div>
                 }
@@ -58,9 +63,18 @@
             {
                 foreach (DbBooking booking in ViewBag.AcceptedBookings)
                 {
-                    <div class="shadowbox padding">
-                        <div>@booking.StartDateTime</div>
-                        <div>@booking.EndDateTime</div>
+                    <div class="shadowbox padding booking">
+                        <div class="booking-info">
+                            <div class="booking-header clearfix">
+                                <h5 class="pull-left booking-title">
+                                    @booking.Location.Name
+                                </h5>
+                                <span class="pull-right booking-jobtitle">
+                                    Aanvaard
+                                </span>
+                            </div>
+                            <div class="booking-details">@booking.User.FirstName @booking.User.LastName huurt deze locatie van @booking.StartDateTime tot @booking.EndDateTime in naam van @booking.Organisation</div>
+                        </div>
                     </div>
                 }
 
@@ -76,9 +90,33 @@
         <div id="deniedorcancelled" class="requests-tab-content" style="display:none;">
             @if (((IEnumerable<DbBooking>)ViewBag.DeniedOrCancelledBookings).Count() > 0)
             {
-                <div class="shadowbox padding">
-                    <h5>Cancelled</h5>
-                </div>
+                foreach (DbBooking booking in ViewBag.DeniedOrCancelledBookings)
+                {
+                    <div class="shadowbox padding booking">
+                        <div class="booking-info">
+                            <div class="booking-header clearfix">
+                                <h5 class="pull-left booking-title">
+                                    @booking.Location.Name
+                                </h5>
+                                <span class="pull-right booking-jobtitle">
+                                    @if(booking.StatusId == (int)EBookingStatus.Denied)
+                                    {
+                                        <span>Afgewezen</span>
+                                    }
+                                    else if (booking.StatusId == (int)EBookingStatus.Cancelled)
+                                    {
+                                        <span>Geannuleerd</span>
+                                    }
+                                </span>
+                            </div>
+                            <div class="booking-details">@booking.User.FirstName @booking.User.LastName wou deze locatie huren van @booking.StartDateTime tot @booking.EndDateTime in naam van @booking.Organisation</div>
+                            <div class="request-operations clearfix">
+                                <div class="col-md-6"><a href="@Url.Action("Accept", "Requests", new { id = booking.Id })" class="button">Aanvaarden</a></div>
+                                <div class="col-md-6"><a href="@Url.Action("Deny", "Requests", new { id = booking.Id })" class="button button-red">Afwijzen</a></div>
+                            </div>
+                        </div>
+                    </div>
+                }
             }
             else
             {

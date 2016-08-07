@@ -30,21 +30,13 @@ h5.booking-title {
     margin-top: 2rem;
 }
 
-.no-results {
-    text-align: center;
+.request-operations {
+    border-top: 1px #d3d3d3 solid;
+    margin-top: 1rem;
+    padding-top: 1rem;
 }
 
-.no-results > * {
-    display: block;
-}
-
-.no-results > img {
-    margin: 0 auto;
+.request-operations .button {
     width: 100%;
-    max-width: 25rem;
-}
-
-.no-results > span {
-    color: #888888;
-    font-size: 2.5rem;
+    text-align: center;
 }
