@@ -20,6 +20,14 @@ namespace YouthLocationBooking.Data.Database.Migrations
                 new Entities.DbBookingStatus { Id = 2, Name = "Cancelled", Description = "Rentee has cancelled the request" },
                 new Entities.DbBookingStatus { Id = 2, Name = "Accepted", Description = "Rent request accepted" }
             );
+
+            context.LocationFacilities.AddOrUpdate(
+                new Entities.DbLocationFacility { Id = 1, Name = "Keuken", Description = "Er is een keuken aanwezig" },
+                new Entities.DbLocationFacility { Id = 2, Name = "Keuken Personeel", Description = "Keuken personeel zorgt voor de maaltijden" },
+                new Entities.DbLocationFacility { Id = 3, Name = "Slaapkamers", Description = "Er zijn slaapkamers aanwezig" },
+                new Entities.DbLocationFacility { Id = 4, Name = "Douches", Description = "Er zijn douches aanwezig" },
+                new Entities.DbLocationFacility { Id = 5, Name = "Kuispersoneel", Description = "De locatie wordt proper gehouden door kuis personeel" }
+            );
             context.SaveChanges();
         }
     }

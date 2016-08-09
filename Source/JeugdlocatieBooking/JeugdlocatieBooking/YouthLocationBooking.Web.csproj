@@ -298,7 +298,7 @@
     <Content Include="Areas\Panel\Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Panel\Views\Locations\New.cshtml" />
+    <Content Include="Areas\Panel\Views\Locations\NewStep1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Panel\Views\Requests\Index.cshtml" />
@@ -339,6 +339,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Panel\Views\Locations\Review.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Panel\Views\Locations\NewStep2.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Panel\Views\Locations\NewStep3.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Panel\Views\Locations\NewStep4.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

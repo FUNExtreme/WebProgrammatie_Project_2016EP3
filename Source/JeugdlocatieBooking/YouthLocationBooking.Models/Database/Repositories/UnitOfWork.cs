@@ -5,13 +5,17 @@ namespace YouthLocationBooking.Data.Database.Repositories
 {
     public class UnitOfWork : IDisposable
     {
+        #region Variables
         private DbContext _dbContext = new DatabaseContext();
 
         private UsersRepository _usersRepository;
         private LocationsRepository _locationsRepository;
         private LocationReviewsRepository _locationReviewsRepository;
+        private LocationFacilitiesRepository _locationFacilitiesRepository;
         private BookingsRepository _bookingsRepository;
+        #endregion
 
+        #region Property
         public UsersRepository UsersRepository
         {
             get
@@ -44,6 +48,17 @@ namespace YouthLocationBooking.Data.Database.Repositories
                 return _locationReviewsRepository;
             }
         }
+        public LocationFacilitiesRepository LocationFacilitiesRepository
+        {
+            get
+            {
+                if (_locationFacilitiesRepository == null)
+                    _locationFacilitiesRepository = new LocationFacilitiesRepository(_dbContext);
+
+                return _locationFacilitiesRepository;
+            }
+        }
+
 
         public BookingsRepository BookingsRepository
         {
@@ -55,6 +70,7 @@ namespace YouthLocationBooking.Data.Database.Repositories
                 return _bookingsRepository;
             }
         }
+        #endregion
 
         #region IDisposable
         protected virtual void Dispose(bool disposing)

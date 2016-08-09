@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "New Location";
+}
+
+@using YouthLocationBooking.Data.Database.Entities
+
+@section styles {
+    @Styles.Render("~/Assets/css/panel/locationsnew.css")
+}
+
+@model YouthLocationBooking.Data.ViewModel.Models.LocationNewCapabilitiesViewModel
+
+@section navbreadcrumb {
+    <li><a href="@Url.Action("Index", "Summary", new { Area = "Panel" })">Panel</a></li>
+    <li class="active">@ViewBag.Title</li>
+}
+
+<div class="page">
+    <div class="row">
+        <div class="shadowbox padding">
+            @using (Html.BeginForm("NewStep3", "Locations", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true)
+                @Html.AntiForgeryToken()
+                <div class="form-group clearfix">
+                    @Html.LabelFor(m => m.SelectedDatabaseIds, new { @class = "form-label" })
+                    @foreach (DbLocationFacility facility in ViewBag.Facilities)
+                    {
+                        <div class="col-md-4 form-group clearfix">
+                            <input type="checkbox" name="SelectedDatabaseIds" value="@facility.Id" >@facility.Name
+                        </div>
+                    }
+                    @Html.ValidationMessageFor(m => m.SelectedDatabaseIds, null, new { @class = "form-error" })
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Volgende Stap" class="button" />
+                </div>
+            }
+        </div>
+    </div>
+</div>

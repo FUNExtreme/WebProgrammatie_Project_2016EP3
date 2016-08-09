@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "New Location";
+}
+
+@model YouthLocationBooking.Data.ViewModel.Models.LocationNewGeneralViewModel
+
+@section styles {
+    @Styles.Render("~/Assets/css/panel/locationsnew.css")
+}
+
+@section navbreadcrumb {
+    <li><a href="@Url.Action("Index", "Summary", new { Area = "Panel" })">Panel</a></li>
+    <li class="active">@ViewBag.Title</li>
+}
+
+<div class="page">
+    <div class="row">
+        <div class="shadowbox padding">
+            @using (Html.BeginForm("NewStep1", "Locations", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true)
+                @Html.AntiForgeryToken()
+                <div class="form-group clearfix">
+                    <i class="fa fa-envelope"></i>
+                    @Html.LabelFor(m => m.Name, new { @class = "col-md-4 form-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Name" })
+                        @Html.ValidationMessageFor(m => m.Name, null, new { @class = "form-error" })
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <i class="fa fa-key"></i>
+                    @Html.LabelFor(m => m.Description, new { @class = "col-md-4 form-label" })
+                    <div class="col-md-8">
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", placeholder = "Description" })
+                        @Html.ValidationMessageFor(m => m.Description, null, new { @class = "form-error" })
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <i class="fa fa-key"></i>
+                    @Html.LabelFor(m => m.Organisation, new { @class = "col-md-4 form-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Organisation, new { @class = "form-control", placeholder = "Organisation" })
+                        @Html.ValidationMessageFor(m => m.Organisation, null, new { @class = "form-error" })
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <i class="fa fa-key"></i>
+                    @Html.LabelFor(m => m.PricePerDay, new { @class = "col-md-4 form-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.PricePerDay, new { @class = "form-control", placeholder = "Price Per Day" })
+                        @Html.ValidationMessageFor(m => m.PricePerDay, null, new { @class = "form-error" })
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <i class="fa fa-key"></i>
+                    @Html.LabelFor(m => m.Capacity, new { @class = "col-md-4 form-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Capacity, new { @class = "form-control", @type="number", min="1", placeholder = "Capacity" })
+                        @Html.ValidationMessageFor(m => m.Capacity, null, new { @class = "form-error" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Volgende Stap" class="button" />
+                </div>
+            }
+        </div>
+    </div>
+</div>

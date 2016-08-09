@@ -107,21 +107,22 @@
     <Compile Include="Database\Repositories\BookingsRepository.cs" />
     <Compile Include="Database\Repositories\GenericRepository.cs" />
     <Compile Include="Database\Repositories\IRepository.cs" />
+    <Compile Include="Database\Repositories\LocationFacilitiesRepository.cs" />
     <Compile Include="Database\Repositories\LocationReviewsRepository.cs" />
     <Compile Include="Database\Repositories\LocationsRepository.cs" />
     <Compile Include="Database\Repositories\UnitOfWork.cs" />
     <Compile Include="Database\Repositories\UsersRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\Mappings\ToDbEntityExtensions.cs" />
     <Compile Include="ViewModel\Models\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModel\Models\ContactViewModel.cs" />
     <Compile Include="ViewModel\Models\LocationBookingViewModel.cs" />
     <Compile Include="ViewModel\Models\LocationNewAddressViewModel.cs" />
+    <Compile Include="ViewModel\Models\LocationNewCapabilitiesViewModel.cs" />
     <Compile Include="ViewModel\Models\LocationNewGeneralViewModel.cs" />
     <Compile Include="ViewModel\Models\LocationFilterViewModel.cs" />
     <Compile Include="ViewModel\Models\LocationEditViewModel.cs" />
+    <Compile Include="ViewModel\Models\LocationNewImagesViewModel.cs" />
     <Compile Include="ViewModel\Models\LoginViewModel.cs" />
-    <Compile Include="ViewModel\Models\LocationNewViewModel.cs" />
     <Compile Include="ViewModel\Models\ProfileEditViewModel.cs" />
     <Compile Include="ViewModel\Models\LocationReviewViewModel.cs" />
   </ItemGroup>

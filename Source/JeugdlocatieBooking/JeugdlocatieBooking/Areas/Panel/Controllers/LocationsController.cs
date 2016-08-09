@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using YouthLocationBooking.Data.Database.Entities;
 using YouthLocationBooking.Data.Database.Mappings;
 using YouthLocationBooking.Data.Database.Repositories;
-using YouthLocationBooking.Data.Validation.Mappings;
 using YouthLocationBooking.Data.ViewModel.Models;
 
 namespace YouthLocationBooking.Web.Areas.Panel.Controllers
@@ -34,24 +33,134 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
         #region New
         public ActionResult New()
         {
+            return RedirectToAction("NewStep1", "Locations");
+        }
+
+        /// <summary>
+        /// General info
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult NewStep1()
+        {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult New(LocationNewViewModel model)
+        public ActionResult NewStep1(LocationNewGeneralViewModel model)
         {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            TempData["NewLocationStepOneData"] = model;
+
+            return RedirectToAction("NewStep2", "Locations");
+        }
+
+        /// <summary>
+        /// Address
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult NewStep2()
+        {
+            if (TempData.Peek("NewLocationStepOneData") == null)
+                return RedirectToAction("New", "Locations");
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult NewStep2(LocationNewAddressViewModel model)
+        {
+            if (TempData.Peek("NewLocationStepOneData") == null)
+                return RedirectToAction("New", "Locations");
+
+            if (!ModelState.IsValid)
+                return View(model);
+
+            TempData["NewLocationStepTwoData"] = model;
+
+            return RedirectToAction("NewStep3", "Locations");
+        }
+
+        /// <summary>
+        /// Capabilities
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult NewStep3()
+        {
+            if (TempData.Peek("NewLocationStepOneData") == null)
+                return RedirectToAction("New", "Locations");
+
+            if (TempData.Peek("NewLocationStepTwoData") == null)
+                return RedirectToAction("New", "Locations");
+
+            var locationFacilitiesRepository = _unitOfWork.LocationFacilitiesRepository;
+            var facilities = locationFacilitiesRepository.GetAll();
+
+            ViewBag.Facilities = facilities;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult NewStep3(LocationNewCapabilitiesViewModel model)
+        {
+            if (TempData.Peek("NewLocationStepOneData") == null)
+                return RedirectToAction("New", "Locations");
+
+            if (TempData.Peek("NewLocationStepTwoData") == null)
+                return RedirectToAction("New", "Locations");
+
+            if (!ModelState.IsValid)
+                return View(model);
+
+            TempData["NewLocationStepThreeData"] = model;
+
+            return RedirectToAction("NewStep4", "Locations");
+        }
+
+        /// <summary>
+        /// Pictures
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult NewStep4()
+        {
+            if (TempData.Peek("NewLocationStepOneData") == null)
+                return RedirectToAction("New", "Locations");
+
+            if (TempData.Peek("NewLocationStepTwoData") == null)
+                return RedirectToAction("New", "Locations");
+
+            if (TempData.Peek("NewLocationStepThreeData") == null)
+                return RedirectToAction("New", "Locations");
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult NewStep4(LocationNewImagesViewModel model)
+        {
+            if (TempData.Peek("NewLocationStepOneData") == null)
+                return RedirectToAction("New", "Locations");
+
+            if (TempData.Peek("NewLocationStepTwoData") == null)
+                return RedirectToAction("New", "Locations");
+
             if (!ModelState.IsValid)
                 return View(model);
 
             var locationsRepository = _unitOfWork.LocationsRepository;
             var usersRepository = _unitOfWork.UsersRepository;
 
-            DbLocation dbLocation = model.ToDbEntity();
-            dbLocation.CreatedByUserId = usersRepository.GetByEmail(User.Identity.Name).Id;
-            locationsRepository.Insert(dbLocation);
+            //DbLocation dbLocation = model.ToDbEntity();
+            //dbLocation.CreatedByUserId = usersRepository.GetByEmail(User.Identity.Name).Id;
+            //locationsRepository.Insert(dbLocation);
 
-            return RedirectToAction("Details", "Locations", new { id = dbLocation.Id, Area = string.Empty });
+            //return RedirectToAction("Details", "Locations", new { id = dbLocation.Id, Area = string.Empty });
+            return null;
         }
         #endregion
 
