@@ -88,20 +88,15 @@
                         </div>
                         <div class="result-facilities">
                             <div class="row">
-                                <ul class="col-md-3">
-                                    <li>Douches</li>
-                                    <li>Slaapplaatsen</li>
-                                    <li>Parking</li>
-                                </ul>
-                                <ul class="col-md-3">
-                                    <li>Keuken</li>
-                                    <li>Keukenploeg</li>
-                                </ul>
-                                <ul class="col-md-3">
-                                    <li>Keuken</li>
-                                    <li>Keukenploeg</li>
-                                </ul>
-                                <div class="col-md-3">
+                                <div class="cold-md-8">
+                                    @foreach (DbLocationFacility facility in location.Facilities)
+                                    {
+                                        <div class="col-md-4 no-padding-right">
+                                            <div>@facility.Name</div>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="col-md-4 pull-right">
                                     <a href="@Url.Action("Details", "Locations", new { id = location.Id })" class="button">Read More</a>
                                 </div>
                             </div>

@@ -37,3 +37,7 @@
 	* Homepage							(WIP)
 
 - API									(WIP)
+
+TODO:
+	- Update new location to store one "banner" image
+	- Display banner image in overview
