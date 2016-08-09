@@ -16,14 +16,19 @@ namespace YouthLocationBooking.Data.Database.Repositories
             _dbSet = context.Set<TEntity>();
         }
 
+        public virtual IList<TEntity> GetAll()
+        {
+            return _dbSet.ToList();
+        }
+
         public virtual TEntity Get(int id)
         {
             return _dbSet.Find(id);
         }
 
-        public virtual IList<TEntity> GetAll()
+        public virtual void Attach(TEntity entity)
         {
-            return _dbSet.ToList();
+            _dbSet.Attach(entity);
         }
 
         public virtual void Insert(TEntity entity)

@@ -1,4 +1,7 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
+using System.Web.Hosting;
 using System.Web.Mvc;
 using YouthLocationBooking.Data.Database.Entities;
 using YouthLocationBooking.Data.Database.Mappings;
@@ -105,7 +108,7 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult NewStep3(LocationNewCapabilitiesViewModel model)
+        public ActionResult NewStep3(LocationNewFacilitiesViewModel model)
         {
             if (TempData.Peek("NewLocationStepOneData") == null)
                 return RedirectToAction("New", "Locations");
@@ -143,24 +146,66 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult NewStep4(LocationNewImagesViewModel model)
         {
-            if (TempData.Peek("NewLocationStepOneData") == null)
+            LocationNewGeneralViewModel generalData = (LocationNewGeneralViewModel)TempData["NewLocationStepOneData"];
+            if (generalData == null)
                 return RedirectToAction("New", "Locations");
 
-            if (TempData.Peek("NewLocationStepTwoData") == null)
+            LocationNewAddressViewModel addressData = (LocationNewAddressViewModel)TempData["NewLocationStepTwoData"];
+            if (addressData == null)
+                return RedirectToAction("New", "Locations");
+
+            LocationNewFacilitiesViewModel facilitiesData = (LocationNewFacilitiesViewModel)TempData["NewLocationStepThreeData"];
+            if (TempData.Peek("NewLocationStepThreeData") == null)
                 return RedirectToAction("New", "Locations");
 
             if (!ModelState.IsValid)
                 return View(model);
 
             var locationsRepository = _unitOfWork.LocationsRepository;
+            var locationsFacilitiesRepository = _unitOfWork.LocationFacilitiesRepository;
             var usersRepository = _unitOfWork.UsersRepository;
 
-            //DbLocation dbLocation = model.ToDbEntity();
-            //dbLocation.CreatedByUserId = usersRepository.GetByEmail(User.Identity.Name).Id;
-            //locationsRepository.Insert(dbLocation);
+            DbLocation dbLocation = new DbLocation();
+            dbLocation.Name = generalData.Name;
+            dbLocation.Description = generalData.Description;
+            dbLocation.Capacity = generalData.Capacity;
+            dbLocation.Organisation = generalData.Organisation;
+            dbLocation.PricePerDay = generalData.PricePerDay;
+            dbLocation.AddressCity = addressData.AddressCity;
+            dbLocation.AddressNumber = addressData.AddressNumber;
+            dbLocation.AddressPostalCode = addressData.AddressPostalCode;
+            dbLocation.AddressProvince = addressData.AddressProvince;
+            dbLocation.AddressStreet = addressData.AddressStreet;
+            dbLocation.CreatedByUserId = usersRepository.GetByEmail(User.Identity.Name).Id;
 
-            //return RedirectToAction("Details", "Locations", new { id = dbLocation.Id, Area = string.Empty });
-            return null;
+            dbLocation.Facilities = facilitiesData.SelectedDatabaseIds.Select(x =>
+            {
+                DbLocationFacility facility = new DbLocationFacility { Id = x };
+                locationsFacilitiesRepository.Attach(facility);
+                return facility;
+            }).ToList();
+
+            // Save the location first because we want the location Id to store our images
+            locationsRepository.Insert(dbLocation);
+
+            string locationImagesBasePath = HostingEnvironment.MapPath("~/Resources/Location/" + dbLocation.Id + "/Images/");
+            Directory.CreateDirectory(locationImagesBasePath);
+
+            foreach (var file in model.Images)
+            {
+                if (file == null || file.ContentLength <= 0)
+                    continue;
+
+                string fileExtension = Path.GetExtension(file.FileName).ToLower();
+                if (fileExtension != ".jpg" && fileExtension != ".jpeg" && fileExtension != ".png")
+                    continue;
+
+                string fileName = Path.GetFileName(file.FileName);
+                string filePath = Path.Combine(locationImagesBasePath, fileName);
+                file.SaveAs(filePath);
+            }
+
+            return RedirectToAction("Details", "Locations", new { id = dbLocation.Id, Area = string.Empty });
         }
         #endregion
 

@@ -14,6 +14,13 @@ namespace YouthLocationBooking.Data.Database.Repositories
         {
         }
 
+        public override DbLocation Get(int id)
+        {
+            return _dbSet
+                .Include("Facilities")
+                .FirstOrDefault(x => x.Id == id);
+        }
+
         public IList<DbLocation> GetAllByUserId(int userId)
         {
             return _dbSet.Where(x => x.CreatedByUserId == userId).ToList();

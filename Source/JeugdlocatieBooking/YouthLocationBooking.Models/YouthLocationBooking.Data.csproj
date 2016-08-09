@@ -54,6 +54,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -103,6 +104,10 @@
     <Compile Include="Database\Migrations\201608041530479_MERGE.Designer.cs">
       <DependentUpon>201608041530479_MERGE.cs</DependentUpon>
     </Compile>
+    <Compile Include="Database\Migrations\201608091837268_TurnDbLocationFacilityIntoManyToMany.cs" />
+    <Compile Include="Database\Migrations\201608091837268_TurnDbLocationFacilityIntoManyToMany.Designer.cs">
+      <DependentUpon>201608091837268_TurnDbLocationFacilityIntoManyToMany.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database\Migrations\Configuration.cs" />
     <Compile Include="Database\Repositories\BookingsRepository.cs" />
     <Compile Include="Database\Repositories\GenericRepository.cs" />
@@ -117,7 +122,7 @@
     <Compile Include="ViewModel\Models\ContactViewModel.cs" />
     <Compile Include="ViewModel\Models\LocationBookingViewModel.cs" />
     <Compile Include="ViewModel\Models\LocationNewAddressViewModel.cs" />
-    <Compile Include="ViewModel\Models\LocationNewCapabilitiesViewModel.cs" />
+    <Compile Include="ViewModel\Models\LocationNewFacilitiesViewModel.cs" />
     <Compile Include="ViewModel\Models\LocationNewGeneralViewModel.cs" />
     <Compile Include="ViewModel\Models\LocationFilterViewModel.cs" />
     <Compile Include="ViewModel\Models\LocationEditViewModel.cs" />
@@ -148,6 +153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Database\Migrations\201608041530479_MERGE.resx">
       <DependentUpon>201608041530479_MERGE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Database\Migrations\201608091837268_TurnDbLocationFacilityIntoManyToMany.resx">
+      <DependentUpon>201608091837268_TurnDbLocationFacilityIntoManyToMany.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

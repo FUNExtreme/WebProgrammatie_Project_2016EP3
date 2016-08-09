@@ -2,11 +2,16 @@
 
 namespace YouthLocationBooking.Data.Database.Repositories
 {
-    public interface IRepository<T>
+    public interface IRepository<TEntity>
     {
-        void Insert(T entity);
-        void Update(T entity);
+        IList<TEntity> GetAll();
+        TEntity Get(int id);
 
-        void Remove(T entity);
+        void Attach(TEntity entity);
+
+        void Insert(TEntity entity);
+        void Update(TEntity entity);
+
+        void Remove(TEntity entity);
     }
 }
