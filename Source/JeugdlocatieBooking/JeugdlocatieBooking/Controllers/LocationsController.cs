@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Web.Hosting;
 using System.Web.Mvc;
 using YouthLocationBooking.Data.Database.Entities;
 using YouthLocationBooking.Data.Database.Enumerations;
@@ -55,11 +57,20 @@ namespace YouthLocationBooking.Web.Controllers
             DbLocation location = locationsRepository.Get(id);
             if (location == null)
                 return RedirectToAction("Index", "Locations");
+            ViewBag.Location = location;
 
             IList<DbLocationReview> locationReviews = locationReviewsRepository.GetByLocationId(id);
-
-            ViewBag.Location = location;
             ViewBag.LocationReviews = locationReviews;
+
+            string locationImagesDirectoryPath = HostingEnvironment.MapPath("~/Resources/Location/" + location.Id + "/Images/");
+            string[] locationImagesPaths = new string[0];
+            if (Directory.Exists(locationImagesDirectoryPath))
+            {
+                locationImagesPaths = Directory.GetFiles(locationImagesDirectoryPath);
+                for (int x = 0; x < locationImagesPaths.Length; x++)
+                    locationImagesPaths[x] = locationImagesPaths[x].Replace(HostingEnvironment.ApplicationPhysicalPath, "/");
+            }
+            ViewBag.LocationImagesPaths = locationImagesPaths;
             return View();
         }
 
@@ -72,12 +83,22 @@ namespace YouthLocationBooking.Web.Controllers
             var locationReviewsRepository = _unitOfWork.LocationReviewsRepository;
 
             DbLocation location = locationsRepository.Get(id);
-            ViewBag.Location = location;
             if (location == null)
                 return RedirectToAction("Index", "Locations");
+            ViewBag.Location = location;
 
             IList<DbLocationReview> locationReviews = locationReviewsRepository.GetByLocationId(id);
             ViewBag.LocationReviews = locationReviews;
+
+            string locationImagesDirectoryPath = HostingEnvironment.MapPath("~/Resources/Location/" + location.Id + "/Images/");
+            string[] locationImagesPaths = new string[0];
+            if (Directory.Exists(locationImagesDirectoryPath))
+            {
+                locationImagesPaths = Directory.GetFiles(locationImagesDirectoryPath);
+                for (int x = 0; x < locationImagesPaths.Length; x++)
+                    locationImagesPaths[x] = locationImagesPaths[x].Replace(HostingEnvironment.ApplicationPhysicalPath, "/");
+            }
+            ViewBag.LocationImagesPaths = locationImagesPaths;
 
             if (model.From > model.To)
             {

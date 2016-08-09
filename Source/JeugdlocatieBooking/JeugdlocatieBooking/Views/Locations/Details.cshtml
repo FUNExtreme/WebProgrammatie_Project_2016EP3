@@ -2,6 +2,8 @@
     ViewBag.Title = ViewBag.Location.Name + " Details";
 }
 
+@using YouthLocationBooking.Data.Database.Entities
+
 @model YouthLocationBooking.Data.ViewModel.Models.LocationBookingViewModel
 
 @section styles {
@@ -27,7 +29,7 @@
                             <li>Max @(ViewBag.Location.Capacity) Personen</li>
                             @if (!string.IsNullOrWhiteSpace(ViewBag.Location.Organisation))
                             {
-                                <li>Verhuurd door @ViewBag.Location.Organisation</li>
+                                <li>Verhuur door @ViewBag.Location.Organisation</li>
                             }
                         </ul>
                     </div>
@@ -37,12 +39,39 @@
                         </span>
                     </div>
                 </div>
-                <div class="location-images">
+                <div class="location-images clearfix">
                     <h5>Foto's</h5>
+                    @if (((string[])ViewBag.LocationImagesPaths).Length > 0)
+                    {
+                        <div class="col-md-9 no-padding">
+                            <img src="@ViewBag.LocationImagesPaths[0]" />
+                        </div>
+                        <div class="col-md-3 no-padding-right">
+                            @foreach (var imageUrl in ViewBag.LocationImagesPaths)
+                            {
+                                <img src="@imageUrl" />
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <span>Deze locatie heeft geen foto's</span>
+                    }
                 </div>
                 <div class="location-description">
                     <h5>Beschrijving</h5>
-                    @ViewBag.Location.Description
+                    <span>@ViewBag.Location.Description</span>
+
+                    @if (((IEnumerable<DbLocationFacility>)ViewBag.Location.Facilities).Count() > 0)
+                    {
+                        <h5>Faciliteiten</h5>
+                        foreach (DbLocationFacility facility in ViewBag.Location.Facilities)
+                        {
+                            <div class="col-md-3 no-padding-right">
+                                <span>@facility.Name</span>
+                            </div>
+                        }
+                    }
                 </div>
                 <div class="location-address clearfix">
                     <div class="col-md-9 no-padding-left">
