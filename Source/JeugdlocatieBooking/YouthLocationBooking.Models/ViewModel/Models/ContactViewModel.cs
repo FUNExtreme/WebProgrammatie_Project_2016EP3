@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace YouthLocationBooking.Data.Validation.Models
+namespace YouthLocationBooking.Data.ViewModel.Models
 {
-    public class ContactModel
+    public class ContactViewModel
     {
         [Required]
         public string Name { get; set; }

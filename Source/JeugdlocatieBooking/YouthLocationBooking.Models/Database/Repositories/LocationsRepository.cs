@@ -3,7 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using X.PagedList;
 using YouthLocationBooking.Data.Database.Entities;
-using YouthLocationBooking.Data.Validation.Models;
+using YouthLocationBooking.Data.ViewModel.Models;
 
 namespace YouthLocationBooking.Data.Database.Repositories
 {
@@ -24,17 +24,17 @@ namespace YouthLocationBooking.Data.Database.Repositories
             return GetAll().ToPagedList(page, itemsPerPage);
         }
 
-        public IList<DbLocation> GetAllWithFilter(LocationFilterModel model)
+        public IList<DbLocation> GetAllWithFilter(LocationFilterViewModel model)
         {
             return GetAllWithFilterQueryable(model).ToList();
         }
 
-        public IPagedList<DbLocation> GetAllPagedWithFilter(int page, int itemsPerPage, LocationFilterModel model)
+        public IPagedList<DbLocation> GetAllPagedWithFilter(int page, int itemsPerPage, LocationFilterViewModel model)
         {
             return GetAllWithFilterQueryable(model).ToPagedList(page, itemsPerPage);
         }
 
-        private IQueryable<DbLocation> GetAllWithFilterQueryable(LocationFilterModel model)
+        private IQueryable<DbLocation> GetAllWithFilterQueryable(LocationFilterViewModel model)
         {
             IQueryable<DbLocation> filteredLocations = _dbSet;
 

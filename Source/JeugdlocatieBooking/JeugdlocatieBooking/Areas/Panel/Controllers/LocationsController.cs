@@ -4,7 +4,7 @@ using YouthLocationBooking.Data.Database.Entities;
 using YouthLocationBooking.Data.Database.Mappings;
 using YouthLocationBooking.Data.Database.Repositories;
 using YouthLocationBooking.Data.Validation.Mappings;
-using YouthLocationBooking.Data.Validation.Models;
+using YouthLocationBooking.Data.ViewModel.Models;
 
 namespace YouthLocationBooking.Web.Areas.Panel.Controllers
 {
@@ -39,7 +39,7 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult New(LocationNewModel model)
+        public ActionResult New(LocationNewViewModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
@@ -64,7 +64,7 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
             if (location == null)
                 return RedirectToAction("Index", "Summary");
 
-            LocationEditModel locationModel = location.ToLocationEditValidationModel();
+            LocationEditViewModel locationModel = location.ToLocationEditValidationModel();
 
             ViewBag.LocationId = location.Id;
             return View(locationModel);
@@ -72,7 +72,7 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, LocationEditModel model)
+        public ActionResult Edit(int id, LocationEditViewModel model)
         {
             var locationsRepository = _unitOfWork.LocationsRepository;
 
@@ -157,7 +157,7 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Review(int id, LocationReviewModel model)
+        public ActionResult Review(int id, LocationReviewViewModel model)
         {
             var locationsRepository = _unitOfWork.LocationsRepository;
             var usersRepository = _unitOfWork.UsersRepository;

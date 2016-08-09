@@ -1,16 +1,16 @@
 ﻿using YouthLocationBooking.Data.Database.Entities;
-using YouthLocationBooking.Data.Validation.Models;
+using YouthLocationBooking.Data.ViewModel.Models;
 
 namespace YouthLocationBooking.Data.Database.Mappings
 {
     public static class ToValidationModelExtensions
     {
-        public static ProfileEditModel ToProfileEditValidationModel(this DbUser entity)
+        public static ProfileEditViewModel ToProfileEditValidationModel(this DbUser entity)
         {
             if (entity == null)
                 return null;
 
-            var mappedEntity = new ProfileEditModel();
+            var mappedEntity = new ProfileEditViewModel();
             mappedEntity.FirstName = entity.FirstName;
             mappedEntity.LastName = entity.LastName;
             mappedEntity.Email = entity.Email;
@@ -18,12 +18,12 @@ namespace YouthLocationBooking.Data.Database.Mappings
             return mappedEntity;
         }
 
-        public static LocationEditModel ToLocationEditValidationModel(this DbLocation entity)
+        public static LocationEditViewModel ToLocationEditValidationModel(this DbLocation entity)
         {
             if (entity == null)
                 return null;
 
-            var mappedEntity = new LocationEditModel();
+            var mappedEntity = new LocationEditViewModel();
             mappedEntity.Name = entity.Name;
             mappedEntity.Description = entity.Description;
             mappedEntity.Organisation = entity.Organisation;

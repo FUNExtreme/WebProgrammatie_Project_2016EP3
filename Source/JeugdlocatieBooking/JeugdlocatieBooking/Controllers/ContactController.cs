@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using YouthLocationBooking.Data.Validation.Models;
+using YouthLocationBooking.Data.ViewModel.Models;
 
 namespace YouthLocationBooking.Web.Controllers
 {
@@ -12,7 +12,7 @@ namespace YouthLocationBooking.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(ContactModel model)
+        public ActionResult Index(ContactViewModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);

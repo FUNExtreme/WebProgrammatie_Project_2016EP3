@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace YouthLocationBooking.Data.Validation.Models
+namespace YouthLocationBooking.Data.ViewModel.Models
 {
-    public class LoginModel
+    public class LoginViewModel
     {
         [Required]
         [EmailAddress]

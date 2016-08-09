@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace YouthLocationBooking.Data.Validation.Models
+namespace YouthLocationBooking.Data.ViewModel.Models
 {
-    public class LocationBookingModel
+    public class LocationBookingViewModel
     {
         [Required]
         public DateTime From { get; set; }

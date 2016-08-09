@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace YouthLocationBooking.Data.Validation.Models
+namespace YouthLocationBooking.Data.ViewModel.Models
 {
-    public class ChangePasswordModel
+    public class ChangePasswordViewModel
     {
         [Required]
         [Display(Name = "Old Password")]

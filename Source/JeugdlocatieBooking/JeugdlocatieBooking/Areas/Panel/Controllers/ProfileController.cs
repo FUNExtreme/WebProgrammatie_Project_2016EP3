@@ -4,7 +4,7 @@ using YouthLocationBooking.Business.Logic.Utils;
 using YouthLocationBooking.Data.Database.Entities;
 using YouthLocationBooking.Data.Database.Mappings;
 using YouthLocationBooking.Data.Database.Repositories;
-using YouthLocationBooking.Data.Validation.Models;
+using YouthLocationBooking.Data.ViewModel.Models;
 
 namespace YouthLocationBooking.Web.Areas.Panel.Controllers
 {
@@ -35,13 +35,13 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
             var usersRepository = _unitOfWork.UsersRepository;
 
             DbUser user = usersRepository.GetByEmail(User.Identity.Name);
-            ProfileEditModel validationModel = user.ToProfileEditValidationModel();
+            ProfileEditViewModel validationModel = user.ToProfileEditValidationModel();
             return View(validationModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ProfileEditModel model)
+        public ActionResult Edit(ProfileEditViewModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
@@ -83,7 +83,7 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ChangePassword(ChangePasswordModel model)
+        public ActionResult ChangePassword(ChangePasswordViewModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);

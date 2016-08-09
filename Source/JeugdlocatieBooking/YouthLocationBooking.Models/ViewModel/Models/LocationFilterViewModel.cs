@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace YouthLocationBooking.Data.Validation.Models
+namespace YouthLocationBooking.Data.ViewModel.Models
 {
-    public class LocationFilterModel
+    public class LocationFilterViewModel
     {
         public string Name { get; set; }
         [DataType(DataType.Date)]

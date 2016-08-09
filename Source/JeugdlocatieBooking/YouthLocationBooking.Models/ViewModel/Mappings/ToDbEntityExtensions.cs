@@ -1,11 +1,11 @@
 ﻿using YouthLocationBooking.Data.Database.Entities;
-using YouthLocationBooking.Data.Validation.Models;
+using YouthLocationBooking.Data.ViewModel.Models;
 
 namespace YouthLocationBooking.Data.Validation.Mappings
 {
     public static class ToDbEntityExtensions
     {
-        public static DbLocation ToDbEntity(this LocationNewModel entity)
+        public static DbLocation ToDbEntity(this LocationNewViewModel entity)
         {
             if (entity == null)
                 return null;

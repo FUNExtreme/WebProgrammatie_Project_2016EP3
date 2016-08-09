@@ -4,7 +4,7 @@ using YouthLocationBooking.Business.Logic.Utils;
 using YouthLocationBooking.Data.Database;
 using YouthLocationBooking.Data.Database.Entities;
 using YouthLocationBooking.Data.Database.Repositories;
-using YouthLocationBooking.Data.Validation.Models;
+using YouthLocationBooking.Data.ViewModel.Models;
 
 namespace YouthLocationBooking.Web.Controllers
 {
@@ -27,7 +27,7 @@ namespace YouthLocationBooking.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(LoginModel model)
+        public ActionResult Index(LoginViewModel model)
         {
             var userRepository = _unitOfWork.UsersRepository;
 

@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using YouthLocationBooking.Data.Database.Entities;
 using YouthLocationBooking.Data.Database.Enumerations;
 using YouthLocationBooking.Data.Database.Repositories;
-using YouthLocationBooking.Data.Validation.Models;
+using YouthLocationBooking.Data.ViewModel.Models;
 
 namespace YouthLocationBooking.Web.Controllers
 {
@@ -20,7 +20,7 @@ namespace YouthLocationBooking.Web.Controllers
         }
         #endregion
 
-        public ActionResult Index(LocationFilterModel model = null, int page = 1)
+        public ActionResult Index(LocationFilterViewModel model = null, int page = 1)
         {
             var locationsRepository = _unitOfWork.LocationsRepository;
 
@@ -39,7 +39,7 @@ namespace YouthLocationBooking.Web.Controllers
 
         [HttpPost]
         [ActionName("Index")]
-        public ActionResult IndexPost(LocationFilterModel model)
+        public ActionResult IndexPost(LocationFilterViewModel model)
         {
             // This is a hack used to keep a clean URL.
             // If the form is of FormMethod.Get it will send all fields as query string, this is default behavior
@@ -64,7 +64,7 @@ namespace YouthLocationBooking.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Details(int id, LocationBookingModel model)
+        public ActionResult Details(int id, LocationBookingViewModel model)
         {
             var locationsRepository = _unitOfWork.LocationsRepository;
             var usersRepository = _unitOfWork.UsersRepository;

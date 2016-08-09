@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace YouthLocationBooking.Data.Validation.Models
+namespace YouthLocationBooking.Data.ViewModel.Models
 {
-    public class LocationNewAddressModel
+    public class LocationNewAddressViewModel
     {
         [Required]
         public string AddressStreet { get; set; }
