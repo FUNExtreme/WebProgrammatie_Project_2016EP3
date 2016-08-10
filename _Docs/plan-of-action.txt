@@ -36,7 +36,7 @@
 	* Add Reviews to Location Details	(Done, Stage 1) TODO: Layout
 	* Homepage							(WIP)
 
-- API									(WIP)
+- API									(Done, Stage 1) TODO: Write XML Documentation for Help Page
 
 TODO:
 	- Update new location to store one "banner" image
