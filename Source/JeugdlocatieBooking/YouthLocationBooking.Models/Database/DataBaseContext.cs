@@ -19,7 +19,11 @@ namespace YouthLocationBooking.Data.Database
         public DbSet<DbLocationFacilityRating> LocationFacilityRatings { get; set; }
 
         public DatabaseContext()
+#if DEBUG
             : base("DefaultConnection")
+#else
+            : base("SchoolConnection")
+#endif
         {
         }
     }
