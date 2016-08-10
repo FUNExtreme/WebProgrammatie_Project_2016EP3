@@ -44,11 +44,10 @@ namespace YouthLocationBooking.Api.Controllers
 
             return locations.Select(x =>
             {
-                // TODO Include Banner Image URL
                 ApiLocation location = x.ToApiEntity();
                 location.DetailsPageUrl = string.Format(DetailsPageUrlTemplate, x.Id);
                 location.BookingPageUrl = string.Format(BookingPageUrlTemplate, x.Id);
-                //location.BannerImageUrl = string.Format(BannerImageBaseUrl, x.Id, x.BannerImageFileName);
+                location.BannerImageUrl = string.Format(BannerImageBaseUrl, x.Id, x.BannerImageFileName);
                 return location;
             });
         }

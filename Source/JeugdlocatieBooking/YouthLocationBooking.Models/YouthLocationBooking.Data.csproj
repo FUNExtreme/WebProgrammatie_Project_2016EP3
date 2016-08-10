@@ -117,6 +117,10 @@
     <Compile Include="Database\Migrations\201608101908165_AddBookingListToLocation.Designer.cs">
       <DependentUpon>201608101908165_AddBookingListToLocation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Database\Migrations\201608102044395_DbLocationBannerImage.cs" />
+    <Compile Include="Database\Migrations\201608102044395_DbLocationBannerImage.Designer.cs">
+      <DependentUpon>201608102044395_DbLocationBannerImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database\Migrations\Configuration.cs" />
     <Compile Include="Database\Repositories\BookingsRepository.cs" />
     <Compile Include="Database\Repositories\GenericRepository.cs" />
@@ -168,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Database\Migrations\201608101908165_AddBookingListToLocation.resx">
       <DependentUpon>201608101908165_AddBookingListToLocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Database\Migrations\201608102044395_DbLocationBannerImage.resx">
+      <DependentUpon>201608102044395_DbLocationBannerImage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

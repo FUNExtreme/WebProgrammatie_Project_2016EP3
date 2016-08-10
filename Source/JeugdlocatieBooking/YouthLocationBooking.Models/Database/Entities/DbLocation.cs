@@ -15,6 +15,7 @@ namespace YouthLocationBooking.Data.Database.Entities
         public string Organisation { get; set; }
         public double PricePerDay { get; set; }
         public int Capacity { get; set; }
+        public string BannerImageFileName { get; set; }
         public int? CreatedByUserId { get; set; }
 
         public virtual DbUser CreatedByUser { get; set; }
