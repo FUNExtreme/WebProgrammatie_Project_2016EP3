@@ -5,10 +5,11 @@ using YouthLocationBooking.Data.Database.Entities;
 using YouthLocationBooking.Data.Database.Mappings;
 using YouthLocationBooking.Data.Database.Repositories;
 using YouthLocationBooking.Data.ViewModel.Models;
+using YouthLocationBooking.Web.Code.Auth;
 
 namespace YouthLocationBooking.Web.Areas.Panel.Controllers
 {
-    [Authorize]
+    [YLBAuthenticateAttribute]
     public class ProfileController : Controller
     {
         #region Variables

@@ -6,6 +6,7 @@ using YouthLocationBooking.Data.Database.Entities;
 using YouthLocationBooking.Data.Database.Enumerations;
 using YouthLocationBooking.Data.Database.Repositories;
 using YouthLocationBooking.Data.ViewModel.Models;
+using static YouthLocationBooking.Data.Database.Repositories.LocationsRepository;
 
 namespace YouthLocationBooking.Web.Controllers
 {
@@ -34,7 +35,16 @@ namespace YouthLocationBooking.Web.Controllers
             if (model == null)
                 ViewBag.PagedLocations = locationsRepository.GetAllPaged(page, itemsPerPage);
             else
-                ViewBag.PagedLocations = locationsRepository.GetAllPagedWithFilter(page, itemsPerPage, model);
+            {
+                LocationFilter filter = new LocationFilter();
+                filter.Name = model.Name;
+                filter.CityOrPostcode = model.CityOrPostcode;
+                filter.From = model.From;
+                filter.MinCapacity = model.MinCapacity;
+                filter.Province = model.Province;
+                filter.To = model.To;
+                ViewBag.PagedLocations = locationsRepository.GetAllPagedWithFilter(page, itemsPerPage, filter);
+            }
 
             return View(model);
         }

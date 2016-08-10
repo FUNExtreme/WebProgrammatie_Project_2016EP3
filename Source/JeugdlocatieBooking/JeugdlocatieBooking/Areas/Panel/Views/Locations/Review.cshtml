@@ -2,6 +2,8 @@
     ViewBag.Title = "Review Schrijven";
 }
 
+@using YouthLocationBooking.Data.Database.Entities
+
 @model YouthLocationBooking.Data.ViewModel.Models.LocationReviewViewModel
 
 @section navbreadcrumb {
@@ -33,6 +35,19 @@
                         @Html.ValidationMessageFor(m => m.Review, null, new { @class = "form-error" })
                     </div>
                 </div>
+
+                {
+                    int x = 0;
+                    foreach (DbLocationFacility facility in ViewBag.Location.Facilities)
+                    {
+                        <div class="col-md-4 form-group clearfix">
+                            <div class="sub-title">@facility.Name</div>
+                            @Html.HiddenFor(m => m.FacilityRatings[x].Id, new { @Value = facility.Id })
+                            @Html.TextBoxFor(m => m.FacilityRatings[x].Rating)
+                        </div>
+                        x++;
+                    }
+                }
 
                 <div class="form-group">
                     <input type="submit" value="Submit" class="button" />

@@ -1,4 +1,6 @@
-﻿namespace YouthLocationBooking.Data.API.Entities
+﻿using System.Collections.Generic;
+
+namespace YouthLocationBooking.Data.API.Entities
 {
     public class ApiLocation
     {
@@ -14,5 +16,6 @@
 
         public string DetailsPageUrl { get; set; }
         public string BookingPageUrl { get; set; }
+        public string BannerImageUrl { get; set; }
     }
 }

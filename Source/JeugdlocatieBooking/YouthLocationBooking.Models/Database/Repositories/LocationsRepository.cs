@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using X.PagedList;
@@ -38,17 +39,17 @@ namespace YouthLocationBooking.Data.Database.Repositories
             return GetAll().ToPagedList(page, itemsPerPage);
         }
 
-        public IList<DbLocation> GetAllWithFilter(LocationFilterViewModel model)
+        public IList<DbLocation> GetAllWithFilter(LocationFilter model)
         {
             return GetAllWithFilterQueryable(model).ToList();
         }
 
-        public IPagedList<DbLocation> GetAllPagedWithFilter(int page, int itemsPerPage, LocationFilterViewModel model)
+        public IPagedList<DbLocation> GetAllPagedWithFilter(int page, int itemsPerPage, LocationFilter model)
         {
             return GetAllWithFilterQueryable(model).ToPagedList(page, itemsPerPage);
         }
 
-        private IQueryable<DbLocation> GetAllWithFilterQueryable(LocationFilterViewModel model)
+        private IQueryable<DbLocation> GetAllWithFilterQueryable(LocationFilter model)
         {
             IQueryable<DbLocation> filteredLocations = _dbSet;
 
@@ -80,10 +81,27 @@ namespace YouthLocationBooking.Data.Database.Repositories
                 filteredLocations = filteredLocations.Where(x => x.AddressProvince.ToLower().Contains(model.Province));
             }
 
-            // TODO check availability
+            if(model.From != null)
+            {
+                filteredLocations = filteredLocations.Where(x => !x.Bookings.Where(y => y.StartDateTime <= model.From && y.EndDateTime >= model.From).Any());
+            }
+            if (model.To != null)
+            {
+                filteredLocations = filteredLocations.Where(x => !x.Bookings.Where(y => y.StartDateTime <= model.To && y.EndDateTime >= model.To).Any());
+            }
 
             filteredLocations = filteredLocations.OrderBy(x => x.PricePerDay);
             return filteredLocations;
+        }
+
+        public class LocationFilter
+        {
+            public string Name { get; set; }
+            public DateTime? From { get; set; }
+            public DateTime? To { get; set; }
+            public int? MinCapacity { get; set; }
+            public string CityOrPostcode { get; set; }
+            public string Province { get; set; }
         }
     }
 }

@@ -113,6 +113,10 @@
     <Compile Include="Database\Migrations\201608091837268_TurnDbLocationFacilityIntoManyToMany.Designer.cs">
       <DependentUpon>201608091837268_TurnDbLocationFacilityIntoManyToMany.cs</DependentUpon>
     </Compile>
+    <Compile Include="Database\Migrations\201608101908165_AddBookingListToLocation.cs" />
+    <Compile Include="Database\Migrations\201608101908165_AddBookingListToLocation.Designer.cs">
+      <DependentUpon>201608101908165_AddBookingListToLocation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database\Migrations\Configuration.cs" />
     <Compile Include="Database\Repositories\BookingsRepository.cs" />
     <Compile Include="Database\Repositories\GenericRepository.cs" />
@@ -161,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Database\Migrations\201608091837268_TurnDbLocationFacilityIntoManyToMany.resx">
       <DependentUpon>201608091837268_TurnDbLocationFacilityIntoManyToMany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Database\Migrations\201608101908165_AddBookingListToLocation.resx">
+      <DependentUpon>201608101908165_AddBookingListToLocation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

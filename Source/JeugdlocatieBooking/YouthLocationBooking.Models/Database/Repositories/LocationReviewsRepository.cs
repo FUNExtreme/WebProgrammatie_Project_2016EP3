@@ -14,7 +14,11 @@ namespace YouthLocationBooking.Data.Database.Repositories
 
         public IList<DbLocationReview> GetByLocationId(int locationId)
         {
-            return _dbSet.Where(x => x.LocationId == locationId).ToList();
+            return _dbSet
+                .Include("FacilityRatings")
+                .Include("FacilityRatings.Facility")
+                .Where(x => x.LocationId == locationId)
+                .ToList();
         }
     }
 }

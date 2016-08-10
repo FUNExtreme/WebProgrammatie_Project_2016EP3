@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace YouthLocationBooking.Data.ViewModel.Models
 {
@@ -7,5 +8,13 @@ namespace YouthLocationBooking.Data.ViewModel.Models
         [Required]
         public string Title { get; set; }
         public string Review { get; set; }
+
+        public IList<LocationFacilityReviewViewModel> FacilityRatings { get; set; }
+    }
+
+    public class LocationFacilityReviewViewModel
+    {
+        public int Id { get; set; }
+        public float Rating { get; set; }
     }
 }

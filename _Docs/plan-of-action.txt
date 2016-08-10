@@ -15,7 +15,7 @@
 	* Summary => My Locations?			(SKIPPED, TODO)
 
 - Front-end
-	* Location Search					(DONE, Stage 1) TODO: Period, after Booking is implemented
+	* Location Search					(DONE, Stage 1) TODO: Make sure the period filter works properly
 	* Location Detail					(DONE, Stage 1)
 
 - Back-end
@@ -30,10 +30,10 @@
 		+ Overview						(DONE, Stage 1)
 		+ Remove Confirmation			(DONE, Stage 1)
 		+ Link to Edit					(DONE, Stage 1)
-	* Reviews							(DONE, Stage 1) TODO: Add facility ratings
+	* Reviews							(DONE, Stage 1) TODO: Layout
 
 - Front-end
-	* Add Reviews to Location Details	(WIP)
+	* Add Reviews to Location Details	(Done, Stage 1) TODO: Layout
 	* Homepage							(WIP)
 
 - API									(WIP)
@@ -41,3 +41,4 @@
 TODO:
 	- Update new location to store one "banner" image
 	- Display banner image in overview
+	- Check all controllers for authorization checks

@@ -19,11 +19,13 @@ namespace YouthLocationBooking.Data.Database.Entities
 
         public virtual DbUser CreatedByUser { get; set; }
 
+        public virtual ICollection<DbBooking> Bookings { get; set; }
         public virtual ICollection<DbLocationAvailability> Availabilities { get; set; }
         public virtual ICollection<DbLocationFacility> Facilities { get; set; }
 
         public DbLocation()
         {
+            Bookings = new HashSet<DbBooking>();
             Availabilities = new HashSet<DbLocationAvailability>();
             Facilities = new HashSet<DbLocationFacility>();
         }

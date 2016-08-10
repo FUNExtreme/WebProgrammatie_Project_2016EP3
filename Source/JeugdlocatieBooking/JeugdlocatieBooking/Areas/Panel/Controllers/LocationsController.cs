@@ -7,10 +7,11 @@ using YouthLocationBooking.Data.Database.Entities;
 using YouthLocationBooking.Data.Database.Mappings;
 using YouthLocationBooking.Data.Database.Repositories;
 using YouthLocationBooking.Data.ViewModel.Models;
+using YouthLocationBooking.Web.Code.Auth;
 
 namespace YouthLocationBooking.Web.Areas.Panel.Controllers
 {
-    [Authorize]
+    [YLBAuthenticateAttribute]
     public class LocationsController : Controller
     {
         #region Variables
@@ -334,8 +335,19 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
             review.Review = model.Review;
             review.ReviewerName = user.FirstName + " " + user.LastName[0];
             review.Title = model.Title;
-            // TODO facility ratings
+            // We insert our review before storing the facility ratings so we have a review id
             locationReviewsRepository.Insert(review);
+
+            review.FacilityRatings = model.FacilityRatings.Select(x =>
+            {
+                return new DbLocationFacilityRating
+                {
+                    FacilityId = x.Id,
+                    Rating = x.Rating,
+                    ReviewId = review.Id
+                };
+            }).ToList();
+            locationReviewsRepository.Update(review);
 
             // TODO success message
             return RedirectToAction("Index", "Reviews");

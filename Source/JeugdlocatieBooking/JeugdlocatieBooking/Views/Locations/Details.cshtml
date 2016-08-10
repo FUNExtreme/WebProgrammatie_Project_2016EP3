@@ -89,7 +89,23 @@
                 </div>
                 <div class="location-reviews">
                     <h5>Beoordelingen</h5>
-                    
+                    @if (((IEnumerable<DbLocationReview>)ViewBag.LocationReviews).Count() > 0)
+                    {
+                        foreach (DbLocationReview review in ViewBag.LocationReviews)
+                        {
+                            <div class="sub-title">@review.Title</div>
+                            <div>@review.Review</div>
+
+                            <div class="sub-title">Faciliteiten</div>
+                            <div class="col-md-3 no-padding-right">
+                                @foreach (DbLocationFacilityRating facilityRating in review.FacilityRatings)
+                                {
+                                    <span>@facilityRating.Facility.Name</span>
+                                    <span>@facilityRating.Rating</span>
+                                }
+                            </div>
+                        }
+                    }
                 </div>
             </div>
         </div>
