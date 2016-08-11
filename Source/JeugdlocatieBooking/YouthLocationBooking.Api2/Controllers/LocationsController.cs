@@ -45,9 +45,9 @@ namespace YouthLocationBooking.Api.Controllers
             return locations.Select(x =>
             {
                 ApiLocation location = x.ToApiEntity();
-                location.DetailsPageUrl = string.Format(DetailsPageUrlTemplate, x.Id);
-                location.BookingPageUrl = string.Format(BookingPageUrlTemplate, x.Id);
-                location.BannerImageUrl = string.Format(BannerImageBaseUrl, x.Id, x.BannerImageFileName);
+                location.DetailsPageUrl = Uri.EscapeUriString(string.Format(DetailsPageUrlTemplate, x.Id));
+                location.BookingPageUrl = Uri.EscapeUriString(string.Format(BookingPageUrlTemplate, x.Id));
+                location.BannerImageUrl = Uri.EscapeUriString(string.Format(BannerImageBaseUrl, x.Id, x.BannerImageFileName));
                 return location;
             });
         }

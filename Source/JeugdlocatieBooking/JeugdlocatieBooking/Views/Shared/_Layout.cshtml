@@ -18,24 +18,27 @@
                             @if (User.Identity.IsAuthenticated)
                             {
                                 <span>
-                                    <a href="@Url.Action("Index", "Summary", new { Area = "Panel" })">Go to Management Panel</a>
+                                    <a href="@Url.Action("Index", "Summary", new { Area = "Panel" })">Ga naar beheer</a>
                                 </span>
                             }
                         </div>
                         <div class="pull-right">
                             @if (User.Identity.IsAuthenticated)
                             {
-                                <span>
-                                    <a href="@Url.Action("Index", "Logout")">Logout</a>
+                                <span class="header-top__item">
+                                    <a href="@Url.Action("Index", "Profile", new { Area = "Panel" })">Mijn Profiel</a>
+                                </span>
+                                <span class="header-top__item">
+                                    <a href="@Url.Action("Index", "Logout")">Afmelden</a>
                                 </span>
                             }
                             else
                             {
-                                <span>
-                                    <a href="@Url.Action("Index", "Login")">Login</a>
+                                <span class="header-top__item">
+                                    <a href="@Url.Action("Index", "Login")">Aanmelden</a>
                                 </span>
-                                <span>
-                                    <a href="@Url.Action("Index", "Register")">Register</a>
+                                <span class="header-top__item">
+                                    <a href="@Url.Action("Index", "Register")">Registreren</a>
                                 </span>
                             }
                         </div>
@@ -83,12 +86,12 @@
 
         <div class="container">
             @RenderBody()
-            <hr />
+        </div>
+        <div class="page-footer-container">
             <footer>
                 <p>&copy; @DateTime.Now.Year - JeugdLocatie Booking</p>
             </footer>
         </div>
-
         @RenderSection("scripts", required: false)
     </div>
 </body>

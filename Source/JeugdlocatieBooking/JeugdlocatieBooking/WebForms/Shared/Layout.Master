@@ -18,11 +18,11 @@
                 <div class="container">
                     <div class="row">
                         <div class="pull-right">
-                            <span>
-                                <a href="~/Login" runat="server">Login</a>
+                            <span class="header-top__item">
+                                <a href="~/Login" runat="server">Aanmelden</a>
                             </span>
-                            <span>
-                                <a href="~/Register" runat="server">Register</a>
+                            <span class="header-top__item">
+                                <a href="~/Register" runat="server">Registreren</a>
                             </span>
                         </div>
                     </div>
@@ -69,12 +69,12 @@
 
         <div class="container">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
-            <hr />
+        </div>
+        <div class="page-footer-container">
             <footer>
                 <p>&copy; <%: DateTime.Now.Year %> - JeugdLocatie Booking</p>
             </footer>
         </div>
-
         <asp:ContentPlaceHolder runat="server" ID="scripts" />
     </div>
 </body>

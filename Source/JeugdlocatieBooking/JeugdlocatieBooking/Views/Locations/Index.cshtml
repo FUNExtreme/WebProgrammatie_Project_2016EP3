@@ -74,7 +74,7 @@
                     }
                     else
                     {
-                        <div class="result-thumbnail" style="background-image:url(../../Resources/Locations/@(location.Id)/Images/@(location.BannerImageFileName);"></div>
+                        <div class="result-thumbnail" style="background-image:url('/Resources/Location/@(location.Id)/Images/@Uri.EscapeUriString(location.BannerImageFileName)');"></div>
                     }
                     <div class="result-info">
                         <div class="result-header clearfix">

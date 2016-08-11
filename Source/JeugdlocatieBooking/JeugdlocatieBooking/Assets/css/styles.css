@@ -38,7 +38,8 @@ html {
 body {
     font-family: 'OpenSans', sans-serif;
     font-size: 1.4rem;
-    background-color: #f1f1f1
+    background-color: #f1f1f1;
+    min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5 {
@@ -144,8 +145,17 @@ h1 {
     height: 4rem;
     line-height: 4rem;
 
-    background-color: white;
+    color: white;
+    background-color: #008eb2;
     color: black;
+}
+
+.page-header-container header .header-top .header-top__item {
+    margin-left: 2rem;
+}
+
+.page-header-container header .header-top a {
+    color: white !important;
 }
 
 .page-header-container .header-nav {
@@ -196,6 +206,14 @@ h1 {
 .page-header-container .page-header .page-breadcrumbs > li:last-child::after {
     content: '';
     padding: 0;
+}
+
+.page-footer-container footer {
+    color: white;
+    background-color: #008eb2;
+    height: 6rem;
+    line-height: 6rem;
+    text-align: center;
 }
 
 .no-results {

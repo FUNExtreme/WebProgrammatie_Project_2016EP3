@@ -1,4 +1,4 @@
-- General Layout						(DONE, Stage 1) TODO: Footer, Header Top Bar
+- General Layout						(DONE, Stage 2)
 
 - Front-end							
 	* Login								(DONE, Stage 1)

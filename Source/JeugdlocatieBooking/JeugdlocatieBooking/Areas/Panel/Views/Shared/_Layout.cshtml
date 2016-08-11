@@ -15,11 +15,14 @@
                 <div class="container">
                     <div class="row">
                         <div class="pull-left">
-                            <a href="@Url.Action("Index", "Home", new { Area = string.Empty })">Return to main site</a>
+                            <a href="@Url.Action("Index", "Home", new { Area = string.Empty })">Terug naar hoofdsite</a>
                         </div>
                         <div class="pull-right">
-                            <span>
-                                <a href="@Url.Action("Index", "Profile", new { Area = "Panel" })">Profile</a>
+                            <span class="header-top__item">
+                                <a href="@Url.Action("Index", "Profile")">Mijn Profiel</a>
+                            </span>
+                            <span class="header-top__item">
+                                <a href="@Url.Action("Index", "Logout", new { Area = string.Empty })">Afmelden</a>
                             </span>
                         </div>
                     </div>
