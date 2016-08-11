@@ -24,7 +24,7 @@ namespace YouthLocationBooking.Web.WebForms
                     if (usersRepository.GetByEmail(_registerEmail.Text) != null)
                     {
                         Session["AlertType"] = "danger";
-                        Session["AlertMessage"] = "Er is iets foutgelopen tijdens het registreren";
+                        Session["AlertMessage"] = "Dit email adres is al in gebruik!";
                         return;
                     }  
 

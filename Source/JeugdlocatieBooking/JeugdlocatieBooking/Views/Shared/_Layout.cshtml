@@ -15,12 +15,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="pull-left">
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                <span>
-                                    <a href="@Url.Action("Index", "Summary", new { Area = "Panel" })">Ga naar beheer</a>
-                                </span>
-                            }
+                            <span>
+                                <a href="@Url.Action("Index", "Summary", new { Area = "Panel" })">Ga naar beheer</a>
+                            </span>
                         </div>
                         <div class="pull-right">
                             @if (User.Identity.IsAuthenticated)

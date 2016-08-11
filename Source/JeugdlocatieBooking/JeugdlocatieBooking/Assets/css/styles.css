@@ -218,6 +218,7 @@ h1 {
 }
 
 .page-footer-container footer {
+    margin-top: 6rem;
     color: white;
     background-color: #008eb2;
     height: 6rem;

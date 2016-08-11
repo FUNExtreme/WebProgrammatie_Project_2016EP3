@@ -39,5 +39,5 @@
 - API									(Done, Stage 1) TODO: Write XML Documentation for Help Page
 
 TODO:
-	- Check all controllers for authorization checks
+	- Homepage
 	- Panel Summary Page
