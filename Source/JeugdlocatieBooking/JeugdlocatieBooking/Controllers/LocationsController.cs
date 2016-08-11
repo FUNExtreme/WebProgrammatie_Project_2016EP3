@@ -133,7 +133,7 @@ namespace YouthLocationBooking.Web.Controllers
             {
                 TempData["AlertType"] = "danger";
                 TempData["AlertMessage"] = "Er is iets fout gelopen tijdens het verwerken van de boeking!";
-                return Details(id, model);
+                return Details((int)id, model);
             }
 
             return RedirectToAction("Details", new { id = id });
