@@ -234,6 +234,8 @@
     <Content Include="Assets\img\header_bg.jpg" />
     <Content Include="Assets\img\location_placeholder.jpg" />
     <Content Include="Assets\img\logo.png" />
+    <Content Include="Assets\img\logo_simple.png" />
+    <Content Include="Assets\img\no_image.png" />
     <Content Include="Assets\img\partner_logo_diede.png" />
     <Content Include="Assets\img\partner_logo_tim.png" />
     <Content Include="Assets\img\sad-face-no-results.png" />

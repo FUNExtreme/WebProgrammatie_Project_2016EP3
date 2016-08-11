@@ -68,7 +68,14 @@
             foreach (DbLocation location in ViewBag.PagedLocations)
             {
                 <div class="locations-search-result shadowbox clearfix">
-                    <div class="result-thumbnail" style="background-image:url(../../Assets/img/location_placeholder.jpg);"></div>
+                    @if (location.BannerImageFileName == null)
+                    {
+                        <div class="result-thumbnail" style="background-image:url(../../Assets/img/no_image.png);"></div>
+                    }
+                    else
+                    {
+                        <div class="result-thumbnail" style="background-image:url(../../Resources/Locations/@(location.Id)/Images/@(location.BannerImageFileName);"></div>
+                    }
                     <div class="result-info">
                         <div class="result-header clearfix">
                             <div class="pull-left">
