@@ -39,5 +39,4 @@
 - API									(Done, Stage 1) TODO: Write XML Documentation for Help Page
 
 TODO:
-	- Display banner image in overview
 	- Check all controllers for authorization checks

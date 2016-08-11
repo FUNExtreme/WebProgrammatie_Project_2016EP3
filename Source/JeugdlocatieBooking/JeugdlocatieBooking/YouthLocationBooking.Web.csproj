@@ -232,7 +232,6 @@
     <Content Include="Assets\css\styles.css" />
     <Content Include="Assets\fonts\fontawesome-webfont.svg" />
     <Content Include="Assets\img\header_bg.jpg" />
-    <Content Include="Assets\img\location_placeholder.jpg" />
     <Content Include="Assets\img\logo.png" />
     <Content Include="Assets\img\logo_simple.png" />
     <Content Include="Assets\img\no_image.png" />
