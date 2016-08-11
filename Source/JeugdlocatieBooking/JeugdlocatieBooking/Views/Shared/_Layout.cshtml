@@ -87,16 +87,15 @@
         <div class="container">
             @if (TempData.ContainsKey("AlertType") && TempData.ContainsKey("AlertMessage"))
             {
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="alert alert-@TempData["AlertType"] alert-dismissible" role="alert">
-                        <a class="close" data-dismiss="alert">×</a>
-                        <p>@TempData["AlertMessage"]</p>
-                    </div>
+                <div class="alert alert-@TempData["AlertType"] alert-dismissible" role="alert">
+                    <a class="close" data-dismiss="alert">×</a>
+                    <p>@TempData["AlertMessage"]</p>
                 </div>
             }
 
             @RenderBody()
         </div>
+
         <div class="page-footer-container">
             <footer>
                 <p>&copy; @DateTime.Now.Year - JeugdLocatie Booking</p>

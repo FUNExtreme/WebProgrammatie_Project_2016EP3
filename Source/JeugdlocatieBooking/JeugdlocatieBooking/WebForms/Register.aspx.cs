@@ -10,29 +10,46 @@ namespace YouthLocationBooking.Web.WebForms
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
-		}
+            Session["AlertType"] = null;
+            Session["AlertMessage"] = null;
+        }
 
 		protected void registerSubmit_Click(object sender, EventArgs e)
 		{
-			DbUser user = new DbUser
+            try
             {
-				FirstName = _registerFirstName.Text,
-				LastName = _registerLastName.Text,
-				Email = _registerEmail.Text,
-                PhoneNumber = _registerPhoneNumber.Text,
-                RegisterDateTime = DateTime.Now,
-                LastLoginDateTime = DateTime.Now,
-				Password = Security.Hash(_registerPassword.Text)
-			};
+                using (var unitOfWork = new UnitOfWork())
+                {
+                    UsersRepository usersRepository = unitOfWork.UsersRepository;
+                    if (usersRepository.GetByEmail(_registerEmail.Text) != null)
+                    {
+                        Session["AlertType"] = "danger";
+                        Session["AlertMessage"] = "Er is iets foutgelopen tijdens het registreren";
+                        return;
+                    }  
 
-            using (var unitOfWork = new UnitOfWork())
-            {
-                unitOfWork.UsersRepository.Insert(user);
+                    DbUser user = new DbUser
+                    {
+                        FirstName = _registerFirstName.Text,
+                        LastName = _registerLastName.Text,
+                        Email = _registerEmail.Text,
+                        PhoneNumber = _registerPhoneNumber.Text,
+                        RegisterDateTime = DateTime.Now,
+                        LastLoginDateTime = DateTime.Now,
+                        Password = Security.Hash(_registerPassword.Text)
+                    };
+                    usersRepository.Insert(user);
+
+                    FormsAuthentication.SetAuthCookie(user.Email, true);
+                    Response.Redirect("~/");
+                }
             }
-
-            FormsAuthentication.SetAuthCookie(user.Email, true);
-            Response.Redirect("~/");
+            catch
+            {
+                Session["AlertType"] = "danger";
+                Session["AlertMessage"] = "Er is iets foutgelopen tijdens het registreren";
+                return;
+            }
 		}
 	}
 }

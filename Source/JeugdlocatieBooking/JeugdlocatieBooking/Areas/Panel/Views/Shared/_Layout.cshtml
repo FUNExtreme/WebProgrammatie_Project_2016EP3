@@ -78,13 +78,24 @@
         </div>
 
         <div class="container">
+            @if (TempData.ContainsKey("AlertType") && TempData.ContainsKey("AlertMessage"))
+            {
+                <div class="alert alert-@TempData["AlertType"] alert-dismissible" role="alert">
+                    <a class="close" data-dismiss="alert">×</a>
+                    <p>@TempData["AlertMessage"]</p>
+                </div>
+            }
+
             @RenderBody()
-            <hr />
+        </div>
+
+        <div class="page-footer-container">
             <footer>
                 <p>&copy; @DateTime.Now.Year - JeugdLocatie Booking</p>
             </footer>
         </div>
 
+        @Scripts.Render("~/Assets/js/bundles/scripts")
         @RenderSection("scripts", required: false)
     </div>
 </body>

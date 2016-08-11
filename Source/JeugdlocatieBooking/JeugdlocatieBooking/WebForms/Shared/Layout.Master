@@ -68,6 +68,18 @@
         </div>
 
         <div class="container">
+            <% 
+            if (Session["AlertType"] != null && Session["AlertMessage"] != null)
+            {
+            %>
+                <div class="alert alert-<%: Session["AlertType"] %> alert-dismissible" role="alert">
+                    <a class="close" data-dismiss="alert">×</a>
+                    <p><%: Session["AlertMessage"] %></p>
+                </div>
+            <% 
+            } 
+            %>
+
             <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
         </div>
         <div class="page-footer-container">
@@ -75,6 +87,8 @@
                 <p>&copy; <%: DateTime.Now.Year %> - JeugdLocatie Booking</p>
             </footer>
         </div>
+
+        <%: Scripts.Render("~/Assets/js/bundles/scripts") %>
         <asp:ContentPlaceHolder runat="server" ID="scripts" />
     </div>
 </body>
