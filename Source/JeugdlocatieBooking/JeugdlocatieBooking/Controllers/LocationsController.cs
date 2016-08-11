@@ -120,6 +120,15 @@ namespace YouthLocationBooking.Web.Controllers
             }
             ViewBag.LocationImagesPaths = locationImagesPaths;
 
+            string calenderEventArray = "[";
+            foreach (DbBooking existingBooking in location.Bookings)
+            {
+                if (existingBooking.StatusId != (int)EBookingStatus.Cancelled && existingBooking.StatusId != (int)EBookingStatus.Denied)
+                    calenderEventArray += "{ startDate: '" + existingBooking.StartDateTime.Date.ToString("yyyy-MM-dd") + "', endDate: '" + existingBooking.EndDateTime.Date.ToString("yyyy-MM-dd") + "'},";
+            }
+            calenderEventArray += "]";
+            ViewBag.CalenderEventArray = calenderEventArray;
+
             if (model.From > model.To)
             {
                 ModelState.AddModelError("From", "Van datum moet voor Tot datum liggen");
