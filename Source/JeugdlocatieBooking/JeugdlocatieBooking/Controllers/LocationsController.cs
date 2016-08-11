@@ -85,7 +85,8 @@ namespace YouthLocationBooking.Web.Controllers
             string calenderEventArray = "[";
             foreach(DbBooking booking in location.Bookings)
             {
-                calenderEventArray += "{ startDate: '" + booking.StartDateTime.Date.ToString("yyyy-MM-dd") + "', endDate: '" + booking.EndDateTime.Date.ToString("yyyy-MM-dd") + "'},";
+                if(booking.StatusId != (int)EBookingStatus.Cancelled && booking.StatusId != (int)EBookingStatus.Denied)
+                    calenderEventArray += "{ startDate: '" + booking.StartDateTime.Date.ToString("yyyy-MM-dd") + "', endDate: '" + booking.EndDateTime.Date.ToString("yyyy-MM-dd") + "'},";
             }
             calenderEventArray += "]";
             ViewBag.CalenderEventArray = calenderEventArray;
