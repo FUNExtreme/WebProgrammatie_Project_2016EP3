@@ -19,7 +19,7 @@ namespace YouthLocationBooking.Web.Code.Auth
                 return false;
 
             
-            AuthorizedUser authorizedUser = new AuthorizedUser();
+            AuthenticatedUser authorizedUser = new AuthenticatedUser();
             authorizedUser.Id = user.Id;
             authorizedUser.Email = user.Email;
             authorizedUser.FirstName = user.FirstName;

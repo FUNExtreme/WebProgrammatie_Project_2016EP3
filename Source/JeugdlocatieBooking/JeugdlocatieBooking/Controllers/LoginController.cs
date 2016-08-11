@@ -4,22 +4,20 @@ using YouthLocationBooking.Business.Logic.Utils;
 using YouthLocationBooking.Data.Database.Entities;
 using YouthLocationBooking.Data.Database.Repositories;
 using YouthLocationBooking.Data.ViewModel.Models;
+using YouthLocationBooking.Web.Code;
 
 namespace YouthLocationBooking.Web.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : UnitOfWorkControllerBase
     {
-        #region Variables
-        private UnitOfWork _unitOfWork;
-        #endregion
-
         #region Constructor
         public LoginController()
+            : base()
         {
-            _unitOfWork = new UnitOfWork();
         }
         #endregion
 
+        #region Index
         public ActionResult Index(string returnUrl = null)
         {
             if(User.Identity.IsAuthenticated)
@@ -35,22 +33,35 @@ namespace YouthLocationBooking.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(LoginViewModel model)
         {
-            var userRepository = _unitOfWork.UsersRepository;
+            if (User.Identity.IsAuthenticated)
+                return RedirectToAction("Index", "Home");
 
             if (!ModelState.IsValid)
                 return View(model);
 
-            DbUser user = userRepository.GetByEmail(model.Email);
-            if (user == null)
+            DbUser user = null;
+            try
             {
-                ModelState.AddModelError(string.Empty, "Invalid Login Credentials");
-                return View(model);
+                var userRepository = _unitOfWork.UsersRepository;
+                user = userRepository.GetByEmail(model.Email);
+                if (user == null)
+                {
+                    TempData["AlertType"] = "danger";
+                    TempData["AlertMessage"] = "Ongeldige aanmeld gegevens.";
+                    return View(model);
+                }
+            }
+            catch
+            {
+                TempData["AlertType"] = "danger";
+                TempData["AlertMessage"] = "Er is iets fout gelopen tijdens het aanmelden!";
             }
 
             string hashedPassword = Security.Hash(model.Password);
             if (hashedPassword != user.Password)
             {
-                ModelState.AddModelError(string.Empty, "Invalid Login Credentials");
+                TempData["AlertType"] = "danger";
+                TempData["AlertMessage"] = "Ongeldige aanmeld gegevens.";
                 return View(model);
             }
 
@@ -61,20 +72,6 @@ namespace YouthLocationBooking.Web.Controllers
                 return RedirectToAction("Index", "Home");
             else
                 return Redirect(returnUrl);
-        }
-
-        #region IDispose
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (_unitOfWork != null)
-                {
-                    _unitOfWork.Dispose();
-                    _unitOfWork = null;
-                }
-            }
-            base.Dispose(disposing);
         }
         #endregion
     }

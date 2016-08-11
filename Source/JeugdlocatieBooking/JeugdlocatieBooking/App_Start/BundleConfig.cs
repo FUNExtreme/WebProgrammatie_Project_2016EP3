@@ -8,10 +8,10 @@ namespace YouthLocationBooking.Web
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            /*
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Assets/js/bootstrap.js"));
-            */
+            bundles.Add(new ScriptBundle("~/Assets/js/bundles/scripts").Include(
+                            "~/Assets/js/jquery-3.1.0.min.js",
+                            "~/Assets/js/bootstrap.min.js"
+                        ));
 
             var bundle = new StyleBundle("~/Assets/css/bundles/styles");
             bundle.Orderer = new AsIsBundleOrderer();

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace YouthLocationBooking.Web.Code.Auth
 {
-    public class AuthorizedUser : IPrincipal
+    public class AuthenticatedUser : IPrincipal
     {
         #region Properties
         public int Id { get; set; }

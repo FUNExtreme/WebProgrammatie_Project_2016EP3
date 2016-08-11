@@ -5,6 +5,7 @@ namespace YouthLocationBooking.Web.Controllers
 {
     public class ContactController : Controller
     {
+        #region Index
         public ActionResult Index()
         {
             return View();
@@ -19,5 +20,6 @@ namespace YouthLocationBooking.Web.Controllers
 
             return View();
         }
+        #endregion
     }
 }

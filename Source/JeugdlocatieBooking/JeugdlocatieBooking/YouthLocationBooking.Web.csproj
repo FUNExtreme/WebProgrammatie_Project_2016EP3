@@ -173,8 +173,9 @@
     <Compile Include="Areas\Panel\Controllers\SummaryController.cs" />
     <Compile Include="Areas\Panel\PanelAreaRegistration.cs" />
     <Compile Include="Code\AsIsBundleOrderer.cs" />
-    <Compile Include="Code\Auth\AuthorizedUser.cs" />
+    <Compile Include="Code\Auth\AuthenticatedUser.cs" />
     <Compile Include="Code\Auth\YLBAuthenticateAttribute.cs" />
+    <Compile Include="Code\UnitOfWorkControllerBase.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\FaqController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

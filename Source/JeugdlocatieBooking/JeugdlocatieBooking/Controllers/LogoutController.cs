@@ -5,10 +5,14 @@ namespace YouthLocationBooking.Web.Controllers
 {
     public class LogoutController : Controller
     {
+        #region Index
         public ActionResult Index()
         {
-            FormsAuthentication.SignOut();
+            if(User.Identity.IsAuthenticated)
+                FormsAuthentication.SignOut();
+
             return RedirectToAction("Index", "Home");
         }
+        #endregion
     }
 }

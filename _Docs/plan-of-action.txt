@@ -40,3 +40,4 @@
 
 TODO:
 	- Check all controllers for authorization checks
+	- Panel Summary Page

@@ -137,6 +137,15 @@ h1 {
     overflow: hidden;
 }
 
+.alert {
+    margin: 2rem 0;
+}
+
+.alert a.close {
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .page-header-container {
     position: relative;
 }
