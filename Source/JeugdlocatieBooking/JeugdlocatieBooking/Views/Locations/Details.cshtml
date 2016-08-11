@@ -7,7 +7,24 @@
 @model YouthLocationBooking.Data.ViewModel.Models.LocationBookingViewModel
 
 @section styles {
+    @Styles.Render("~/Assets/css/bundles/calender")
     @Styles.Render("~/Assets/css/main/locationsdetails.css")
+}
+
+@section scripts {
+    @Scripts.Render("~/Assets/js/bundles/calender")
+
+    <script>
+        $('.calender').clndr({
+            events: @(Html.Raw(ViewBag.CalenderEventArray)),
+            multiDayEvents: {
+                startDate: 'startDate',
+                endDate: 'endDate'
+            },
+            showAdjacentMonths: true,
+            adjacentDaysChangeMonth: false
+        });
+    </script>
 }
 
 @section navbreadcrumb {
@@ -111,6 +128,9 @@
         </div>
     </div>
     <aside class="col-md-3">
+        <div class="shadowbox">
+            <div class="calender"></div>
+        </div>
         <div class="shadowbox padding">
             <div class="location-booking">
                 <h5>Locatie Boeken</h5>

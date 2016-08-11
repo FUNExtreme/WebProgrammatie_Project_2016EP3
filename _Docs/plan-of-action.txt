@@ -4,7 +4,7 @@
 	* Login								(DONE, Stage 1)
 	* Register							(DONE, Stage 1)
 	* FAQ								(DONE, Stage 1)
-	* Partners							(DONE, Stage 1)
+	* Partners							(DONE, Stage 1) 
 	* Contact							(DONE, Stage 1) TODO: Add address and email addresses
 
 - Back-end
@@ -39,6 +39,5 @@
 - API									(Done, Stage 1) TODO: Write XML Documentation for Help Page
 
 TODO:
-	- Update new location to store one "banner" image
 	- Display banner image in overview
 	- Check all controllers for authorization checks

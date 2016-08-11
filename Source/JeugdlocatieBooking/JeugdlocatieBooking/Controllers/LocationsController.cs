@@ -81,6 +81,15 @@ namespace YouthLocationBooking.Web.Controllers
                     locationImagesPaths[x] = locationImagesPaths[x].Replace(HostingEnvironment.ApplicationPhysicalPath, "/");
             }
             ViewBag.LocationImagesPaths = locationImagesPaths;
+
+            string calenderEventArray = "[";
+            foreach(DbBooking booking in location.Bookings)
+            {
+                calenderEventArray += "{ startDate: '" + booking.StartDateTime.Date.ToString("yyyy-MM-dd") + "', endDate: '" + booking.EndDateTime.Date.ToString("yyyy-MM-dd") + "'},";
+            }
+            calenderEventArray += "]";
+            ViewBag.CalenderEventArray = calenderEventArray;
+
             return View();
         }
 

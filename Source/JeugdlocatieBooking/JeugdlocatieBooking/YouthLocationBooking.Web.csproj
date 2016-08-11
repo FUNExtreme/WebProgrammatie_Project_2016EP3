@@ -200,6 +200,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\calender\css\clndr.css" />
+    <Content Include="Assets\calender\images\calender-arw.png" />
+    <Content Include="Assets\calender\js\clndr.js" />
+    <Content Include="Assets\calender\js\jquery-1.11.1.min.js" />
+    <Content Include="Assets\calender\js\jquery.magnific-popup.js" />
+    <Content Include="Assets\calender\js\modernizr.custom.min.js" />
+    <Content Include="Assets\calender\js\moment-2.2.1.js" />
+    <Content Include="Assets\calender\js\site.js" />
+    <Content Include="Assets\calender\js\underscore-min.js" />
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\font-awesome.min.css" />
     <Content Include="Assets\css\forms.css" />

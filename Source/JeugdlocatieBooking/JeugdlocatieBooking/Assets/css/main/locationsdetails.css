@@ -57,3 +57,28 @@ ul.location-summary > li:last-child::after {
     max-width: 100%;
     max-height: 50rem;
 }
+
+/* CALENDER */
+.calender .clndr .clndr-table tr .day.today {
+    background-color: #fe7e07;
+}
+.calender .clndr .clndr-table tr .day.today.event {
+    color: white;
+    background-color: #d3d3d3;
+    border-radius: 0;
+}
+.calender .event {
+    background-color: #d3d3d3;
+}
+.calender .clndr .clndr-table tr .day .day-contents {
+    cursor: initial;
+}
+.clndr .clndr-controls {
+    background-color: #00cbff;
+}
+.clndr .clndr-controls .clndr-control-button .clndr-previous-button {
+    top: initial;
+}
+.clndr .clndr-controls .clndr-control-button .clndr-next-button {
+    top: 40%;
+}

@@ -1,4 +1,9 @@
-﻿.partner {
+﻿.api-reference h5 {
+    padding: 0;
+    line-height: 4rem;
+}
+
+.partner {
     position: relative;
     min-height: 19rem; /* For the thumbnail */
 }

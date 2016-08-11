@@ -192,6 +192,7 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
             string locationImagesBasePath = HostingEnvironment.MapPath("~/Resources/Location/" + dbLocation.Id + "/Images/");
             Directory.CreateDirectory(locationImagesBasePath);
 
+            string bannerImageFileName = null;
             foreach (var file in model.Images)
             {
                 if (file == null || file.ContentLength <= 0)
@@ -204,7 +205,13 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
                 string fileName = Path.GetFileName(file.FileName);
                 string filePath = Path.Combine(locationImagesBasePath, fileName);
                 file.SaveAs(filePath);
+
+                if (bannerImageFileName == null)
+                    bannerImageFileName = fileName;
             }
+
+            dbLocation.BannerImageFileName = bannerImageFileName;
+            locationsRepository.Update(dbLocation);
 
             return RedirectToAction("Details", "Locations", new { id = dbLocation.Id, Area = string.Empty });
         }
