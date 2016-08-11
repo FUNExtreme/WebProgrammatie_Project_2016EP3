@@ -1,11 +1,11 @@
-- General Layout						(DONE, Stage 2)
+- General Layout						(DONE)
 
 - Front-end							
-	* Login								(DONE, Stage 1)
-	* Register							(DONE, Stage 1)
-	* FAQ								(DONE, Stage 1)
-	* Partners							(DONE, Stage 1) 
-	* Contact							(DONE, Stage 1) TODO: Add address and email addresses
+	* Login								(DONE)
+	* Register							(DONE)
+	* FAQ								(DONE)
+	* Partners							(DONE) 
+	* Contact							(DONE)
 
 - Back-end
 	* Profile						

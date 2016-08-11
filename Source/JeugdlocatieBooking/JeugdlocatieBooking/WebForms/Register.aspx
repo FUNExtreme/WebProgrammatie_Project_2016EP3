@@ -16,56 +16,56 @@
             <div class="shadowbox">
                 <form runat="server">
                     <div class="form-group clearfix">
-                        <i class="fa fa-envelope"></i>
-                        <asp:Label CssClass="col-md-4 form-label" runat="server">First Name</asp:Label>
+                        <i class="fa fa-user"></i>
+                        <asp:Label CssClass="col-md-4 form-label" runat="server">Voornaam*</asp:Label>
                         <div class="col-md-8">
-                            <asp:TextBox id="_registerFirstName" CssClass="form-control" placeholder="First Name" MaxLength="100" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator CssClass="form-error" ControlToValidate="_registerFirstName" Text="Name is required!" Display="Dynamic" runat="server"/>
+                            <asp:TextBox id="_registerFirstName" CssClass="form-control" placeholder="Voornaam" MaxLength="100" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator CssClass="form-error" ControlToValidate="_registerFirstName" Text="Voornaam is verplicht!" Display="Dynamic" runat="server"/>
                             <asp:RegularExpressionValidator CssClass="form-error" Display="Dynamic" ControlToValidate="_registerFirstName" ValidationExpression = "^[\s\S]{1,100}$" runat="server" ErrorMessage="Minimum 1 and Maximum 100 characters required."></asp:RegularExpressionValidator>
                         </div>
                     </div>
 
                     <div class="form-group clearfix">
-                        <i class="fa fa-envelope"></i>
-                        <asp:Label CssClass="col-md-4 form-label" runat="server">Last Name</asp:Label>
+                        <i class="fa fa-user"></i>
+                        <asp:Label CssClass="col-md-4 form-label" runat="server">Achternaam*</asp:Label>
                         <div class="col-md-8">
-                            <asp:TextBox id="_registerLastName" CssClass="form-control" placeholder="Last Name" MaxLength="100" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator CssClass="form-error" ControlToValidate="_registerLastName" Text="Name is required!" Display="Dynamic" runat="server"/>
+                            <asp:TextBox id="_registerLastName" CssClass="form-control" placeholder="Achternaam" MaxLength="100" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator CssClass="form-error" ControlToValidate="_registerLastName" Text="Achternaam is verplicht!" Display="Dynamic" runat="server"/>
                             <asp:RegularExpressionValidator CssClass="form-error" Display="Dynamic" ControlToValidate="_registerLastName" ValidationExpression = "^[\s\S]{1,100}$" runat="server" ErrorMessage="Minimum 1 and Maximum 100 characters required."></asp:RegularExpressionValidator>
                         </div>
                     </div>
 
                     <div class="form-group clearfix">
-                        <i class="fa fa-envelope"></i>
-                        <asp:Label CssClass="col-md-4 form-label" runat="server">Phone Number</asp:Label>
+                        <i class="fa fa-phone"></i>
+                        <asp:Label CssClass="col-md-4 form-label" runat="server">Telefoonnummer*</asp:Label>
                         <div class="col-md-8">
-                            <asp:TextBox id="_registerPhoneNumber" CssClass="form-control" placeholder="Phone Number" MaxLength="100" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator CssClass="form-error" ControlToValidate="_registerPhoneNumber" Text="PHone number is required!" Display="Dynamic" runat="server"/>
+                            <asp:TextBox id="_registerPhoneNumber" CssClass="form-control" placeholder="Telefoonnummer" MaxLength="100" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator CssClass="form-error" ControlToValidate="_registerPhoneNumber" Text="Telefoonnummer is verplicht!" Display="Dynamic" runat="server"/>
                             <asp:RegularExpressionValidator CssClass="form-error" Display="Dynamic" ControlToValidate="_registerPhoneNumber" ValidationExpression = "^[\s\S]{1,100}$" runat="server" ErrorMessage="Minimum 1 and Maximum 100 characters required."></asp:RegularExpressionValidator>
                         </div>
                     </div>
 
                     <div class="form-group clearfix">
                         <i class="fa fa-envelope"></i>
-                        <asp:Label CssClass="col-md-4 form-label" runat="server">Email</asp:Label>
+                        <asp:Label CssClass="col-md-4 form-label" runat="server">Email*</asp:Label>
                         <div class="col-md-8">
-                            <asp:TextBox id="_registerEmail" CssClass="form-control" placeholder="Email Address" MaxLength="150" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator CssClass="form-error" ControlToValidate="_registerEmail" Text="Email is required!" Display="Dynamic" runat="server"/>
-                            <asp:RegularExpressionValidator CssClass="form-error" Display="Dynamic" runat="server" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="_registerEmail" ErrorMessage="Invalid Email Format" />
+                            <asp:TextBox id="_registerEmail" CssClass="form-control" placeholder="Email" MaxLength="150" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator CssClass="form-error" ControlToValidate="_registerEmail" Text="Email is verplicht!" Display="Dynamic" runat="server"/>
+                            <asp:RegularExpressionValidator CssClass="form-error" Display="Dynamic" runat="server" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="_registerEmail" ErrorMessage="Ongeldig email formaat" />
                         </div>
                     </div>
 
                     <div class="form-group clearfix">
-                        <i class="fa fa-envelope"></i>
-                        <asp:Label CssClass="col-md-4 form-label" runat="server">Password</asp:Label>
+                        <i class="fa fa-key"></i>
+                        <asp:Label CssClass="col-md-4 form-label" runat="server">Wachtwoord*</asp:Label>
                         <div class="col-md-8">
-                            <asp:TextBox id="_registerPassword" CssClass="form-control" type="password" placeholder="Password" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator CssClass="form-error" ControlToValidate="_registerPassword" Text="Password is required!" Display="Dynamic" runat="server"/>
+                            <asp:TextBox id="_registerPassword" CssClass="form-control" type="password" placeholder="Wachtwoord" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator CssClass="form-error" ControlToValidate="_registerPassword" Text="Wachtwoord is verplicht!" Display="Dynamic" runat="server"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <asp:Button id="registerSubmit" type="submit" class="button" Text="Register" runat="server" OnClick="registerSubmit_Click" />
+                        <asp:Button id="registerSubmit" type="submit" class="button" Text="Registreren" runat="server" OnClick="registerSubmit_Click" />
                     </div>
                 </form>
             </div>

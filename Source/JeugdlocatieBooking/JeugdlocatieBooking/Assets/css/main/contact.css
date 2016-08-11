@@ -1,8 +1,8 @@
-﻿.shadowbox {
-    padding: 4rem 0;
+﻿.sub-title.padding {
+    padding: 0;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
-
-form {
-    max-width: 45rem;
-    margin: 0 auto;
+.sub-title.padding:first-child {
+    margin-top: 0;
 }

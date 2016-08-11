@@ -4,11 +4,13 @@ namespace YouthLocationBooking.Data.ViewModel.Models
 {
     public class LoginViewModel
     {
-        [Required]
-        [EmailAddress]
+        [Display(Name = "Email")]
+        [Required(ErrorMessage = "Email is verplicht")]
+        [EmailAddress(ErrorMessage = "Ongeldig email formaat")]
         public string Email { get; set; }
 
-        [Required]
+        [Display(Name = "Wachtwoord")]
+        [Required(ErrorMessage = "Wachtwoord is verplicht")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }
