@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web.Hosting;
@@ -7,43 +8,38 @@ using YouthLocationBooking.Data.Database.Entities;
 using YouthLocationBooking.Data.Database.Mappings;
 using YouthLocationBooking.Data.Database.Repositories;
 using YouthLocationBooking.Data.ViewModel.Models;
+using YouthLocationBooking.Web.Code;
 using YouthLocationBooking.Web.Code.Auth;
 
 namespace YouthLocationBooking.Web.Areas.Panel.Controllers
 {
-    [YLBAuthenticateAttribute]
-    public class LocationsController : Controller
+    [YLBAuthenticate]
+    public class LocationsController : UnitOfWorkControllerBase
     {
-        #region Variables
-        private UnitOfWork _unitOfWork;
-        #endregion
-
         #region Constructor
         public LocationsController()
+            : base()
         {
-            _unitOfWork = new UnitOfWork();
         }
         #endregion
 
+        #region Index
         public ActionResult Index()
         {
             var locationsRepository = _unitOfWork.LocationsRepository;
-            var usersRepository = _unitOfWork.UsersRepository;
+            ViewBag.Locations = locationsRepository.GetAllByUserId(((AuthenticatedUser)User).Id);
 
-            ViewBag.Locations = locationsRepository.GetAllByUserId(usersRepository.GetByEmail(User.Identity.Name).Id);
             return View();
         }
+        #endregion
 
         #region New
         public ActionResult New()
         {
-            return RedirectToAction("NewStep1", "Locations");
+            return RedirectToActionPermanent("NewStep1");
         }
 
-        /// <summary>
-        /// General info
-        /// </summary>
-        /// <returns></returns>
+        #region New Step 1 - General Info
         public ActionResult NewStep1()
         {
             return View();
@@ -60,15 +56,13 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
 
             return RedirectToAction("NewStep2", "Locations");
         }
+        #endregion
 
-        /// <summary>
-        /// Address
-        /// </summary>
-        /// <returns></returns>
+        #region New Step 2 - Address
         public ActionResult NewStep2()
         {
-            if (TempData.Peek("NewLocationStepOneData") == null)
-                return RedirectToAction("New", "Locations");
+            if (!VerifyDataExists(step: 2))
+                return RedirectToAction("New");
 
             return View();
         }
@@ -77,8 +71,8 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult NewStep2(LocationNewAddressViewModel model)
         {
-            if (TempData.Peek("NewLocationStepOneData") == null)
-                return RedirectToAction("New", "Locations");
+            if (!VerifyDataExists(step: 2))
+                return RedirectToAction("New");
 
             if (!ModelState.IsValid)
                 return View(model);
@@ -87,58 +81,48 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
 
             return RedirectToAction("NewStep3", "Locations");
         }
+        #endregion
 
-        /// <summary>
-        /// Capabilities
-        /// </summary>
-        /// <returns></returns>
+        #region New Step 3 - Facilities
+        [NonAction]
+        public ActionResult NewStep3(LocationNewFacilitiesViewModel model = null)
+        {
+            var locationFacilitiesRepository = _unitOfWork.LocationFacilitiesRepository;
+            ViewBag.Facilities = locationFacilitiesRepository.GetAll();
+
+            return View();
+        }
+
         public ActionResult NewStep3()
         {
-            if (TempData.Peek("NewLocationStepOneData") == null)
-                return RedirectToAction("New", "Locations");
+            if (!VerifyDataExists(step: 3))
+                return RedirectToAction("New");
 
-            if (TempData.Peek("NewLocationStepTwoData") == null)
-                return RedirectToAction("New", "Locations");
-
-            var locationFacilitiesRepository = _unitOfWork.LocationFacilitiesRepository;
-            var facilities = locationFacilitiesRepository.GetAll();
-
-            ViewBag.Facilities = facilities;
-            return View();
+            return NewStep3();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult NewStep3(LocationNewFacilitiesViewModel model)
+        [ActionName("NewStep3")]
+        public ActionResult PostNewStep3(LocationNewFacilitiesViewModel model)
         {
-            if (TempData.Peek("NewLocationStepOneData") == null)
-                return RedirectToAction("New", "Locations");
-
-            if (TempData.Peek("NewLocationStepTwoData") == null)
-                return RedirectToAction("New", "Locations");
+            if (!VerifyDataExists(step: 3))
+                return RedirectToAction("New");
 
             if (!ModelState.IsValid)
-                return View(model);
+                return NewStep3(model);
 
             TempData["NewLocationStepThreeData"] = model;
 
             return RedirectToAction("NewStep4", "Locations");
         }
+        #endregion
 
-        /// <summary>
-        /// Pictures
-        /// </summary>
-        /// <returns></returns>
+        #region Step 4 - Pictures
         public ActionResult NewStep4()
         {
-            if (TempData.Peek("NewLocationStepOneData") == null)
-                return RedirectToAction("New", "Locations");
-
-            if (TempData.Peek("NewLocationStepTwoData") == null)
-                return RedirectToAction("New", "Locations");
-
-            if (TempData.Peek("NewLocationStepThreeData") == null)
-                return RedirectToAction("New", "Locations");
+            if (!VerifyDataExists(step: 4))
+                return RedirectToAction("New");
 
             return View();
         }
@@ -147,136 +131,157 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult NewStep4(LocationNewImagesViewModel model)
         {
+            if (!VerifyDataExists(step: 4))
+                return RedirectToAction("New");
+
             LocationNewGeneralViewModel generalData = (LocationNewGeneralViewModel)TempData["NewLocationStepOneData"];
-            if (generalData == null)
-                return RedirectToAction("New", "Locations");
-
             LocationNewAddressViewModel addressData = (LocationNewAddressViewModel)TempData["NewLocationStepTwoData"];
-            if (addressData == null)
-                return RedirectToAction("New", "Locations");
-
             LocationNewFacilitiesViewModel facilitiesData = (LocationNewFacilitiesViewModel)TempData["NewLocationStepThreeData"];
-            if (TempData.Peek("NewLocationStepThreeData") == null)
-                return RedirectToAction("New", "Locations");
 
             if (!ModelState.IsValid)
                 return View(model);
 
-            var locationsRepository = _unitOfWork.LocationsRepository;
-            var locationsFacilitiesRepository = _unitOfWork.LocationFacilitiesRepository;
-            var usersRepository = _unitOfWork.UsersRepository;
-
-            DbLocation dbLocation = new DbLocation();
-            dbLocation.Name = generalData.Name;
-            dbLocation.Description = generalData.Description;
-            dbLocation.Capacity = generalData.Capacity;
-            dbLocation.Organisation = generalData.Organisation;
-            dbLocation.PricePerDay = generalData.PricePerDay;
-            dbLocation.AddressCity = addressData.AddressCity;
-            dbLocation.AddressNumber = addressData.AddressNumber;
-            dbLocation.AddressPostalCode = addressData.AddressPostalCode;
-            dbLocation.AddressProvince = addressData.AddressProvince;
-            dbLocation.AddressStreet = addressData.AddressStreet;
-            dbLocation.CreatedByUserId = usersRepository.GetByEmail(User.Identity.Name).Id;
-
-            dbLocation.Facilities = facilitiesData.SelectedDatabaseIds.Select(x =>
+            try
             {
-                DbLocationFacility facility = new DbLocationFacility { Id = x };
-                locationsFacilitiesRepository.Attach(facility);
-                return facility;
-            }).ToList();
+                var locationsRepository = _unitOfWork.LocationsRepository;
+                var locationsFacilitiesRepository = _unitOfWork.LocationFacilitiesRepository;
 
-            // Save the location first because we want the location Id to store our images
-            locationsRepository.Insert(dbLocation);
+                DbLocation dbLocation = new DbLocation();
+                dbLocation.Name = generalData.Name;
+                dbLocation.Description = generalData.Description;
+                dbLocation.Capacity = generalData.Capacity;
+                dbLocation.Organisation = generalData.Organisation;
+                dbLocation.PricePerDay = generalData.PricePerDay;
+                dbLocation.AddressCity = addressData.AddressCity;
+                dbLocation.AddressNumber = addressData.AddressNumber;
+                dbLocation.AddressPostalCode = addressData.AddressPostalCode;
+                dbLocation.AddressProvince = addressData.AddressProvince;
+                dbLocation.AddressStreet = addressData.AddressStreet;
+                dbLocation.CreatedByUserId = ((AuthenticatedUser)User).Id;
 
-            string locationImagesBasePath = HostingEnvironment.MapPath("~/Resources/Location/" + dbLocation.Id + "/Images/");
-            Directory.CreateDirectory(locationImagesBasePath);
+                dbLocation.Facilities = facilitiesData.SelectedDatabaseIds.Select(x =>
+                {
+                    DbLocationFacility facility = new DbLocationFacility { Id = x };
+                    locationsFacilitiesRepository.Attach(facility);
+                    return facility;
+                }).ToList();
 
-            string bannerImageFileName = null;
-            foreach (var file in model.Images)
-            {
-                if (file == null || file.ContentLength <= 0)
-                    continue;
+                // Save the location first because we want the location Id to store our images
+                locationsRepository.Insert(dbLocation);
 
-                string fileExtension = Path.GetExtension(file.FileName).ToLower();
-                if (fileExtension != ".jpg" && fileExtension != ".jpeg" && fileExtension != ".png")
-                    continue;
+                string locationImagesBasePath = HostingEnvironment.MapPath("~/Resources/Location/" + dbLocation.Id + "/Images/");
+                Directory.CreateDirectory(locationImagesBasePath);
 
-                string fileName = Path.GetFileName(file.FileName);
-                string filePath = Path.Combine(locationImagesBasePath, fileName);
-                file.SaveAs(filePath);
+                string bannerImageFileName = null;
+                foreach (var file in model.Images)
+                {
+                    if (file == null || file.ContentLength <= 0)
+                        continue;
 
-                if (bannerImageFileName == null)
-                    bannerImageFileName = fileName;
+                    string fileExtension = Path.GetExtension(file.FileName).ToLower();
+                    if (fileExtension != ".jpg" && fileExtension != ".jpeg" && fileExtension != ".png")
+                        continue;
+
+                    string fileName = Path.GetFileName(file.FileName);
+                    string filePath = Path.Combine(locationImagesBasePath, fileName);
+                    file.SaveAs(filePath);
+
+                    if (bannerImageFileName == null)
+                        bannerImageFileName = fileName;
+                }
+
+                dbLocation.BannerImageFileName = bannerImageFileName;
+                locationsRepository.Update(dbLocation);
+
+                TempData["AlertType"] = "success";
+                TempData["AlertMessage"] = "De locatie is succesvol aangemaakt";
+
+                return RedirectToAction("Details", "Locations", new { id = dbLocation.Id, Area = string.Empty });
             }
+            catch
+            {
+                TempData["AlertType"] = "danger";
+                TempData["AlertMessage"] = "Er is iets fout gelopen tijdens het verwerken van de nieuwe locatie!";
 
-            dbLocation.BannerImageFileName = bannerImageFileName;
-            locationsRepository.Update(dbLocation);
+                // We've previously accessed our data, indicate that we want to keep it
+                TempData["NewLocationStepOneData"] = generalData;
+                TempData["NewLocationStepTwoData"] = addressData;
+                TempData["NewLocationStepThreeData"] = facilitiesData;
 
-            return RedirectToAction("Details", "Locations", new { id = dbLocation.Id, Area = string.Empty });
+                return View(model);
+            }
         }
+        #endregion
         #endregion
 
         #region Edit
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            var locationsRepository = _unitOfWork.LocationsRepository;
-
-            DbLocation location = locationsRepository.Get(id);
+            DbLocation location = GetLocationIfExistsAndUserHasAccess(id);
             if (location == null)
-                return RedirectToAction("Index", "Summary");
+                return RedirectToAction("Index");
+
+            ViewBag.Location = location;
+            ViewBag.LocationId = location.Id;
 
             LocationEditViewModel locationModel = location.ToLocationEditValidationModel();
-
-            ViewBag.LocationId = location.Id;
             return View(locationModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, LocationEditViewModel model)
+        [ActionName("Edit")]
+        public ActionResult EditPost(int id, LocationEditViewModel model)
         {
-            var locationsRepository = _unitOfWork.LocationsRepository;
+            try
+            {
+                DbLocation location = GetLocationIfExistsAndUserHasAccess(id);
+                if (location == null)
+                    return RedirectToAction("Index");
 
-            if (!ModelState.IsValid)
+                if (!ModelState.IsValid)
+                    return View(model);
+
+                if (location == null)
+                    return RedirectToAction("Index", "Summary");
+
+                LocationsRepository locationsRepository = _unitOfWork.LocationsRepository;
+                location.Name = model.Name;
+                location.Description = model.Description;
+                location.Organisation = model.Organisation;
+                location.PricePerDay = model.PricePerDay;
+                location.Capacity = model.Capacity;
+                location.AddressCity = model.AddressCity;
+                location.AddressNumber = model.AddressNumber;
+                location.AddressPostalCode = model.AddressPostalCode;
+                location.AddressProvince = model.AddressProvince;
+                location.AddressStreet = model.AddressStreet;
+                locationsRepository.Update(location);
+
+                TempData["AlertType"] = "success";
+                TempData["AlertMessage"] = "De aanpassingen zijn correct opgeslagen.";
+
+                return RedirectToAction("Edit", new { id = id });
+            }
+            catch
+            {
+                TempData["AlertType"] = "danger";
+                TempData["AlertMessage"] = "Er is iets fout gelopen tijdens het verwerken van de aanpassingen!";
+
                 return View(model);
-
-            DbLocation location = locationsRepository.Get(id);
-            if (location == null)
-                return RedirectToAction("Index", "Summary");
-
-            location.Name = model.Name;
-            location.Description = model.Description;
-            location.Organisation = model.Organisation;
-            location.PricePerDay = model.PricePerDay;
-            location.Capacity = model.Capacity;
-            location.AddressCity = model.AddressCity;
-            location.AddressNumber = model.AddressNumber;
-            location.AddressPostalCode = model.AddressPostalCode;
-            location.AddressProvince = model.AddressProvince;
-            location.AddressStreet = model.AddressStreet;
-            locationsRepository.Update(location);
-
-            ViewBag.LocationId = location.Id;
-            return View(model);
+            }
         }
         #endregion
 
         #region Remove
-        public ActionResult Remove(int id)
+        public ActionResult Remove(int? id)
         {
-            var locationsRepository = _unitOfWork.LocationsRepository;
-            var usersRepository = _unitOfWork.UsersRepository;
-
-            DbLocation location = locationsRepository.Get(id);
+            DbLocation location = GetLocationIfExistsAndUserHasAccess(id);
             if (location == null)
-                return RedirectToAction("Index", "Locations");
-
-            DbUser user = usersRepository.GetByEmail(User.Identity.Name);
-            if(user.Id != location.CreatedByUserId)
-                return RedirectToAction("Index", "Locations");
+                return RedirectToAction("Index");
 
             ViewBag.Location = location;
+
             return View();
         }
 
@@ -284,19 +289,26 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
         [ActionName("Remove")]
         public ActionResult RemovePost(int id)
         {
-            var locationsRepository = _unitOfWork.LocationsRepository;
-            var usersRepository = _unitOfWork.UsersRepository;
+            try
+            {
+                DbLocation location = GetLocationIfExistsAndUserHasAccess(id);
+                if (location == null)
+                    return RedirectToAction("Index");
 
-            DbLocation location = locationsRepository.Get(id);
-            if (location == null)
-                return RedirectToAction("Index", "Locations");
+                LocationsRepository locationsRepository = _unitOfWork.LocationsRepository;
+                locationsRepository.Remove(location);
 
-            DbUser user = usersRepository.GetByEmail(User.Identity.Name);
-            if (user.Id != location.CreatedByUserId)
-                return RedirectToAction("Index", "Locations");
+                TempData["AlertType"] = "success";
+                TempData["AlertMessage"] = "De locatie is verwijderd!";
+            }
+            catch
+            {
+                TempData["AlertType"] = "danger";
+                TempData["AlertMessage"] = "Er is iets fout gelopen tijdens het verwijderen van de locatie!";
 
-            locationsRepository.Remove(location);
-            // TODO success message
+                return View();
+            }
+            
             return RedirectToAction("Index", "Locations");
         }
         #endregion
@@ -304,15 +316,16 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
         #region Reviews
         public ActionResult Review(int id)
         {
-            var locationsRepository = _unitOfWork.LocationsRepository;
-            var usersRepository = _unitOfWork.UsersRepository;
-
-            DbLocation location = locationsRepository.Get(id);
-            ViewBag.Location = location;
+            DbLocation location = GetLocationIfExists(id);
             if (location == null)
                 return RedirectToAction("Index", "Reviews");
 
-            // TODO Verify that the current user has a booking there
+            BookingsRepository bookingsRepository = _unitOfWork.BookingsRepository;
+            IList<DbBooking> booking = bookingsRepository.GetAllByUserIdAndLocationId(((AuthenticatedUser)User).Id, id);
+            if (booking == null || !booking.Any())
+                return RedirectToAction("Index", "Reviews");
+
+            ViewBag.Location = location;
              
             return View();
         }
@@ -321,59 +334,107 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Review(int id, LocationReviewViewModel model)
         {
-            var locationsRepository = _unitOfWork.LocationsRepository;
-            var usersRepository = _unitOfWork.UsersRepository;
-            var locationReviewsRepository = _unitOfWork.LocationReviewsRepository;
+            try
+            {
+                DbLocation location = GetLocationIfExists(id);
+                if (location == null)
+                    return RedirectToAction("Index", "Reviews");
 
-            DbLocation location = locationsRepository.Get(id);
-            ViewBag.Location = location;
-            if (location == null)
+                AuthenticatedUser user = (AuthenticatedUser)User;
+
+                BookingsRepository bookingsRepository = _unitOfWork.BookingsRepository;
+                IList<DbBooking> booking = bookingsRepository.GetAllByUserIdAndLocationId(user.Id, id);
+                if (booking == null || !booking.Any())
+                    return RedirectToAction("Index", "Reviews");
+
+                if (!ModelState.IsValid)
+                    return View(model);
+
+                LocationReviewsRepository locationReviewsRepository = _unitOfWork.LocationReviewsRepository;
+                DbLocationReview review = new DbLocationReview();
+                review.DateTime = DateTime.Now;
+                review.LocationId = id;
+                review.Review = model.Review;
+                review.ReviewerName = user.FirstName + " " + user.LastName[0];
+                review.Title = model.Title;
+                // We insert our review before storing the facility ratings so we have a review id
+                locationReviewsRepository.Insert(review);
+
+                review.FacilityRatings = model.FacilityRatings.Select(x =>
+                {
+                    return new DbLocationFacilityRating
+                    {
+                        FacilityId = x.Id,
+                        Rating = x.Rating,
+                        ReviewId = review.Id
+                    };
+                }).ToList();
+                locationReviewsRepository.Update(review);
+
+                TempData["AlertType"] = "success";
+                TempData["AlertMessage"] = "De review is succesvol toegevoegd aan de locatie.";
+
                 return RedirectToAction("Index", "Reviews");
-
-            DbUser user = usersRepository.GetByEmail(User.Identity.Name);
-            // TODO Verify that the current user has a booking there
-
-            if (!ModelState.IsValid)
-                return View(model);
-
-            DbLocationReview review = new DbLocationReview();
-            review.DateTime = DateTime.Now;
-            review.LocationId = id;
-            review.Review = model.Review;
-            review.ReviewerName = user.FirstName + " " + user.LastName[0];
-            review.Title = model.Title;
-            // We insert our review before storing the facility ratings so we have a review id
-            locationReviewsRepository.Insert(review);
-
-            review.FacilityRatings = model.FacilityRatings.Select(x =>
-            {
-                return new DbLocationFacilityRating
-                {
-                    FacilityId = x.Id,
-                    Rating = x.Rating,
-                    ReviewId = review.Id
-                };
-            }).ToList();
-            locationReviewsRepository.Update(review);
-
-            // TODO success message
-            return RedirectToAction("Index", "Reviews");
-        }
-        #endregion
-
-        #region Dispose
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (_unitOfWork != null)
-                {
-                    _unitOfWork.Dispose();
-                    _unitOfWork = null;
-                }
             }
-            base.Dispose(disposing);
+            catch
+            {
+                TempData["AlertType"] = "danger";
+                TempData["AlertMessage"] = "Er is iets fout gelopen tijdens het verwerken van de review!";
+
+                return View(model);
+            }
         }
         #endregion
+
+        private DbLocation GetLocationIfExists(int? id)
+        {
+            if (id == null)
+                return null;
+
+            var locationsRepository = _unitOfWork.LocationsRepository;
+            DbLocation location = locationsRepository.Get((int)id);
+            if (location == null)
+                return null;
+
+            return location;
+        }
+
+        private DbLocation GetLocationIfExistsAndUserHasAccess(int? id)
+        {
+            DbLocation location = GetLocationIfExists(id);
+            if (location == null)
+                return null;
+
+            if (location.CreatedByUserId == ((AuthenticatedUser)User).Id)
+                return null;
+
+            return location;
+        }
+
+        private bool VerifyDataExists(int step = 1)
+        {
+            if (step < 2 || step > 4)
+                return true;
+
+            if(step >= 2)
+            {
+                if (TempData.Peek("NewLocationStepOneData") == null)
+                    return false;
+            }
+
+            if (step >= 3)
+            {
+                if (TempData.Peek("NewLocationStepTwoData") == null)
+                    return false;
+            }
+
+            if (step >= 4)
+            {
+                if (TempData.Peek("NewLocationStepThreeData") == null)
+                    return false;
+            }
+
+            return true;
+        }
     }
 }

@@ -8,7 +8,7 @@ using YouthLocationBooking.Web.Code.Auth;
 
 namespace YouthLocationBooking.Web.Areas.Panel.Controllers
 {
-    [YLBAuthenticateAttribute]
+    [YLBAuthenticate]
     public class RequestsController : Controller
     {
         #region Variables
@@ -22,57 +22,98 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
         }
         #endregion
 
+        #region Index
         public ActionResult Index()
         {
-            var usersRepository = _unitOfWork.UsersRepository;
-            var bookingsRepository = _unitOfWork.BookingsRepository;
+            try
+            {
+                var bookingsRepository = _unitOfWork.BookingsRepository;
+                IList<DbBooking> bookings = bookingsRepository.GetAllByLocationUserId(((AuthenticatedUser)User).Id);
+                ViewBag.PendingBookings = bookings.Where(x => x.StatusId == (int)EBookingStatus.Pending);
+                ViewBag.AcceptedBookings = bookings.Where(x => x.StatusId == (int)EBookingStatus.Accepted);
+                ViewBag.DeniedOrCancelledBookings = bookings.Where(x => x.StatusId == (int)EBookingStatus.Denied || x.StatusId == (int)EBookingStatus.Cancelled);
+            }
+            catch
+            {
+                TempData["AlertType"] = "danger";
+                TempData["AlertMessage"] = "Er is iets fout gelopen tijdens het ophalen van de verzoeken!";
 
-            IList<DbBooking> bookings = bookingsRepository.GetAllByLocationUserId(usersRepository.GetByEmail(User.Identity.Name).Id);
-            ViewBag.PendingBookings = bookings.Where(x => x.StatusId == (int)EBookingStatus.Pending);
-            ViewBag.AcceptedBookings = bookings.Where(x => x.StatusId == (int)EBookingStatus.Accepted);
-            ViewBag.DeniedOrCancelledBookings = bookings.Where(x => x.StatusId == (int)EBookingStatus.Denied || x.StatusId == (int)EBookingStatus.Cancelled);
+                return RedirectToAction("Index", "Summary");
+            }
+
             return View();
         }
+        #endregion
 
         #region Deny
-        public ActionResult Deny(int id)
+        public ActionResult Deny(int? id)
         {
+            if (id == null)
+                return RedirectToAction("Index");
+
             return View();
         }
 
         [HttpPost]
         [ActionName("Deny")]
-        public ActionResult DenyPost(int id)
+        public ActionResult DenyPost(int? id)
         {
-            return VerifyOwnershipAndSetStatus(id, EBookingStatus.Denied);
+            try
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertMessage"] = "Het verzoek werd afgewezen!";
+
+                return SetStatusIfExistsAndUserIsOwner(id, EBookingStatus.Denied);
+            }
+            catch
+            {
+                TempData["AlertType"] = "danger";
+                TempData["AlertMessage"] = "Er is iets fout gelopen tijdens het verwerken van het verzoek!";
+
+                return RedirectToAction("Index");
+            }
         }
         #endregion
 
         #region Accept
-        public ActionResult Accept(int id)
+        public ActionResult Accept(int? id)
         {
-            return VerifyOwnershipAndSetStatus(id, EBookingStatus.Accepted);
+            try
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertMessage"] = "Het verzoek werd geaccepteerd!";
+
+                return SetStatusIfExistsAndUserIsOwner(id, EBookingStatus.Accepted);
+            }
+            catch
+            {
+                TempData["AlertType"] = "danger";
+                TempData["AlertMessage"] = "Er is iets fout gelopen tijdens het verwerken van het verzoek!";
+
+                return RedirectToAction("Index");
+            }
         }
         #endregion
 
         #region Helper
-        private ActionResult VerifyOwnershipAndSetStatus(int bookingId, EBookingStatus status)
+        private ActionResult SetStatusIfExistsAndUserIsOwner(int? bookingId, EBookingStatus status)
         {
-            var usersRepository = _unitOfWork.UsersRepository;
+            if (bookingId == null)
+                return RedirectToAction("Index");
+
             var bookingsRepository = _unitOfWork.BookingsRepository;
-
-            DbBooking booking = bookingsRepository.Get(bookingId);
+            DbBooking booking = bookingsRepository.Get((int)bookingId);
             if (booking == null)
-                return RedirectToAction("Index", "Requests");
+                return RedirectToAction("Index");
 
-            DbUser user = usersRepository.GetByEmail(User.Identity.Name);
+            AuthenticatedUser user = (AuthenticatedUser)User;
             if (user.Id != booking.Location.CreatedByUserId)
-                return RedirectToAction("Index", "Requests");
+                return RedirectToAction("Index");
 
             booking.StatusId = (int)status;
             bookingsRepository.Update(booking);
-            // TODO message
-            return RedirectToAction("Index", "Requests");
+
+            return RedirectToAction("Index");
         }
         #endregion
     }

@@ -60,7 +60,7 @@ namespace YouthLocationBooking.Web.Controllers
 
         #region Details
         [NonAction]
-        private ActionResult Details(int id, LocationBookingViewModel model)
+        private ActionResult Details(int id, LocationBookingViewModel model = null)
         {
             var locationsRepository = _unitOfWork.LocationsRepository;
             DbLocation location = locationsRepository.Get(id);
@@ -97,7 +97,7 @@ namespace YouthLocationBooking.Web.Controllers
             if (!DoesLocationExist(id))
                 return RedirectToAction("Index");
 
-            return Details((int)id, null);
+            return Details((int)id);
         }
 
         [YLBAuthenticate]

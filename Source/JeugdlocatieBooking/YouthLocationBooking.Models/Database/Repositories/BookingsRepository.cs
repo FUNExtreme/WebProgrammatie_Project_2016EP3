@@ -25,6 +25,11 @@ namespace YouthLocationBooking.Data.Database.Repositories
             return _dbSet.Where(x => x.UserId == userId).ToList();
         }
 
+        public IList<DbBooking> GetAllByUserIdAndLocationId(int userId, int locationId)
+        {
+            return _dbSet.Where(x => x.UserId == userId && x.LocationId == locationId).ToList();
+        }
+
         public IList<DbBooking> GetAfterEndDateByUserId(int userId)
         {
             var currentDate = DateTime.Now;
