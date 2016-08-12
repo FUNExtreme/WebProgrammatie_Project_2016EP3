@@ -38,7 +38,7 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
                 TempData["AlertType"] = "danger";
                 TempData["AlertMessage"] = "Er is iets fout gelopen tijdens het ophalen van de verzoeken!";
 
-                return RedirectToAction("Index", "Summary");
+                return RedirectToAction("Index", "Home");
             }
 
             return View();

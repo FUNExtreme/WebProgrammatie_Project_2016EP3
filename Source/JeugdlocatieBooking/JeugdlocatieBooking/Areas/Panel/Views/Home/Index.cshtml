@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Welkom";
+}
+
+<div class="row page">
+    <div class="shadowbox">
+        <h5>Welkom op het beheer paneel!</h5>
+    </div>
+    <div>
+        <div class="col-md-6 no-padding-left">
+            <div class="shadowbox padding">
+                <h5>Voor huurders</h5>
+                <div>
+                    Bekijk gehuurde locaties en schrijf reviews
+                </div>
+                <a href="@Url.Action("Index", "Summary")" class="button">Gehuurde locaties</a>
+                <a href="@Url.Action("Index", "Reviews")" class="button">Reviews</a>
+            </div>
+        </div>
+        <div class="col-md-6 no-padding-right">
+            <div class="shadowbox padding">
+                <h5>Voor verhuurders</h5>
+                <div>
+                    Beheer uw verhuurde locaties en huur verzoeken
+                </div>
+                <a href="@Url.Action("Index", "Requests")" class="button">Verzoeken</a>
+                <a href="@Url.Action("Index", "Locations")" class="button">Mijn Locaties</a>
+            </div>
+        </div>
+    </div>
+</div>
+

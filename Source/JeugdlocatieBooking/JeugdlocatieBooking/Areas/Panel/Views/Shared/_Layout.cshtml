@@ -31,15 +31,10 @@
             <nav class="header-nav">
                 <div class="container">
                     <div class="row">
-                        <a href="@Url.Action("Index", "Home", new { Area = string.Empty })" class="col-md-2">
+                        <a href="@Url.Action("Index", "Home")" class="col-md-2">
                             <h1>JeugdLocatie Booking</h1>
                         </a>
-                        <ul class="col-md-2">
-                            <li>
-                                <a href="@Url.Action("Index", "Summary", new { Area = "Panel" })">Overzicht</a>
-                            </li>
-                        </ul>
-                        <div class="col-md-8 pull-right">
+                        <div class="col-md-10 pull-right">
                             <div class="pull-right">
                                 <div class="sub-title">Verhuurder</div>
                                 <ul>
@@ -54,6 +49,9 @@
                             <div class="pull-right">
                                 <div class="sub-title">Huurder</div>
                                 <ul>
+                                    <li>
+                                        <a href="@Url.Action("Index", "Summary", new { Area = "Panel" })">Overzicht</a>
+                                    </li>
                                     <li>
                                         <a href="@Url.Action("Index", "Reviews", new { Area = "Panel" })">Reviews</a>
                                     </li>

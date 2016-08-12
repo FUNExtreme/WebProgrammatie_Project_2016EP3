@@ -243,7 +243,7 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
                     return View(model);
 
                 if (location == null)
-                    return RedirectToAction("Index", "Summary");
+                    return RedirectToAction("Index", "Home");
 
                 LocationsRepository locationsRepository = _unitOfWork.LocationsRepository;
                 location.Name = model.Name;
