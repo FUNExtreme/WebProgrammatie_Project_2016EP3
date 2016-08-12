@@ -1,3 +1,37 @@
 ﻿@{
     ViewBag.Title = "Overzicht";
 }
+
+@using YouthLocationBooking.Data.Database.Entities
+
+<div class="page">
+    <div class="row">
+        @if (((IEnumerable<DbBooking>)ViewBag.Bookings).Count() > 0)
+        {
+            foreach (DbBooking booking in ViewBag.Bookings)
+            {
+                <div class="shadowbox padding booking">
+                    <div class="booking-info">
+                        <div class="booking-header clearfix">
+                            <h5 class="pull-left booking-title">
+                                @booking.Location.Name
+                            </h5>
+                            <span class="pull-right booking-jobtitle">
+                                Status: @booking.Status.Name
+                            </span>
+                        </div>
+                        <div class="booking-details">Je wil deze locatie huren van @booking.StartDateTime tot @booking.EndDateTime in naam van @booking.Organisation</div>
+                        <div><a href="@Url.Action("Details", "Locations", new { id = booking.LocationId, Area = string.Empty })" class="button">Bekijk Locatie</a></div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="no-results">
+                <img src="~/Assets/img/sad-face-no-results.png" />
+                <span>Je hebt nog geen locaties gehuurd</span>
+            </div>
+        }
+    </div>
+</div>
