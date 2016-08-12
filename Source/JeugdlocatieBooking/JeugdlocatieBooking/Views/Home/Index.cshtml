@@ -1,1 +1,41 @@
-﻿
+﻿@{
+    ViewBag.Title = "JeugdLocatie Booking";
+}
+
+<div class="row page">
+    <div class="shadowbox padding">
+        <h5>Wat is JeugdLocatie Booking?</h5>
+        <blockquote>
+            Voor jeugdwerkers is het vaak niet makkelijk om geschikte en beschikbare locatie te vinden voor hun activiteiten (kampen, cursussen, vormingsdagen, …) alsook deze zelf te kunnen aanbieden. Jeugdlocatie-booking.be is opgericht om zich toe te spitsen op dit specifiek probleem. 
+        </blockquote>
+    </div>
+    <div>
+        <div class="col-md-4 no-padding-left">
+            <div class="shadowbox padding">
+                <h5>Locatie zoeken</h5>
+                <div>
+                    Zoek en vergelijk een grote diversiteit aan locaties
+                </div>
+                <a href="@Url.Action("Index", "Locations")" class="button">Zoeken</a>
+            </div>
+        </div>
+        <div class="col-md-4 no-padding-left">
+            <div class="shadowbox padding">
+                <h5>Locatie aanbieden</h5>
+                <div>
+                    Voeg een nieuwe locatie toe aan onze database
+                </div>
+                <a href="@Url.Action("New", "Locations", new { Area = "Panel" })" class="button">Nieuwe Locatie</a>
+            </div>
+        </div>
+        <div class="col-md-4 no-padding-left">
+            <div class="shadowbox padding">
+                <h5>Beheer</h5>
+                <div>
+                    Beheer uw gehuurde of verhuurde locaties en plaats reviews
+                </div>
+                <a href="@Url.Action("Index", "Summary", new { Area = "Panel" })" class="button">Ga naar beheer</a>
+            </div>
+        </div>
+    </div>
+</div>

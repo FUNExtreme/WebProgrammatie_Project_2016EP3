@@ -34,10 +34,9 @@
 
 - Front-end
 	* Add Reviews to Location Details	(Done, Stage 1) TODO: Layout
-	* Homepage							(WIP)
+	* Homepage							(Done, Stage 1) TODO: Finish Layout & Design
 
 - API									(Done, Stage 1) TODO: Write XML Documentation for Help Page
 
 TODO:
-	- Homepage
 	- Panel Summary Page

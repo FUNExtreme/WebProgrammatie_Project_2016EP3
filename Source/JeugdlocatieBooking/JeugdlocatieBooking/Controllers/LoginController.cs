@@ -55,6 +55,7 @@ namespace YouthLocationBooking.Web.Controllers
             {
                 TempData["AlertType"] = "danger";
                 TempData["AlertMessage"] = "Er is iets fout gelopen tijdens het aanmelden!";
+                return View(model);
             }
 
             string hashedPassword = Security.Hash(model.Password);

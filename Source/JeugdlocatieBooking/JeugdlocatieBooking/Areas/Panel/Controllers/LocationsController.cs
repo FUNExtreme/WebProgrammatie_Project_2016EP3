@@ -405,7 +405,7 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
             if (location == null)
                 return null;
 
-            if (location.CreatedByUserId == ((AuthenticatedUser)User).Id)
+            if (location.CreatedByUserId != ((AuthenticatedUser)User).Id)
                 return null;
 
             return location;
