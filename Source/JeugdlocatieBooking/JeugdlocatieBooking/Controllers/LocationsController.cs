@@ -1,7 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Hosting;
 using System.Web.Mvc;
+using X.PagedList;
+using YouthLocationBooking.Data.API;
+using YouthLocationBooking.Data.API.Entities.ThirdParty;
+using YouthLocationBooking.Data.API.Mappings;
 using YouthLocationBooking.Data.Database.Entities;
 using YouthLocationBooking.Data.Database.Enumerations;
 using YouthLocationBooking.Data.ViewModel.Models;
@@ -21,7 +27,7 @@ namespace YouthLocationBooking.Web.Controllers
         #endregion
 
         #region Index
-        public ActionResult Index(LocationFilterViewModel model = null, int page = 1)
+        public async Task<ActionResult> Index(LocationFilterViewModel model = null, int page = 1)
         {
             int itemsPerPage = 10;
 
@@ -30,20 +36,51 @@ namespace YouthLocationBooking.Web.Controllers
 
             var locationsRepository = _unitOfWork.LocationsRepository;
 
+            IPagedList<DbLocation> pagedLocations = null;
+            LocationFilter filter = new LocationFilter();
             if (model == null)
-                ViewBag.PagedLocations = locationsRepository.GetAllPaged(page, itemsPerPage);
+                pagedLocations = locationsRepository.GetAllPaged(page, itemsPerPage);
             else
             {
-                LocationFilter filter = new LocationFilter();
                 filter.Name = model.Name;
                 filter.CityOrPostcode = model.CityOrPostcode;
                 filter.From = model.From;
                 filter.MinCapacity = model.MinCapacity;
                 filter.Province = model.Province;
                 filter.To = model.To;
-                ViewBag.PagedLocations = locationsRepository.GetAllPagedWithFilter(page, itemsPerPage, filter);
+                pagedLocations = locationsRepository.GetAllPagedWithFilter(page, itemsPerPage, filter);
+            }
+            ViewBag.PagedLocations = pagedLocations;
+
+            // If there are no results, we try to get some from our partners
+            ViewBag.PagedThirdPartyLocations = new List<ThirdPartyLocationOverviewViewModel>();
+            if (pagedLocations.TotalItemCount == 0)
+            {
+                List<ThirdPartyLocationOverviewViewModel> thirdPartyLocations = new List<ThirdPartyLocationOverviewViewModel>();
+
+                ApiClient apiClient = new ApiClient();
+                // Tim
+                string urlTim = GenerateUrlWithFilter("http://jeugdlocatie.timvettori.ikdoeict.net/Api/SharedLocations/", filter, cityOrPostCodeParamName: "location", fromParamName: "startDateTime", toParamName: "endDateTime");
+                IEnumerable<ApiLocationTim> locationsTim = await apiClient.Request<IEnumerable<ApiLocationTim>>(urlTim);
+                IEnumerable<ThirdPartyLocationOverviewViewModel> mappedLocationsTim = locationsTim.Select(x =>
+                {
+                    return x.ToViewModel();
+                });
+                thirdPartyLocations.AddRange(mappedLocationsTim);
+
+                // Diede
+                string urlDiede = GenerateUrlWithFilter("http://diedeseldeslachts.ikdoeict.net/api/LocationSearchAPI/Get", filter, cityOrPostCodeParamName: "cityOrPostcode", fromParamName: "startDateTime", toParamName: "endDateTime");
+                IEnumerable <ApiLocationDiede> locationsDiede = await apiClient.Request<IEnumerable<ApiLocationDiede>>(urlDiede);
+                IEnumerable<ThirdPartyLocationOverviewViewModel> mappedLocationsDiede = locationsDiede.Select(x =>
+                {
+                    return x.ToViewModel();
+                });
+                thirdPartyLocations.AddRange(mappedLocationsDiede);
+
+                ViewBag.PagedThirdPartyLocations = thirdPartyLocations.ToPagedList(page, itemsPerPage);
             }
 
+            model.Page = page;
             return View(model);
         }
 
@@ -151,6 +188,21 @@ namespace YouthLocationBooking.Web.Controllers
                 return false;
 
             return true;
+        }
+
+        private string GenerateUrlWithFilter(string baseUrl, LocationFilter filter, string cityOrPostCodeParamName, string fromParamName, string toParamName)
+        {
+            string fullUrl = baseUrl + "?";
+
+            if(filter.CityOrPostcode != null)
+                fullUrl += cityOrPostCodeParamName + "=" + filter.CityOrPostcode + "&";
+            if(filter.From != null)
+                fullUrl += fromParamName + "=" + filter.From + "&";
+            if(filter.To != null)
+                fullUrl += toParamName + "=" + filter.To + "&";
+
+            fullUrl = fullUrl.Remove(fullUrl.Length - 1, 1);
+            return fullUrl;
         }
     }
 }

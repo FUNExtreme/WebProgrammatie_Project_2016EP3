@@ -12,7 +12,7 @@
 		+ Edit							(DONE, Stage 1)
 		+ Change Password				(DONE, Stage 1)
 	* Add new Locations					(DONE, Stage 1) TODO: Layout
-	* Summary => My Locations?			(SKIPPED, TODO)
+	* Summary => My Locations?			(Done, Stage 1) TODO: Layout
 
 - Front-end
 	* Location Search					(DONE, Stage 1) TODO: Make sure the period filter works properly
@@ -37,6 +37,3 @@
 	* Homepage							(Done, Stage 1) TODO: Finish Layout & Design
 
 - API									(Done, Stage 1) TODO: Write XML Documentation for Help Page
-
-TODO:
-	- Panel Summary Page

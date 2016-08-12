@@ -14,5 +14,8 @@ namespace YouthLocationBooking.Data.ViewModel.Models
         public int? MinCapacity { get; set; }
         public string CityOrPostcode { get; set; }
         public string Province { get; set; }
+
+        // Used for pagination
+        public int Page { get; set; }
     }
 }

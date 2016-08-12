@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace YouthLocationBooking.Data.API.Entities
+﻿namespace YouthLocationBooking.Data.API.Entities
 {
     public class ApiLocation
     {

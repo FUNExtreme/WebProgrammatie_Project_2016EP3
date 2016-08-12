@@ -2,7 +2,8 @@
     ViewBag.Title = "Zoek Locaties";
 }
 
-@using YouthLocationBooking.Data.Database.Entities;
+@using YouthLocationBooking.Data.Database.Entities
+@using YouthLocationBooking.Data.ViewModel.Models
 @using X.PagedList;
 @using X.PagedList.Mvc;
 
@@ -114,7 +115,67 @@
 
             <div class="shadowbox padding clearfix">
                 <div class="pull-right">
-                    @Html.PagedListPager((IPagedList)ViewBag.PagedLocations, page => Url.Action("Index", "Locations", new { page }))
+                    @Html.PagedListPager((IPagedList)ViewBag.PagedLocations, page => { Model.Page = page; return Url.Action("Index", "Locations", Model); })
+                </div>
+            </div>
+        }
+        else if (((IEnumerable<ThirdPartyLocationOverviewViewModel>)ViewBag.PagedThirdPartyLocations).Any())
+        {
+            foreach (ThirdPartyLocationOverviewViewModel viewmodel in ViewBag.PagedThirdPartyLocations)
+            {
+                <div class="shadowbox clearfix">
+                    <div class="locations-search-result clearfix">
+                        @if (viewmodel.BannerImageUrl == null)
+                    {
+                            <div class="result-thumbnail" style="background-image:url(../../Assets/img/no_image.png);"></div>
+                        }
+                        else
+                        {
+                            <div class="result-thumbnail" style="background-image:url(@(viewmodel.BannerImageUrl));"></div>
+                        }
+                        <div class="result-info">
+                            <div class="result-header clearfix">
+                                <div class="pull-left">
+                                    <h5 class="result-title">
+                                        @viewmodel.Name
+                                    </h5>
+                                    <ul class="result-summary">
+                                        @if (viewmodel.Capacity != null)
+                                        {
+                                            <li>Max @(viewmodel.Capacity) Personen</li>
+                                        }
+                                        <li>@viewmodel.AddressCity</li>
+                                    </ul>
+                                </div>
+                                @if (viewmodel.PricePerDay != null)
+                                {
+                                    <div class="pull-right">
+                                        <span class="result-price">
+                                            &euro;@(viewmodel.PricePerDay)/dag
+                                        </span>
+                                    </div>
+                                }
+                            </div>
+                            <div class="result-facilities">
+                                <div class="row">
+                                    <div class="cold-md-8">
+                                    </div>
+                                    <div class="col-md-4 pull-right">
+                                        <a href="@viewmodel.DetailsPageUrl" class="button">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="result-origin">
+                        Resultaat van partner: <a href="@(viewmodel.OriginSiteUrl)">@viewmodel.OriginSiteUrl</a>
+                    </div>
+                </div>
+            }
+
+            <div class="shadowbox padding clearfix">
+                <div class="pull-right">
+                    @Html.PagedListPager((IPagedList)ViewBag.PagedThirdPartyLocations, page => { Model.Page = page; return Url.Action("Index", "Locations", Model); })
                 </div>
             </div>
         }
