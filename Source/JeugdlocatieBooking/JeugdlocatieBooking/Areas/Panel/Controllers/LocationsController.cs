@@ -85,7 +85,7 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
 
         #region New Step 3 - Facilities
         [NonAction]
-        public ActionResult NewStep3(LocationNewFacilitiesViewModel model = null)
+        public ActionResult NewStep3(LocationNewFacilitiesViewModel model)
         {
             var locationFacilitiesRepository = _unitOfWork.LocationFacilitiesRepository;
             ViewBag.Facilities = locationFacilitiesRepository.GetAll();
@@ -93,12 +93,13 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
             return View();
         }
 
-        public ActionResult NewStep3()
+        [ActionName("NewStep3")]
+        public ActionResult GetNewStep3()
         {
             if (!VerifyDataExists(step: 3))
                 return RedirectToAction("New");
 
-            return NewStep3();
+            return NewStep3(null);
         }
 
         [HttpPost]
