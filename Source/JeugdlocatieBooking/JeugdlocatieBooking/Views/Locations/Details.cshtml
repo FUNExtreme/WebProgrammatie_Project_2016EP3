@@ -122,11 +122,15 @@
                                 {
                                     <div class="review-facility-rating">
                                         <div>@facilityRating.Facility.Name</div>
-                                        <div>@(facilityRating.Rating*5) / 5</div>
+                                        <div class="stars-sprite rating-stars-@(facilityRating.Rating*5)"></div>
                                     </div>
                                 }
                             </div>
                         }
+                    }
+                    else
+                    {
+                        <div>Er zijn nog geen beoordelingen voor deze locatie.</div>
                     }
                 </div>
             </div>

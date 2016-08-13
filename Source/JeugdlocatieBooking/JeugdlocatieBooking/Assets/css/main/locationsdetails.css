@@ -74,6 +74,34 @@ ul.location-summary > li:last-child::after {
 
 .review-facility-rating {
     margin: .5rem 0;
+    margin-left: 1rem;
+}
+
+.stars-sprite {
+    background-image: url(../../img/rating-stars-sprite.png);
+    background-repeat: no-repeat;
+    width: 84px;
+    height: 15px;
+}
+
+.rating-stars-1 {
+    background-position-y: -30px;
+}
+
+.rating-stars-2 {
+    background-position-y: -60px;
+}
+
+.rating-stars-3 {
+    background-position-y: -90px;
+}
+
+.rating-stars-4 {
+    background-position-y: -120px;
+}
+
+.rating-stars-5 {
+    background-position-y: -150px;
 }
 
 /* CALENDER */

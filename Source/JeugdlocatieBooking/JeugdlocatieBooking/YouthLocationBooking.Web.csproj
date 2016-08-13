@@ -241,6 +241,7 @@
     <Content Include="Assets\img\no_image.png" />
     <Content Include="Assets\img\partner_logo_diede.png" />
     <Content Include="Assets\img\partner_logo_tim.png" />
+    <Content Include="Assets\img\rating-stars-sprite.png" />
     <Content Include="Assets\img\sad-face-no-results.png" />
     <Content Include="Assets\js\panel\locationsreview.js" />
     <Content Include="Assets\js\panel\requests.js" />
