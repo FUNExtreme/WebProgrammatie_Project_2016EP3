@@ -1,0 +1,28 @@
+﻿.facility-rating {
+    overflow: hidden;
+    display: inline-block;
+    font-size: 0;
+    position: relative;
+}
+.rating-input {
+    float: right;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    margin: 0 0 0 -16px;
+    opacity: 0;
+}
+.facility-rating:hover .rating-star:hover,
+.facility-rating:hover .rating-star:hover ~ .rating-star,
+.facility-rating .rating-star.checked,
+.facility-rating .rating-star.checked ~ .rating-star {
+    background-position: 0 0;
+}
+.rating-star {
+    position: relative;
+    float: right;
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url('http://kubyshkin.ru/samples/star-rating/star.png') 0 -16px;
+}

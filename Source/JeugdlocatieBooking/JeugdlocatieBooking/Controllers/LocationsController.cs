@@ -104,7 +104,7 @@ namespace YouthLocationBooking.Web.Controllers
             ViewBag.Location = location;
 
             var locationReviewsRepository = _unitOfWork.LocationReviewsRepository;
-            IList<DbLocationReview> locationReviews = locationReviewsRepository.GetByLocationId(id);
+            IList<DbLocationReview> locationReviews = locationReviewsRepository.GetAllByLocationId(id);
             ViewBag.LocationReviews = locationReviews;
 
             string locationImagesDirectoryPath = HostingEnvironment.MapPath("~/Resources/Location/" + location.Id + "/Images/");

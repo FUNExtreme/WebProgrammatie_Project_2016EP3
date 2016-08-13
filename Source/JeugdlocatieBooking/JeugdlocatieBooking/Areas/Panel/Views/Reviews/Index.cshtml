@@ -4,6 +4,10 @@
 
 @using YouthLocationBooking.Data.Database.Entities
 
+@section styles {
+    @Styles.Render("~/Assets/css/panel/reviews.css")
+}
+
 @section navbreadcrumb {
     <li><a href="@Url.Action("Index", "Home", new { Area = "Panel" })">Panel</a></li>
     <li class="active">@ViewBag.Title</li>
@@ -22,10 +26,21 @@
                                 @booking.Location.Name
                             </h5>
                         </div>
-                        <div class="booking-details">Je hebt deze locatie gehuurd van @booking.StartDateTime tot @booking.EndDateTime in naam van @booking.Organisation</div>
-                        <div class="review-operations clearfix">
-                            <a href="@Url.Action("Review", "Locations", new { id = booking.Location.Id })" class="button">Schrijf een Review</a>
-                        </div>
+                        <div class="booking-details">Je hebt deze locatie gehuurd van @booking.StartDateTime.ToString("dd MMMM yyyy") tot @booking.EndDateTime.Date.ToString("dd MMMM yyyy") in naam van @booking.Organisation</div>
+                        @if (((IEnumerable<DbLocationReview>)ViewBag.LocationReviews).Any(x => x.LocationId == booking.LocationId))
+                        {
+                            <div class="strong">U hebt reeds een review geschreven voor deze locatie.</div>
+                            <div class="review-operations clearfix">
+                                <a href="@Url.Action("Details", "Locations", new { Area = string.Empty, id = booking.Location.Id })" class="button">Bekijk Locatie &amp; Review</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="review-operations clearfix">
+                                <a href="@Url.Action("Review", "Locations", new { id = booking.Location.Id })" class="button">Schrijf een Review</a>
+                                <a href="@Url.Action("Details", "Locations", new { Area = string.Empty, id = booking.Location.Id })" class="button">Bekijk Locatie</a>
+                            </div>
+                        }
                     </div>
                 </div>
             }

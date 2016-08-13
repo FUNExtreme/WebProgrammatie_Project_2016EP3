@@ -58,6 +58,24 @@ ul.location-summary > li:last-child::after {
     max-height: 50rem;
 }
 
+/* REVIEW */
+.review-info li {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.review-review {
+    margin: 1rem 0; 
+}
+
+.review-facility-ratings {
+    margin-top: 1rem;
+}
+
+.review-facility-rating {
+    margin: .5rem 0;
+}
+
 /* CALENDER */
 .calender .clndr .clndr-table tr .day.today {
     background-color: #fe7e07;

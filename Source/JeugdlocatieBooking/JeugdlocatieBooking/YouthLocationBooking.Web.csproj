@@ -225,9 +225,11 @@
     <Content Include="Assets\css\panel\locations.css" />
     <Content Include="Assets\css\panel\locationsedit.css" />
     <Content Include="Assets\css\panel\locationsnew.css" />
+    <Content Include="Assets\css\panel\locationsreview.css" />
     <Content Include="Assets\css\panel\profilechangepassword.css" />
     <Content Include="Assets\css\panel\profileedit.css" />
     <Content Include="Assets\css\panel\requests.css" />
+    <Content Include="Assets\css\panel\reviews.css" />
     <Content Include="Assets\css\panel\styles.css" />
     <Content Include="Assets\css\main\partners.css" />
     <Content Include="Assets\css\reset.css" />
@@ -240,6 +242,7 @@
     <Content Include="Assets\img\partner_logo_diede.png" />
     <Content Include="Assets\img\partner_logo_tim.png" />
     <Content Include="Assets\img\sad-face-no-results.png" />
+    <Content Include="Assets\js\panel\locationsreview.js" />
     <Content Include="Assets\js\panel\requests.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

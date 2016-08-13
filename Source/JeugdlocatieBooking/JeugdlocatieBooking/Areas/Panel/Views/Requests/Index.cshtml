@@ -37,10 +37,10 @@
                                     @booking.Location.Name
                                 </h5>
                                 <span class="pull-right booking-jobtitle">
-                                    In de wacht
+                                    Status: In de wacht
                                 </span>
                             </div>
-                            <div class="booking-details">@booking.User.FirstName @booking.User.LastName wil deze locatie huren van @booking.StartDateTime tot @booking.EndDateTime in naam van @booking.Organisation</div>
+                            <div class="booking-details">@booking.User.FirstName @booking.User.LastName wil deze locatie huren van @booking.StartDateTime.ToString("dd MMMM yyyy") tot @booking.EndDateTime.ToString("dd MMMM yyyy") in naam van @booking.Organisation</div>
                             <div class="request-operations clearfix">
                                 <div class="col-md-6"><a href="@Url.Action("Accept", "Requests", new { id = booking.Id })" class="button">Aanvaarden</a></div>
                                 <div class="col-md-6"><a href="@Url.Action("Deny", "Requests", new { id = booking.Id })" class="button button-red">Afwijzen</a></div>
@@ -70,10 +70,10 @@
                                     @booking.Location.Name
                                 </h5>
                                 <span class="pull-right booking-jobtitle">
-                                    Aanvaard
+                                    Status: Aanvaard
                                 </span>
                             </div>
-                            <div class="booking-details">@booking.User.FirstName @booking.User.LastName huurt deze locatie van @booking.StartDateTime tot @booking.EndDateTime in naam van @booking.Organisation</div>
+                            <div class="booking-details">@booking.User.FirstName @booking.User.LastName huurt deze locatie van @booking.StartDateTime.ToString("dd MMMM yyyy") tot @booking.EndDateTime.ToString("dd MMMM yyyy") in naam van @booking.Organisation</div>
                         </div>
                     </div>
                 }
@@ -101,19 +101,15 @@
                                 <span class="pull-right booking-jobtitle">
                                     @if(booking.StatusId == (int)EBookingStatus.Denied)
                                     {
-                                        <span>Afgewezen</span>
+                                        <span>Status: Afgewezen</span>
                                     }
                                     else if (booking.StatusId == (int)EBookingStatus.Cancelled)
                                     {
-                                        <span>Geannuleerd</span>
+                                        <span>Status: Geannuleerd</span>
                                     }
                                 </span>
                             </div>
-                            <div class="booking-details">@booking.User.FirstName @booking.User.LastName wou deze locatie huren van @booking.StartDateTime tot @booking.EndDateTime in naam van @booking.Organisation</div>
-                            <div class="request-operations clearfix">
-                                <div class="col-md-6"><a href="@Url.Action("Accept", "Requests", new { id = booking.Id })" class="button">Aanvaarden</a></div>
-                                <div class="col-md-6"><a href="@Url.Action("Deny", "Requests", new { id = booking.Id })" class="button button-red">Afwijzen</a></div>
-                            </div>
+                            <div class="booking-details">@booking.User.FirstName @booking.User.LastName wou deze locatie huren van @booking.StartDateTime.ToString("dd MMMM yyyy") tot @booking.EndDateTime.ToString("dd MMMM yyyy") in naam van @booking.Organisation</div>
                         </div>
                     </div>
                 }

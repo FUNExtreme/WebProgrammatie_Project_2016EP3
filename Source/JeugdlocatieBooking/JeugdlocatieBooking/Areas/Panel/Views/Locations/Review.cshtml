@@ -1,15 +1,23 @@
 ﻿@{
-    ViewBag.Title = "Review Schrijven";
+    ViewBag.Title = ViewBag.Location.Name + " Review";
 }
 
 @using YouthLocationBooking.Data.Database.Entities
 
 @model YouthLocationBooking.Data.ViewModel.Models.LocationReviewViewModel
 
+@section styles {
+    @Styles.Render("~/Assets/css/panel/locationsreview.css")
+}
+
+@section scripts {
+    @Scripts.Render("~/Assets/js/panel/locationsreview.js")
+}
+
 @section navbreadcrumb {
     <li><a href="@Url.Action("Index", "Home", new { Area = "Panel" })">Panel</a></li>
 <li><a href="@Url.Action("Index", "Reviews", new { Area = "Panel" })">Reviews</a></li>
-    <li class="active">@ViewBag.Title</li>
+    <li class="active">Review Schrijven</li>
 }
 
 <div class="page">
@@ -19,35 +27,57 @@
             {
                 @Html.ValidationSummary(true)
                 @Html.AntiForgeryToken()
-                <div class="form-group row clearfix">
-                    <i class="fa fa-envelope"></i>
-                    @Html.LabelFor(m => m.Title, new { @class = "col-md-4 form-label" })
-                    <div class="col-md-8">
-                        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Name" })
-                        @Html.ValidationMessageFor(m => m.Title, null, new { @class = "form-error" })
+                <div class="col-md-8">
+                    <div class="sub-title">Algemeen</div>
+                    <div class="form-group row clearfix">
+                        <i class="fa fa-envelope"></i>
+                        @Html.LabelFor(m => m.Title, new { @class = "col-md-4 form-label" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Name" })
+                            @Html.ValidationMessageFor(m => m.Title, null, new { @class = "form-error" })
+                        </div>
+                    </div>
+                    <div class="form-group row clearfix">
+                        <i class="fa fa-envelope"></i>
+                        @Html.LabelFor(m => m.Review, new { @class = "col-md-4 form-label" })
+                        <div class="col-md-8">
+                            @Html.TextAreaFor(m => m.Review, new { @class = "form-control", placeholder = "Message" })
+                            @Html.ValidationMessageFor(m => m.Review, null, new { @class = "form-error" })
+                        </div>
                     </div>
                 </div>
-                <div class="form-group row clearfix">
-                    <i class="fa fa-envelope"></i>
-                    @Html.LabelFor(m => m.Review, new { @class = "col-md-4 form-label" })
-                    <div class="col-md-8">
-                        @Html.TextAreaFor(m => m.Review, new { @class = "form-control", placeholder = "Message" })
-                        @Html.ValidationMessageFor(m => m.Review, null, new { @class = "form-error" })
-                    </div>
-                </div>
-
-                {
+                <div class="col-md-3 pull-right">
+                @{
+                    <div class="sub-title">Faciliteiten Beoordeling</div>
                     int x = 0;
                     foreach (DbLocationFacility facility in ViewBag.Location.Facilities)
                     {
-                        <div class="col-md-4 form-group clearfix">
-                            <div class="sub-title">@facility.Name</div>
+                        <div class="form-group clearfix">
+                            <div>@facility.Name</div>
                             @Html.HiddenFor(m => m.FacilityRatings[x].Id, new { @Value = facility.Id })
-                            @Html.TextBoxFor(m => m.FacilityRatings[x].Rating)
+
+                            <div class="facility-rating">
+                                <label class="rating-star">
+                                    @Html.RadioButtonFor(m => m.FacilityRatings[x].Rating, 1, new { @class = "rating-input" })
+                                </label>
+                                <label class="rating-star">
+                                    @Html.RadioButtonFor(m => m.FacilityRatings[x].Rating, 0.8, new { @class = "rating-input" })
+                                </label>
+                                <label class="rating-star">
+                                    @Html.RadioButtonFor(m => m.FacilityRatings[x].Rating, 0.6, new { @class = "rating-input" })
+                                </label>
+                                <label class="rating-star">
+                                    @Html.RadioButtonFor(m => m.FacilityRatings[x].Rating, 0.4, new { @class = "rating-input" })
+                                </label>
+                                <label class="rating-star">
+                                    @Html.RadioButtonFor(m => m.FacilityRatings[x].Rating, 0.2, new { @class = "rating-input" })
+                                </label>
+                            </div>
                         </div>
                         x++;
                     }
                 }
+                </div>
 
                 <div class="form-group">
                     <input type="submit" value="Submit" class="button" />

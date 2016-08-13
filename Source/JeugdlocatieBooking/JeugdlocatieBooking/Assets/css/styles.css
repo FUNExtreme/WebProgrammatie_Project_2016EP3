@@ -76,6 +76,10 @@ a {
     color: #999;
 }
 
+.strong {
+    font-weight: bold;
+}
+
 /* TODO REWORK BUTTON STYLES */
 .button {
     background: transparent;

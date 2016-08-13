@@ -12,28 +12,28 @@
 		+ Edit							(DONE, Stage 1)
 		+ Change Password				(DONE, Stage 1)
 	* Add new Locations					(DONE, Stage 1) TODO: Layout
-	* Summary => My Locations?			(Done, Stage 1) TODO: Layout
+	* Summary							(DONE, Stage 1) TODO: Layout
 
 - Front-end
-	* Location Search					(DONE, Stage 1) TODO: Make sure the period filter works properly
-	* Location Detail					(DONE, Stage 1)
+	* Location Search					(DONE)
+	* Location Detail					(DONE)
 
 - Back-end
-	* Location Edit						(DONE, Stage 1)
+	* Location Edit						(DONE, Stage 1) TODO: Add all fields <- FUCK THAT
 
 - Front-end
-	* Location Booking					(Done, Stage 1) TODO: Check if location is still available for that period
+	* Location Booking					(DONE, Stage 1) TODO: Check if location is still available for that period
 
 - Back-end
-	* Rent Requests Approval			(Done, Stage 1)
+	* Rent Requests Approval			(DONE)
 	* My Locations					
-		+ Overview						(DONE, Stage 1)
-		+ Remove Confirmation			(DONE, Stage 1)
-		+ Link to Edit					(DONE, Stage 1)
-	* Reviews							(DONE, Stage 1) TODO: Layout
+		+ Overview						(DONE)
+		+ Remove Confirmation			(DONE)
+		+ Link to Edit					(DONE)
+	* Reviews							(DONE)
 
 - Front-end
-	* Add Reviews to Location Details	(Done, Stage 1) TODO: Layout
-	* Homepage							(Done, Stage 1) TODO: Finish Layout & Design
+	* Add Reviews to Location Details	(DONE)
+	* Homepage							(DONE, Stage 1) TODO: Layout
 
-- API									(Done, Stage 1) TODO: Write XML Documentation for Help Page
+- API									(DONE, Stage 1) TODO: Write XML Documentation for Help Page

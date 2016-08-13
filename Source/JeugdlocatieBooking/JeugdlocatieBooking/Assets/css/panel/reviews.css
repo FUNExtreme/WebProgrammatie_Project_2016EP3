@@ -1,0 +1,11 @@
+﻿.booking-details {
+    margin-bottom: 1rem;
+}
+
+.review-operations {
+    margin-top: 1rem;
+}
+
+.review-operations > * {
+    margin-right: 2rem;
+}

@@ -110,15 +110,20 @@
                     {
                         foreach (DbLocationReview review in ViewBag.LocationReviews)
                         {
-                            <div class="sub-title">@review.Title</div>
-                            <div>@review.Review</div>
+                            <div class="strong">@review.Title</div>
+                            <ul class="review-info">
+                                <li>@review.User.FirstName @review.User.LastName[0]</li>
+                                <li>@review.DateTime</li>
+                            </ul>
+                            <div class="review-review">@review.Review</div>
 
-                            <div class="sub-title">Faciliteiten</div>
-                            <div class="col-md-3 no-padding-right">
+                            <div class="review-facility-ratings">
                                 @foreach (DbLocationFacilityRating facilityRating in review.FacilityRatings)
                                 {
-                                    <span>@facilityRating.Facility.Name</span>
-                                    <span>@facilityRating.Rating</span>
+                                    <div class="review-facility-rating">
+                                        <div>@facilityRating.Facility.Name</div>
+                                        <div>@(facilityRating.Rating*5) / 5</div>
+                                    </div>
                                 }
                             </div>
                         }

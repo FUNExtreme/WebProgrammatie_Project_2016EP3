@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web.Hosting;
 using System.Web.Mvc;
+using YouthLocationBooking.Business.Logic.Extensions;
 using YouthLocationBooking.Data.Database.Entities;
 using YouthLocationBooking.Data.Database.Mappings;
 using YouthLocationBooking.Data.Database.Repositories;
@@ -315,29 +316,29 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
         #endregion
 
         #region Reviews
-        public ActionResult Review(int id)
+        [ActionName("Review")]
+        public ActionResult GetReview(int id)
         {
             DbLocation location = GetLocationIfExists(id);
+            ViewBag.Location = location;
             if (location == null)
                 return RedirectToAction("Index", "Reviews");
 
-            BookingsRepository bookingsRepository = _unitOfWork.BookingsRepository;
-            IList<DbBooking> booking = bookingsRepository.GetAllByUserIdAndLocationId(((AuthenticatedUser)User).Id, id);
-            if (booking == null || !booking.Any())
+            if (!IsUserAllowedToWriteReviewForLocation(id))
                 return RedirectToAction("Index", "Reviews");
 
-            ViewBag.Location = location;
-             
             return View();
         }
 
+        [ActionName("Review")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Review(int id, LocationReviewViewModel model)
+        public ActionResult PostReview(int id, LocationReviewViewModel model)
         {
             try
             {
                 DbLocation location = GetLocationIfExists(id);
+                ViewBag.Location = location;
                 if (location == null)
                     return RedirectToAction("Index", "Reviews");
 
@@ -356,7 +357,7 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
                 review.DateTime = DateTime.Now;
                 review.LocationId = id;
                 review.Review = model.Review;
-                review.ReviewerName = user.FirstName + " " + user.LastName[0];
+                review.UserId = user.Id;
                 review.Title = model.Title;
                 // We insert our review before storing the facility ratings so we have a review id
                 locationReviewsRepository.Insert(review);
@@ -366,7 +367,7 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
                     return new DbLocationFacilityRating
                     {
                         FacilityId = x.Id,
-                        Rating = x.Rating,
+                        Rating = MathEx.Clamp(x.Rating, 0, 1),
                         ReviewId = review.Id
                     };
                 }).ToList();
@@ -410,6 +411,21 @@ namespace YouthLocationBooking.Web.Areas.Panel.Controllers
                 return null;
 
             return location;
+        }
+
+        private bool IsUserAllowedToWriteReviewForLocation(int locationId)
+        {
+            BookingsRepository bookingsRepository = _unitOfWork.BookingsRepository;
+            IList<DbBooking> booking = bookingsRepository.GetAllByUserIdAndLocationId(((AuthenticatedUser)User).Id, locationId);
+            if (booking == null || !booking.Any())
+                return false;
+
+            LocationReviewsRepository locationReviewsRepository = _unitOfWork.LocationReviewsRepository;
+            DbLocationReview review = locationReviewsRepository.GetByUserIdAndLocationId(((AuthenticatedUser)User).Id, locationId);
+            if (review != null)
+                return false;
+
+            return true;
         }
 
         private bool VerifyDataExists(int step = 1)
