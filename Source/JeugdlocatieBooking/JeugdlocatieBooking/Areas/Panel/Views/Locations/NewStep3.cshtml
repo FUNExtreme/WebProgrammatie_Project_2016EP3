@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "New Location";
+    ViewBag.Title = "Nieuwe Locatie - Faciliteiten";
 }
 
 @using YouthLocationBooking.Data.Database.Entities
@@ -20,10 +20,11 @@
         <div class="shadowbox padding">
             @using (Html.BeginForm("NewStep3", "Locations", FormMethod.Post))
             {
-                @Html.ValidationSummary(true)
+                <div class="sub-title">Faciliteiten</div>
+
+                @Html.ValidationSummary(true, "", new { @class = "form-error" })
                 @Html.AntiForgeryToken()
                 <div class="form-group clearfix">
-                    @Html.LabelFor(m => m.SelectedDatabaseIds, new { @class = "form-label" })
                     @foreach (DbLocationFacility facility in ViewBag.Facilities)
                     {
                         <div class="col-md-4 form-group clearfix">

@@ -5,8 +5,13 @@ namespace YouthLocationBooking.Data.ViewModel.Models
 {
     public class LocationReviewViewModel
     {
-        [Required]
+        [Display(Name = "Titel")]
+        [Required(ErrorMessage = "Titel is verplicht")]
+        [StringLength(100, ErrorMessage = "Titel mag maximaal 100 karakters lang zijn")]
         public string Title { get; set; }
+
+        [Display(Name = "Review")]
+        [StringLength(255, ErrorMessage = "Review mag maximaal 255 karakters lang zijn")]
         public string Review { get; set; }
 
         public IList<LocationFacilityReviewViewModel> FacilityRatings { get; set; }

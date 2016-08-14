@@ -9,20 +9,21 @@
 
 - Back-end
 	* Profile						
-		+ Edit							(DONE, Stage 1)
-		+ Change Password				(DONE, Stage 1)
-	* Add new Locations					(DONE, Stage 1) TODO: Layout
+		+ Edit							(DONE)
+		+ Change Password				(DONE)
+	* Add new Locations					(DONE)
 	* Summary							(DONE, Stage 1) TODO: Layout
 
 - Front-end
 	* Location Search					(DONE)
+		+ Implement 2 APIs				(DONE)
 	* Location Detail					(DONE)
 
 - Back-end
 	* Location Edit						(DONE, Stage 1) TODO: Add all fields <- FUCK THAT
 
 - Front-end
-	* Location Booking					(DONE, Stage 1) TODO: Check if location is still available for that period
+	* Location Booking					(DONE)
 
 - Back-end
 	* Rent Requests Approval			(DONE)
@@ -36,4 +37,4 @@
 	* Add Reviews to Location Details	(DONE)
 	* Homepage							(DONE, Stage 1) TODO: Layout
 
-- API									(DONE, Stage 1) TODO: Write XML Documentation for Help Page
+- API									(DONE)

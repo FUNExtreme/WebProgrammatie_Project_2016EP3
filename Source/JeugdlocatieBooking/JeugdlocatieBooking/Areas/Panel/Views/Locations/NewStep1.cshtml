@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "New Location";
+    ViewBag.Title = "Nieuwe Locatie - Algemeen";
 }
 
 @model YouthLocationBooking.Data.ViewModel.Models.LocationNewGeneralViewModel
@@ -18,7 +18,9 @@
         <div class="shadowbox padding">
             @using (Html.BeginForm("NewStep1", "Locations", FormMethod.Post))
             {
-                @Html.ValidationSummary(true)
+                <div class="sub-title">Algemeen</div>
+
+                @Html.ValidationSummary(true, "", new { @class = "form-error" })
                 @Html.AntiForgeryToken()
                 <div class="form-group clearfix">
                     <i class="fa fa-envelope"></i>

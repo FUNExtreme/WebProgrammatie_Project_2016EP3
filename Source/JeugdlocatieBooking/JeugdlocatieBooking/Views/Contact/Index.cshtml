@@ -20,7 +20,7 @@
                 <div class="sub-title">Contactformulier</div>
                 @using (Html.BeginForm("Index", "Contact", FormMethod.Post))
                 {
-                    @Html.ValidationSummary(true)
+                    @Html.ValidationSummary(true, "", new { @class = "form-error" })
                     @Html.AntiForgeryToken()
                     <div class="form-group clearfix">
                         <i class="fa fa-user"></i>

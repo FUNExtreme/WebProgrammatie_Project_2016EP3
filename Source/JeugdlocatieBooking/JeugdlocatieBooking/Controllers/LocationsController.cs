@@ -138,8 +138,9 @@ namespace YouthLocationBooking.Web.Controllers
         }
 
         [YLBAuthenticate]
-        [HttpPost]
         [ActionName("Details")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult PostDetails(int? id, LocationBookingViewModel model)
         {
             if (!DoesLocationExist(id))
@@ -151,9 +152,18 @@ namespace YouthLocationBooking.Web.Controllers
             if (!ModelState.IsValid)
                 return Details((int)id, model);
 
+            // Only allow booking if the location is not yet booked during this period
+            var bookingsRepository = _unitOfWork.BookingsRepository;
+            bool isAlreadyBooked = bookingsRepository.IsLocationBookedDuringPeriod((int)id, model.From, model.To);
+            if(isAlreadyBooked)
+            {
+                ModelState.AddModelError(string.Empty, "Locatie is al geboekt in deze periode");
+                return Details((int)id, model);
+            }
+
             try
             {
-                var bookingsRepository = _unitOfWork.BookingsRepository;
+                
                 DbBooking booking = new DbBooking();
                 booking.LocationId = (int)id;
                 booking.Organisation = model.Organisation;

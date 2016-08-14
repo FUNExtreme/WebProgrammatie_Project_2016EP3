@@ -137,14 +137,13 @@
         </div>
     </div>
     <aside class="col-md-3">
-        <div class="shadowbox">
-            <div class="calender"></div>
-        </div>
         <div class="shadowbox padding">
             <div class="location-booking">
                 <h5>Locatie Boeken</h5>
                 @using (Html.BeginForm("Details", "Locations", FormMethod.Post, new { id = ViewBag.Location.Id }))
                 {
+                    @Html.ValidationSummary(true, "", new { @class = "form-error" })
+                    @Html.AntiForgeryToken()
                     <div>
                         @Html.TextBoxFor(m => m.From, "{0:yyyy-MM-dd}", new { @class = "form-control", placeholder = "Van", onfocus = "(this.type='date')", onblur = "(this.type='text')" })
                         @Html.ValidationMessageFor(m => m.From, null, new { @class = "form-error" })
@@ -160,6 +159,9 @@
                     <input type="submit" value="Boeken" class="button" />
                 }
             </div>
+        </div>
+        <div class="shadowbox">
+            <div class="calender"></div>
         </div>
     </aside>
 </div>

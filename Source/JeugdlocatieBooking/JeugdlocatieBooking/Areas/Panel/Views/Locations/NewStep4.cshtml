@@ -1,8 +1,6 @@
 ﻿@{
-    ViewBag.Title = "New Location";
+    ViewBag.Title = "Nieuwe Locatie - Foto's";
 }
-
-@using YouthLocationBooking.Data.Database.Entities
 
 @section styles {
     @Styles.Render("~/Assets/css/panel/locationsnew.css")
@@ -20,16 +18,17 @@
         <div class="shadowbox padding">
             @using (Html.BeginForm("NewStep4", "Locations", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
-                @Html.ValidationSummary(true)
+                <div class="sub-title">Foto's</div>
+
+                @Html.ValidationSummary(true, "", new { @class = "form-error" })
                 @Html.AntiForgeryToken()
                 <div class="form-group clearfix">
-                    @Html.LabelFor(m => m.Images, new { @class = "form-label" })
                     @Html.TextBoxFor(m => m.Images, new { type="file", multiple="true" })
                     @Html.ValidationMessageFor(m => m.Images, null, new { @class = "form-error" })
                 </div>
 
                 <div class="form-group">
-                    <input type="submit" value="Volgende Stap" class="button" />
+                    <input type="submit" value="Submit" class="button" />
                 </div>
             }
         </div>

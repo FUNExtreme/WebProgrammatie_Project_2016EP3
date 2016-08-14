@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace YouthLocationBooking.Data.Database.Entities
 {
@@ -8,6 +9,7 @@ namespace YouthLocationBooking.Data.Database.Entities
         public DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }
         public int StatusId { get; set; }
+        [MaxLength(100)]
         public string Organisation { get; set; }
         public int? UserId { get; set; }
         public int LocationId { get; set; }

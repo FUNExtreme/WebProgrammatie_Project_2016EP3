@@ -18,7 +18,7 @@
         <div class="shadowbox padding">
             @using (Html.BeginForm("Edit", "Locations", FormMethod.Post, new { id = ViewBag.LocationId }))
             {
-                @Html.ValidationSummary(true)
+                @Html.ValidationSummary(true, "", new { @class = "form-error" })
                 @Html.AntiForgeryToken()
                 <div class="form-group clearfix">
                     <i class="fa fa-envelope"></i>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using YouthLocationBooking.Data.Database.Entities;
+using YouthLocationBooking.Data.Database.Enumerations;
 
 namespace YouthLocationBooking.Data.Database.Repositories
 {
@@ -49,6 +50,31 @@ namespace YouthLocationBooking.Data.Database.Repositories
                 .Where(x => x.l.CreatedByUserId == userId)
                 .Select(x => x.b)
                 .ToList();
+        }
+
+        public bool IsLocationBookedDuringPeriod(int locationId, DateTime from, DateTime to)
+        {
+            var bookings = _dbSet.Where(y => y.LocationId == locationId).Where(y => y.StatusId != (int)EBookingStatus.Cancelled || y.StatusId != (int)EBookingStatus.Denied);
+
+            if (from != null)
+            {
+                if (bookings.Where(y => y.StartDateTime <= from && y.EndDateTime >= from).Any())
+                    return true;
+            }
+
+            if (to != null)
+            {
+                if (bookings.Where(y => y.StartDateTime <= to && y.EndDateTime >= to).Any())
+                    return true;
+            }
+
+            if(from != null && to != null)
+            {
+                if (bookings.Where(y => y.StartDateTime >= from && y.EndDateTime <= to).Any())
+                    return true;
+            }
+
+            return false;
         }
     }
 }

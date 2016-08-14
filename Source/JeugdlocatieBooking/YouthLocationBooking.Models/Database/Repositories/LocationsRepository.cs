@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using X.PagedList;
 using YouthLocationBooking.Data.Database.Entities;
+using YouthLocationBooking.Data.Database.Enumerations;
 using YouthLocationBooking.Data.ViewModel.Models;
 
 namespace YouthLocationBooking.Data.Database.Repositories
@@ -83,11 +84,15 @@ namespace YouthLocationBooking.Data.Database.Repositories
 
             if(model.From != null)
             {
-                filteredLocations = filteredLocations.Where(x => !x.Bookings.Where(y => y.StartDateTime <= model.From && y.EndDateTime >= model.From).Any());
+                filteredLocations = filteredLocations.Where(x => !x.Bookings.Where(y => y.StatusId != (int)EBookingStatus.Cancelled || y.StatusId != (int)EBookingStatus.Denied).Where(y => y.StartDateTime <= model.From && y.EndDateTime >= model.From).Any());
             }
             if (model.To != null)
             {
-                filteredLocations = filteredLocations.Where(x => !x.Bookings.Where(y => y.StartDateTime <= model.To && y.EndDateTime >= model.To).Any());
+                filteredLocations = filteredLocations.Where(x => !x.Bookings.Where(y => y.StatusId != (int)EBookingStatus.Cancelled || y.StatusId != (int)EBookingStatus.Denied).Where(y => y.StartDateTime <= model.To && y.EndDateTime >= model.To).Any());
+            }
+            if (model.From != null && model.To != null)
+            {
+                filteredLocations = filteredLocations.Where(x => !x.Bookings.Where(y => y.StatusId != (int)EBookingStatus.Cancelled || y.StatusId != (int)EBookingStatus.Denied).Where(y => y.StartDateTime >= model.From && y.EndDateTime <= model.To).Any());
             }
 
             filteredLocations = filteredLocations.OrderBy(x => x.PricePerDay);

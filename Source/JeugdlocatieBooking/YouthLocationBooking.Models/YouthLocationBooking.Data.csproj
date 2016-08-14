@@ -135,6 +135,10 @@
     <Compile Include="Database\Migrations\201608132114047_AddUserIdToReview.Designer.cs">
       <DependentUpon>201608132114047_AddUserIdToReview.cs</DependentUpon>
     </Compile>
+    <Compile Include="Database\Migrations\201608141718112_AddStringLengths.cs" />
+    <Compile Include="Database\Migrations\201608141718112_AddStringLengths.Designer.cs">
+      <DependentUpon>201608141718112_AddStringLengths.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database\Migrations\Configuration.cs" />
     <Compile Include="Database\Repositories\BookingsRepository.cs" />
     <Compile Include="Database\Repositories\GenericRepository.cs" />
@@ -193,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Database\Migrations\201608132114047_AddUserIdToReview.resx">
       <DependentUpon>201608132114047_AddUserIdToReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Database\Migrations\201608141718112_AddStringLengths.resx">
+      <DependentUpon>201608141718112_AddStringLengths.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
