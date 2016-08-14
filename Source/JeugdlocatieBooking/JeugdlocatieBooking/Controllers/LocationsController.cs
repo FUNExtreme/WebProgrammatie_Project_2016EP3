@@ -34,23 +34,30 @@ namespace YouthLocationBooking.Web.Controllers
             if (page < 1)
                 page = 1;
 
-            var locationsRepository = _unitOfWork.LocationsRepository;
-
             IPagedList<DbLocation> pagedLocations = null;
             LocationFilter filter = new LocationFilter();
-            if (model == null)
-                pagedLocations = locationsRepository.GetAllPaged(page, itemsPerPage);
-            else
+            try
             {
-                filter.Name = model.Name;
-                filter.CityOrPostcode = model.CityOrPostcode;
-                filter.From = model.From;
-                filter.MinCapacity = model.MinCapacity;
-                filter.Province = model.Province;
-                filter.To = model.To;
-                pagedLocations = locationsRepository.GetAllPagedWithFilter(page, itemsPerPage, filter);
+                var locationsRepository = _unitOfWork.LocationsRepository;
+                if (model == null)
+                    pagedLocations = locationsRepository.GetAllPaged(page, itemsPerPage);
+                else
+                {
+                    filter.Name = model.Name;
+                    filter.CityOrPostcode = model.CityOrPostcode;
+                    filter.From = model.From;
+                    filter.MinCapacity = model.MinCapacity;
+                    filter.Province = model.Province;
+                    filter.To = model.To;
+                    pagedLocations = locationsRepository.GetAllPagedWithFilter(page, itemsPerPage, filter);
+                }
+                ViewBag.PagedLocations = pagedLocations;
             }
-            ViewBag.PagedLocations = pagedLocations;
+            catch
+            {
+                TempData["AlertType"] = "danger";
+                TempData["AlertMessage"] = "Er is iets fout gelopen tijdens het ophalen van de locaties";
+            }
 
             // If there are no results, we try to get some from our partners
             ViewBag.PagedThirdPartyLocations = new List<ThirdPartyLocationOverviewViewModel>();
@@ -59,23 +66,39 @@ namespace YouthLocationBooking.Web.Controllers
                 List<ThirdPartyLocationOverviewViewModel> thirdPartyLocations = new List<ThirdPartyLocationOverviewViewModel>();
 
                 ApiClient apiClient = new ApiClient();
-                // Tim
-                string urlTim = GenerateUrlWithFilter("http://jeugdlocatie.timvettori.ikdoeict.net/Api/SharedLocations/", filter, cityOrPostCodeParamName: "location", fromParamName: "startDateTime", toParamName: "endDateTime");
-                IEnumerable<ApiLocationTim> locationsTim = await apiClient.Request<IEnumerable<ApiLocationTim>>(urlTim);
-                IEnumerable<ThirdPartyLocationOverviewViewModel> mappedLocationsTim = locationsTim.Select(x =>
+                try
                 {
-                    return x.ToViewModel();
-                });
-                thirdPartyLocations.AddRange(mappedLocationsTim);
+                    // Tim
+                    string urlTim = GenerateUrlWithFilter("http://jeugdlocatie.timvettori.ikdoeict.net/Api/SharedLocations/", filter, cityOrPostCodeParamName: "location", fromParamName: "startDateTime", toParamName: "endDateTime");
+                    IEnumerable<ApiLocationTim> locationsTim = await apiClient.Request<IEnumerable<ApiLocationTim>>(urlTim);
+                    IEnumerable<ThirdPartyLocationOverviewViewModel> mappedLocationsTim = locationsTim.Select(x =>
+                    {
+                        return x.ToViewModel();
+                    });
+                    thirdPartyLocations.AddRange(mappedLocationsTim);
+                }
+                catch
+                {
+                    // This ensures graceful failure when Tim's API fails
+                    // In production we would log this exceptions
+                }
 
-                // Diede
-                string urlDiede = GenerateUrlWithFilter("http://diedeseldeslachts.ikdoeict.net/api/LocationSearchAPI/Get", filter, cityOrPostCodeParamName: "cityOrPostcode", fromParamName: "startDateTime", toParamName: "endDateTime");
-                IEnumerable <ApiLocationDiede> locationsDiede = await apiClient.Request<IEnumerable<ApiLocationDiede>>(urlDiede);
-                IEnumerable<ThirdPartyLocationOverviewViewModel> mappedLocationsDiede = locationsDiede.Select(x =>
+                try
                 {
-                    return x.ToViewModel();
-                });
-                thirdPartyLocations.AddRange(mappedLocationsDiede);
+                    // Diede
+                    string urlDiede = GenerateUrlWithFilter("http://diedeseldeslachts.ikdoeict.net/api/LocationSearchAPI/Get", filter, cityOrPostCodeParamName: "cityOrPostcode", fromParamName: "startDateTime", toParamName: "endDateTime");
+                    IEnumerable<ApiLocationDiede> locationsDiede = await apiClient.Request<IEnumerable<ApiLocationDiede>>(urlDiede);
+                    IEnumerable<ThirdPartyLocationOverviewViewModel> mappedLocationsDiede = locationsDiede.Select(x =>
+                    {
+                        return x.ToViewModel();
+                    });
+                    thirdPartyLocations.AddRange(mappedLocationsDiede);
+                }
+                catch
+                {
+                    // This ensures graceful failure when Diede's API fails
+                    // In production we would log this exceptions
+                }
 
                 ViewBag.PagedThirdPartyLocations = thirdPartyLocations.ToPagedList(page, itemsPerPage);
             }
